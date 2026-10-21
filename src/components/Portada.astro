@@ -1,5 +1,5 @@
 ---
-import { contact, href, reviews, ui, type Lang, type PageKey } from '../data/site';
+import { contact, href, label, reviews, ui, type Lang, type PageKey } from '../data/site';
 import { especialidades } from '../data/paginas';
 import Retrato from './Retrato.astro';
 import Mapa from './Mapa.astro';
@@ -34,6 +34,8 @@ const pensamientos: Pensamiento[] = [
 const copy = {
   es: {
     h1: 'Psicología en Granollers y online',
+    frase: 'Del ruido a la calma.',
+    pool: ['no paro de darle vueltas', '¿y si sale mal?', 'me cuesta respirar', 'no quiero molestar a nadie', 'siempre acabamos igual', 'tengo que poder con todo', 'no me reconozco', '¿y si no se me pasa?', 'llevo meses así', 'otra discusión más', 'no se lo he contado a nadie', 'mañana tampoco dormiré'],
     lead: 'Terapia para adultos, adolescentes, niños, parejas y familias. A tu ritmo, en la consulta o por videollamada.',
     pregunta: '¿Qué te trae?',
     rutas: [
@@ -90,6 +92,8 @@ const copy = {
   },
   ca: {
     h1: 'Psicologia a Granollers i online',
+    frase: 'Del soroll a la calma.',
+    pool: ['no paro de donar-hi voltes', 'i si surt malament?', 'em costa respirar', 'no vull molestar ningú', 'sempre acabem igual', 'he de poder amb tot', 'no em reconec', 'i si no se me’n va?', 'fa mesos que estic així', 'una altra discussió', 'no ho he explicat a ningú', 'demà tampoc dormiré'],
     lead: 'Teràpia per a adults, adolescents, infants, parelles i famílies. Al teu ritme, a la consulta o per videotrucada.',
     pregunta: 'Què et porta aquí?',
     rutas: [
@@ -152,7 +156,7 @@ const fecha = (iso: string) =>
 const [destacada, ...resto] = reviews;
 const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vicente+Psic%C3%B3loga+Granollers';
 ---
-<section class="escena" data-escena aria-labelledby="portada-titulo">
+<section class="escena" data-escena data-pool={JSON.stringify(copy.pool)} aria-labelledby="portada-titulo">
   <div class="escena__ruido" aria-hidden="true">
     {pensamientos.map((p) => (
       <span
@@ -164,9 +168,11 @@ const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vic
     ))}
   </div>
 
+  <div class="escena__luz" aria-hidden="true"></div>
+
   <div class="contenedor escena__rejilla">
     <div class="escena__texto">
-      <h1 id="portada-titulo" data-titulo-entrada>{copy.h1}</h1>
+      <h1 id="portada-titulo" class="escena__titulo" data-titulo-entrada><span class="escena__frase">{copy.frase}</span> <span class="escena__lugar">{copy.h1}</span></h1>
       <p class="escena__lead" data-sube>{copy.lead}</p>
       <div class="escena__acciones" data-sube>
         <a class="boton" href={contact.setmore} target="_blank" rel="noopener" data-iman>{t.cta}</a>
@@ -178,7 +184,7 @@ const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vic
       <h2 id="rutas-titulo" class="rutas__pregunta" data-pregunta>{copy.pregunta}</h2>
       <ul>
         {copy.rutas.map(([texto, key], i) => (
-          <li data-ruta-fila={i}><a href={href(lang, key)} data-ruta-destino={i}>{texto}</a></li>
+          <li data-ruta-fila={i}><a href={href(lang, key)} data-ruta-destino={i}><span class="ruta__texto">{texto}</span><span class="ruta__destino">{label(lang, key)}</span></a></li>
         ))}
       </ul>
     </nav>
@@ -388,32 +394,72 @@ const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vic
   .p--l { font-size: clamp(1.4rem, 1rem + 1.6vw, 2.5rem); }
   .p--m { font-size: clamp(1.1rem, 0.9rem + 0.9vw, 1.7rem); }
   .p--s { font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.2rem); }
-  .p--l .pensamiento__par { opacity: 0.9; }
-  .p--m .pensamiento__par { opacity: 0.55; }
-  .p--s .pensamiento__par { opacity: 0.34; }
+  .pensamiento__texto { text-shadow: 0 0 calc(var(--luz, 0) * 22px) rgba(157, 219, 214, calc(var(--luz, 0) * 0.55)); }
+  .p--l .pensamiento__par { opacity: calc(0.8 + var(--luz, 0) * 0.2); }
+  .p--m .pensamiento__par { opacity: calc(0.45 + var(--luz, 0) * 0.5); }
+  .p--s .pensamiento__par { opacity: calc(0.3 + var(--luz, 0) * 0.6); }
 
   .escena__rejilla {
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 6fr 6fr;
-    gap: var(--e-xl) clamp(32px, 6vw, 96px);
+    grid-template-columns: 7fr 5fr;
+    gap: var(--e-xl) clamp(32px, 5vw, 80px);
     align-items: center;
     padding-block: clamp(40px, 7vw, 96px);
   }
   :global(.mov) .escena__rejilla { min-height: calc(100svh - var(--alto-cabecera)); }
 
-  .escena h1 {
-    font-size: var(--t-display);
-    font-weight: 480;
-    line-height: 0.98;
-    letter-spacing: -0.045em;
+  .escena__titulo { font-size: inherit; line-height: 1; letter-spacing: 0; }
+  .escena__frase {
+    display: block;
+    font-size: clamp(3.4rem, 1.2rem + 7.2vw, 9.4rem);
+    font-weight: 460;
+    line-height: 0.9;
+    letter-spacing: -0.055em;
   }
-  .escena__lead { margin-top: var(--e-l); color: var(--e-suave); font-size: 1.15rem; max-width: 34ch; }
+  .escena__lugar {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    margin-top: 0.7em;
+    font-size: clamp(1.2rem, 0.95rem + 1vw, 1.9rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .escena__lugar::before { content: ''; flex: none; width: 1.6em; height: 3px; border-radius: 3px; background: var(--acento-vivo); }
+  .escena__lead { margin-top: var(--e-l); color: var(--e-suave); font-size: clamp(1.1rem, 1rem + 0.45vw, 1.35rem); max-width: 36ch; }
   .escena__acciones { display: flex; flex-wrap: wrap; align-items: center; gap: var(--e-m) var(--e-l); margin-top: var(--e-xl); }
+  .escena__acciones .boton { min-height: 58px; padding: 16px 34px; font-size: 1.1rem; }
+  .escena__texto { position: relative; }
+  :global(.mov) .escena__texto::before {
+    content: '';
+    position: absolute;
+    inset: -22% -18% -22% -30%;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--e-fondo) 94%, transparent) 45%, transparent);
+  }
+  .escena__luz { display: none; }
+  @media (hover: hover) and (pointer: fine) {
+    :global(.mov) .escena__luz {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 560px;
+      height: 560px;
+      margin: -280px 0 0 -280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(157, 219, 214, 0.13), transparent 62%);
+      pointer-events: none;
+      opacity: 0;
+    }
+  }
   .escena__tel { color: var(--e-texto); }
 
-  .rutas__pregunta { font-size: 1.05rem; font-weight: 650; color: var(--e-suave); letter-spacing: 0; margin-bottom: var(--e-s); }
+  .rutas__pregunta { font-size: clamp(1.7rem, 1.2rem + 1.6vw, 2.8rem); font-weight: 480; letter-spacing: -0.035em; line-height: 1; color: var(--e-texto); margin-bottom: var(--e-l); }
   .rutas ul { list-style: none; padding: 0; }
   .rutas li { position: relative; }
   .rutas li::before, .rutas li:last-child::after {
@@ -429,11 +475,13 @@ const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vic
   .rutas li::before { top: 0; }
   .rutas li:last-child::after { bottom: 0; }
   .rutas a {
+    position: relative;
     display: flex;
     align-items: center;
-    min-height: 64px;
+    gap: var(--e-m);
+    min-height: 72px;
     padding-block: var(--e-m);
-    font-size: var(--t-ruta);
+    font-size: clamp(1.4rem, 1.05rem + 1.25vw, 2.25rem);
     font-weight: 520;
     line-height: 1.2;
     letter-spacing: -0.01em;
@@ -444,8 +492,26 @@ const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vic
     text-underline-offset: 0.22em;
     transition: text-decoration-color 0.2s ease, color 0.2s ease, transform 0.45s var(--ease-out);
   }
+  .rutas a::after {
+    content: '';
+    position: absolute;
+    inset: 4px -14px;
+    z-index: -1;
+    border-radius: var(--r-m);
+    background: color-mix(in srgb, var(--acento) 9%, transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--ease-out);
+  }
+  .rutas a:hover::after, .rutas a:focus-visible::after { transform: scaleX(1); }
+  .ruta__texto { flex: 1; }
+  .ruta__destino { flex: none; font-size: 0.9rem; font-weight: 600; letter-spacing: 0; color: var(--e-suave); transition: color 0.2s ease; }
+  .rutas a:hover .ruta__destino, .rutas a:focus-visible .ruta__destino { color: var(--acento); }
+  @media (max-width: 1200px) {
+    .ruta__destino { display: none; }
+  }
   .rutas a:hover, .rutas a:focus-visible { color: var(--acento); text-decoration-color: var(--acento); }
-  .rutas a:focus { opacity: 1 !important; }
+  .rutas a:focus-visible { opacity: 1 !important; }
   @media (hover: hover) and (pointer: fine) {
     .rutas a:hover { transform: translateX(10px); }
   }

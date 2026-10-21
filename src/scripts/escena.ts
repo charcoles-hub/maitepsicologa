@@ -125,12 +125,78 @@ if (escena && !reducir && document.documentElement.classList.contains('mov')) {
         c.y(ultimo.ny * 30 * c.prof * fuerza);
       });
     };
+    const luz = escena.querySelector<HTMLElement>('.escena__luz');
+    const luzX = luz ? gsap.quickTo(luz, 'x', { duration: 0.9, ease: 'power3.out' }) : null;
+    const luzY = luz ? gsap.quickTo(luz, 'y', { duration: 0.9, ease: 'power3.out' }) : null;
+    const pares = pensamientos.map((p) => p.querySelector<HTMLElement>('.pensamiento__par')!);
+    let pendiente = false;
+    let puntero = { x: -9999, y: -9999 };
+    const iluminar = () => {
+      pendiente = false;
+      const fuerza = Math.max(0, 1 - calma * 4);
+      if (luz) gsap.set(luz, { opacity: fuerza });
+      pares.forEach((par) => {
+        const r = par.getBoundingClientRect();
+        const d = Math.hypot(r.left + r.width / 2 - puntero.x, r.top + r.height / 2 - puntero.y);
+        const v = Math.max(0, 1 - d / 280) ** 1.4 * fuerza;
+        par.style.setProperty('--luz', v.toFixed(3));
+      });
+    };
     window.addEventListener('pointermove', (e) => {
       ultimo = { nx: e.clientX / innerWidth - 0.5, ny: e.clientY / innerHeight - 0.5 };
       mover();
+      const base = escena.getBoundingClientRect();
+      puntero = { x: e.clientX, y: e.clientY };
+      luzX?.(e.clientX - base.left);
+      luzY?.(e.clientY - base.top);
+      if (!pendiente) {
+        pendiente = true;
+        requestAnimationFrame(iluminar);
+      }
     }, { passive: true });
     ScrollTrigger.create({ trigger: escena, start: 'top top', end: '+=40%', onUpdate: mover });
   }
+
+  mm.add('(min-width: 1000px)', () => {
+    const pool: string[] = JSON.parse(escena.dataset.pool ?? '[]');
+    const huecos = [[6, 8], [28, 4], [48, 12], [72, 5], [88, 14], [62, 24], [90, 34], [74, 40], [86, 56], [62, 52], [78, 72], [92, 80], [58, 90], [34, 95], [6, 92], [4, 22]];
+    const deriva = relleno.map((p) => {
+      const texto = p.querySelector<HTMLElement>('.pensamiento__texto')!;
+      return gsap.to(texto, { x: gsap.utils.random(-14, 14), y: gsap.utils.random(-10, 10), duration: gsap.utils.random(5, 9), ease: 'sine.inOut', yoyo: true, repeat: -1, delay: gsap.utils.random(0, 3) });
+    });
+    let siguiente = 0;
+    let ocupado = false;
+    const posicion = (el: HTMLElement) => ({ x: (el.offsetLeft / escena.clientWidth) * 100, y: (el.offsetTop / escena.clientHeight) * 100 });
+    const rumiar = () => {
+      if (ocupado || calma > 0.01 || document.hidden || !pool.length) return;
+      ocupado = true;
+      const el = gsap.utils.random(relleno);
+      const texto = el.querySelector<HTMLElement>('.pensamiento__texto')!;
+      const otros = pensamientos.filter((o) => o !== el).map(posicion);
+      const hueco = huecos
+        .map(([x, y]) => ({ x, y, d: Math.min(...otros.map((o) => Math.hypot((o.x - x) * 0.6, o.y - y))) }))
+        .sort((a, b) => b.d - a.d)[gsap.utils.random(0, 2, 1)];
+      gsap.to(texto, {
+        opacity: 0,
+        filter: 'blur(6px)',
+        duration: 1.3,
+        ease: 'power2.in',
+        onComplete: () => {
+          texto.textContent = pool[siguiente++ % pool.length];
+          el.style.left = `${hueco.x}%`;
+          el.style.top = `${hueco.y}%`;
+          const sobra = el.offsetLeft + el.offsetWidth - (escena.clientWidth - 24);
+          if (sobra > 0) el.style.left = `${el.offsetLeft - sobra}px`;
+          gsap.to(texto, { opacity: 1, filter: 'blur(0px)', duration: 1.8, ease: 'power2.out', onComplete: () => { ocupado = false; } });
+        },
+      });
+    };
+    const reloj = window.setInterval(rumiar, 2600);
+    return () => {
+      window.clearInterval(reloj);
+      deriva.forEach((t) => t.kill());
+    };
+  });
 
   document.querySelectorAll<HTMLElement>('[data-desliza]').forEach((el) => {
     gsap.fromTo(el, { xPercent: 6 }, { xPercent: -28, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true } });

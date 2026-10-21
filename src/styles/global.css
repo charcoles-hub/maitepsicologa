@@ -12,17 +12,18 @@
   --linea: #d5e3e2;
   --acento: #0e6e73;
   --acento-hover: #0a5357;
+  --acento-vivo: #3fb3b6;
   --sobre-acento: #ffffff;
   --error: #b3261e;
 
   --manana: #e3f2ee;
   --mediodia: #eff3e6;
   --tarde: #fcebdc;
-  --ocaso: #ebe6f5;
+  --ocaso: #e2e9f1;
   --sol-manana: #fff0c2;
   --sol-mediodia: #fff7d6;
   --sol-tarde: #ffd2ad;
-  --sol-ocaso: #e2c9f0;
+  --sol-ocaso: #f4d6ae;
 
   --ui: 'Bricolage Grotesque Variable', system-ui, sans-serif;
   --voz: 'Literata Variable', Georgia, serif;
@@ -185,7 +186,7 @@ html.lenis, html.lenis body { height: auto; }
 .mov:not(.mov-listo) [data-rutas],
 .mov:not(.mov-listo) [data-pensamiento] { visibility: hidden; }
 
-[data-titulo-entrada] > div { padding-block: 0.1em 0.2em; margin-block: -0.1em -0.2em; }
+[data-titulo-entrada] > div, [data-titulo-entrada] > span > div, .titular-seccion > div { padding-block: 0.1em 0.2em; margin-block: -0.1em -0.2em; }
 
 [data-hora='manana'] { --hora: var(--manana); --sol: var(--sol-manana); }
 [data-hora='mediodia'] { --hora: var(--mediodia); --sol: var(--sol-mediodia); }
@@ -232,5 +233,5 @@ main, .pie { position: relative; z-index: 1; }
 .migas a { color: inherit; display: inline-flex; min-height: 44px; min-width: 44px; align-items: center; }
 .migas a:hover { color: var(--acento); }
 
-.titular-seccion { font-size: var(--t-titulo); margin-bottom: var(--e-xl); max-width: 22ch; }
+.titular-seccion { font-size: clamp(2.2rem, 1.2rem + 3.4vw, 4.6rem); font-weight: 480; letter-spacing: -0.045em; line-height: 1; margin-bottom: var(--e-xl); max-width: 16ch; }
 .voz { font-family: var(--voz); font-style: italic; }

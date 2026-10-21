@@ -1,7 +1,8 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const horas = gsap.utils.toArray<HTMLElement>('[data-hora]');
@@ -13,6 +14,15 @@ if (!reducir && horas.length && capa && sol && document.documentElement.classLis
   const token = (n: string) => css.getPropertyValue(n).trim();
   const cielo = (el: HTMLElement) => token(`--${el.dataset.hora}`);
   const brillo = (el: HTMLElement) => token(`--sol-${el.dataset.hora}`);
+  document.querySelectorAll<HTMLElement>('.titular-seccion').forEach((el) => {
+    SplitText.create(el, {
+      type: 'lines', mask: 'lines', autoSplit: true,
+      onSplit(self) {
+        return gsap.from(self.lines, { yPercent: 110, duration: 1.1, ease: 'expo.out', stagger: 0.09, scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+      },
+    });
+  });
+
   gsap.set(capa, { backgroundColor: token('--fondo') });
   gsap.set(sol, { '--sol-actual': brillo(horas[0]) });
 

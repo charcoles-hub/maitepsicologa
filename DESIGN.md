@@ -16,7 +16,7 @@ colors:
   manana: "#E3F2EE"
   mediodia: "#EFF3E6"
   tarde: "#FCEBDC"
-  ocaso: "#EBE6F5"
+  ocaso: "#E2E9F1"
   error: "#B3261E"
 typography:
   display:
@@ -96,7 +96,7 @@ Cada sección tiene después su propio momento: la reseña que se enciende palab
 
 ## Color
 
-- **El día avanza** (21-10, elegido por Sergio): tras el amanecer de la portada, cada sección es una hora del día (`data-hora`: mañana verde agua, mediodía salvia, tarde melocotón, ocaso lavanda). Con movimiento, el fondo de la página (`--cielo`) se funde de una hora a otra con el scroll y un sol difuso cruza la pantalla y se pone antes del cierre; sin movimiento, cada sección lleva su banda de color. El cierre es el atardecer (`acento`) y el pie vuelve a ser `noche`, con la firma «Maite Vicente» enorme: el ciclo completo. Las subpáginas usan el mismo sistema. Pasteles por gusto expreso de Maite.
+- **El día avanza** (21-10, elegido por Sergio): tras el amanecer de la portada, cada sección es una hora del día (`data-hora`: mañana verde agua, mediodía salvia, tarde melocotón, ocaso azul de anochecer). Con movimiento, el fondo de la página (`--cielo`) se funde de una hora a otra con el scroll y un sol difuso cruza la pantalla y se pone antes del cierre; sin movimiento, cada sección lleva su banda de color. El cierre es el atardecer (`acento`) y el pie vuelve a ser `noche`, con la firma «Maite Vicente» enorme: el ciclo completo. Las subpáginas usan el mismo sistema. Pasteles por gusto expreso de Maite.
 
 - `fondo` blanco con un hilo de verde azulado; `superficie` para bandas de reseñas y bloques de datos.
 - `acento` es el turquesa de su web actual llevado a un tono más profundo y sobrio. Solo para acciones, enlaces y el subrayado de las rutas. Nunca como fondo de secciones enteras.
@@ -105,6 +105,9 @@ Cada sección tiene después su propio momento: la reseña que se enciende palab
 - El `acento` a sangre se usa una sola vez: el bloque de cierre.
 
 ## Tipografía
+
+- **Titular de portada** (21-10): «Del ruido a la calma.» enorme (hasta 9,4rem) y debajo, con un filete `acento-vivo`, «Psicología en Granollers y online»; los dos dentro del `h1`. Un halo de `noche` detrás del bloque lo separa de los pensamientos. Los títulos de sección van en display (hasta 4,6rem, peso 480) y entran por líneas.
+- **Noche viva**: los pensamientos derivan despacio, se apagan y aparecen otros nuevos en otro sitio (rumiación, solo escritorio y antes de bajar) y una luz tenue sigue al ratón y enciende los cercanos.
 
 - **Bricolage Grotesque** (SIL OFL, ejes de peso y tamaño óptico) para todo lo que dice la consulta: titulares, rutas, texto e interfaz. En grande, el tamaño óptico le da trazos con carácter (contraformas apretadas, terminaciones vivas); en texto se vuelve sobria y muy legible. Cubre `ç l·l à è ò ï`. Sustituye a Figtree (21-10): era correcta pero sin personalidad.
 - **Literata cursiva** (SIL OFL) solo para la voz de los pacientes: los pensamientos de la escena y las reseñas citadas enteras. La voz del paciente se distingue tipográficamente de la de la consulta; nunca se usa para destacar palabras sueltas.
