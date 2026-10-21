@@ -56,7 +56,7 @@ if (escena && !reducir && document.documentElement.classList.contains('mov')) {
       scrollTrigger: {
         trigger: escena,
         start: 'top top',
-        end: '+=160%',
+        end: '+=220%',
         pin: true,
         scrub: 0.8,
         invalidateOnRefresh: true,
@@ -73,6 +73,7 @@ if (escena && !reducir && document.documentElement.classList.contains('mov')) {
       .fromTo(pregunta, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.18, ease: 'power2.out' }, 0.5)
       .fromTo(filas, { '--l': 0 }, { '--l': 1, duration: 0.3, stagger: 0.03, ease: 'power2.inOut' }, 0.42);
 
+    const cambio = 0.16 + (claves.length - 1) * 0.05 + 0.5 + 0.3;
     claves.forEach((clave) => {
       const i = Number(clave.dataset.ruta);
       tl.fromTo(
@@ -82,8 +83,8 @@ if (escena && !reducir && document.documentElement.classList.contains('mov')) {
         0.16 + i * 0.05,
       );
       tl.to(clave.querySelector('.pensamiento__par'), { opacity: 1, duration: 0.3 }, 0.18 + i * 0.05);
-      tl.to(clave, { autoAlpha: 0, duration: 0.1 }, 0.72 + i * 0.02);
-      tl.fromTo(destinos[i], { opacity: 0 }, { opacity: 1, duration: 0.1 }, 0.7 + i * 0.02);
+      tl.to(clave, { autoAlpha: 0, duration: 0.12 }, cambio + 0.02 + i * 0.03);
+      tl.fromTo(destinos[i], { opacity: 0 }, { opacity: 1, duration: 0.12 }, cambio + i * 0.03);
     });
 
     tl.to({}, { duration: 0.12 });
