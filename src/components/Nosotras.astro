@@ -1,0 +1,129 @@
+---
+import { ui, type Lang } from '../data/site';
+import { enfoques, formacion } from '../data/paginas';
+import SubHero from './SubHero.astro';
+import Retrato from './Retrato.astro';
+import Cierre from './Cierre.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+const c = {
+  es: {
+    h1: 'Sobre nosotras',
+    intro: 'Una consulta pequeña en Granollers, también online. Aquí cada persona tiene su tiempo y sabe en todo momento qué estamos haciendo y por qué.',
+    maite: 'Licenciada en Psicología en 2014, trabaja con adultos, adolescentes, niños, parejas y familias en su consulta de Granollers y por videollamada. Se ha especializado en infancia y adolescencia y en las terapias de tercera generación.',
+    formacion: 'Formación',
+    companeraNombre: 'Nombre de la psicóloga',
+    companeraDato: 'Colegiada nº pendiente',
+    companera: 'Aquí irá su presentación: formación, especialidades y qué días pasa consulta (una mañana y una tarde a la semana).',
+    ejemplo: 'Ejemplo',
+    foto: 'Foto pendiente',
+    fotoMaite: 'Retrato de Maite en la consulta.',
+    fotoCompanera: 'Retrato de la segunda psicóloga.',
+    enfoquesTitulo: 'Cómo trabajamos',
+    espacioTitulo: 'La consulta',
+    espacioIntro: 'Carrer de Roger de Flor, 63, 1º 2ª, en Granollers. Un espacio tranquilo para hablar sin prisas.',
+    espacio: [['Sala', 'Foto de la sala donde se hacen las sesiones.'], ['Entrada', 'Foto de la entrada o la sala de espera.'], ['Portal', 'Foto del portal, para reconocerlo al llegar.']],
+  },
+  ca: {
+    h1: 'Sobre nosaltres',
+    intro: 'Una consulta petita a Granollers, també online. Aquí cada persona té el seu temps i sap en tot moment què estem fent i per què.',
+    maite: "Llicenciada en Psicologia el 2014, treballa amb adults, adolescents, infants, parelles i famílies a la seva consulta de Granollers i per videotrucada. S'ha especialitzat en infància i adolescència i en les teràpies de tercera generació.",
+    formacion: 'Formació',
+    companeraNombre: 'Nom de la psicòloga',
+    companeraDato: 'Col·legiada núm. pendent',
+    companera: 'Aquí hi anirà la seva presentació: formació, especialitats i quins dies passa consulta (un matí i una tarda a la setmana).',
+    ejemplo: 'Exemple',
+    foto: 'Foto pendent',
+    fotoMaite: 'Retrat de la Maite a la consulta.',
+    fotoCompanera: 'Retrat de la segona psicòloga.',
+    enfoquesTitulo: 'Com treballem',
+    espacioTitulo: 'La consulta',
+    espacioIntro: 'Carrer de Roger de Flor, 63, 1r 2a, a Granollers. Un espai tranquil per parlar sense presses.',
+    espacio: [['Sala', 'Foto de la sala on es fan les sessions.'], ['Entrada', "Foto de l'entrada o la sala d'espera."], ['Portal', 'Foto del portal, per reconèixer-lo en arribar.']],
+  },
+}[lang];
+---
+<SubHero lang={lang} page="nosotras" hora="tarde" h1={c.h1} intro={c.intro} />
+
+<!-- PENDIENTE: Maite valida la biografía; datos de la compañera y todas las fotos -->
+<section class="perfil" data-hora="tarde" aria-labelledby="perfil-maite">
+  <div class="contenedor perfil__rejilla">
+    <Retrato iniciales="MV" etiqueta={c.foto} pie={c.fotoMaite} />
+    <div>
+      <h2 id="perfil-maite" class="perfil__nombre">Maite Vicente Pérez</h2>
+      <p class="perfil__dato">{t.colegiada}</p>
+      <p class="perfil__bio">{c.maite}</p>
+      <h3 class="perfil__sub">{c.formacion}</h3>
+      <ul class="perfil__formacion">
+        {formacion[lang].map(([titulo, lugar]) => <li><span>{titulo}</span>{lugar && <span>{lugar}</span>}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="perfil" data-hora="ocaso" aria-labelledby="perfil-companera">
+  <div class="contenedor perfil__rejilla perfil__rejilla--invertida">
+    <div>
+      <h2 id="perfil-companera" class="perfil__nombre">{c.companeraNombre} <span class="ejemplo">{c.ejemplo}</span></h2>
+      <p class="perfil__dato perfil__dato--ejemplo">{c.companeraDato}</p>
+      <p class="perfil__bio">{c.companera}</p>
+    </div>
+    <Retrato iniciales="?" etiqueta={c.foto} pie={c.fotoCompanera} />
+  </div>
+</section>
+
+<section class="enfoques" data-hora="manana" aria-labelledby="enfoques-titulo">
+  <div class="contenedor">
+    <h2 id="enfoques-titulo" class="titular-seccion">{c.enfoquesTitulo}</h2>
+    <dl class="enfoques__lista">
+      {enfoques[lang].map(([n, d]) => (
+        <div data-sube>
+          <dt>{n}</dt>
+          <dd>{d}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<section class="espacio" data-hora="mediodia" aria-labelledby="espacio-titulo">
+  <div class="contenedor">
+    <h2 id="espacio-titulo" class="titular-seccion">{c.espacioTitulo}</h2>
+    <p class="espacio__intro">{c.espacioIntro}</p>
+    <div class="espacio__fotos">
+      {c.espacio.map(([n, p]) => <Retrato iniciales={n} etiqueta={c.foto} pie={p} formato="apaisado" />)}
+    </div>
+  </div>
+</section>
+
+<Cierre lang={lang} />
+
+<style>
+  .perfil__rejilla { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: var(--e-xl) clamp(32px, 6vw, 96px); align-items: center; }
+  .perfil__rejilla--invertida { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); }
+  .perfil__nombre { font-size: clamp(2.2rem, 1.4rem + 3vw, 4.4rem); font-weight: 480; letter-spacing: -0.04em; line-height: 1; }
+  .perfil__dato { color: var(--acento); font-weight: 600; margin: var(--e-s) 0 var(--e-l); }
+  .perfil__dato--ejemplo { color: var(--texto-suave); }
+  .perfil__bio { font-size: 1.2rem; max-width: 52ch; }
+  .perfil__sub { font-size: 1.05rem; letter-spacing: 0; margin: var(--e-xl) 0 var(--e-s); }
+  .perfil__formacion { list-style: none; padding: 0; }
+  .perfil__formacion li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 var(--e-l); padding-block: var(--e-s); border-top: 1px solid color-mix(in srgb, var(--texto) 14%, transparent); }
+  .perfil__formacion li span:last-child:not(:first-child) { color: var(--texto-suave); }
+
+  .enfoques__lista { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e-xl) clamp(32px, 6vw, 96px); }
+  .enfoques__lista dt { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.6rem); font-weight: 480; letter-spacing: -0.035em; line-height: 1.05; margin-bottom: var(--e-s); }
+  .enfoques__lista dd { margin: 0; color: var(--texto-suave); max-width: 44ch; font-size: 1.1rem; }
+
+  .espacio__intro { max-width: 52ch; font-size: 1.15rem; margin: calc(-1 * var(--e-l)) 0 var(--e-xl); color: var(--texto-suave); }
+  .espacio__fotos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--e-l); }
+
+  @media (max-width: 860px) {
+    .perfil__rejilla, .perfil__rejilla--invertida, .enfoques__lista, .espacio__fotos { grid-template-columns: 1fr; }
+    .perfil :global(.retrato) { max-width: 300px; }
+  }
+</style>

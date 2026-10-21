@@ -1,0 +1,96 @@
+---
+import { contact, type Lang } from '../data/site';
+import SubHero from './SubHero.astro';
+import Mapa from './Mapa.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+type Via = { titulo: string; texto: string; accion: string; url: string; fuera: boolean };
+const c = {
+  es: {
+    h1: 'Hablamos cuando quieras',
+    intro: 'Elige cómo prefieres empezar. Atendemos con cita previa, en la consulta de Granollers o por videollamada.',
+    vias: [
+      { titulo: 'Agenda online', texto: 'Elige día y hora para tu primera sesión.', accion: 'Reservar en la agenda', url: contact.setmore, fuera: true },
+      { titulo: 'Teléfono', texto: 'De lunes a viernes de 10:00 a 21:00 y sábados de 10:00 a 13:00.', accion: `Llamar al ${contact.phone}`, url: contact.phoneHref, fuera: false },
+      { titulo: 'WhatsApp', texto: 'Escríbenos y te respondemos lo antes posible.', accion: 'Escribir por WhatsApp', url: contact.whatsapp.es, fuera: true },
+      { titulo: 'Correo', texto: 'Para lo que prefieras contar con más calma.', accion: 'Escribir un correo', url: `mailto:${contact.email}`, fuera: false },
+    ] as Via[],
+    dondeTitulo: 'Dónde estamos',
+    horario: 'Horario',
+    redes: 'También en Instagram',
+    form: 'Formulario de contacto.',
+    formTexto: 'La web actual tiene uno. Si se quiere mantener, lo añadimos aquí con protección antispam.',
+    ejemplo: 'Por decidir',
+  },
+  ca: {
+    h1: 'En parlem quan vulguis',
+    intro: 'Tria com prefereixes començar. Atenem amb cita prèvia, a la consulta de Granollers o per videotrucada.',
+    vias: [
+      { titulo: 'Agenda online', texto: 'Tria dia i hora per a la teva primera sessió.', accion: "Reservar a l'agenda", url: contact.setmore, fuera: true },
+      { titulo: 'Telèfon', texto: 'De dilluns a divendres de 10:00 a 21:00 i dissabtes de 10:00 a 13:00.', accion: `Trucar al ${contact.phone}`, url: contact.phoneHref, fuera: false },
+      { titulo: 'WhatsApp', texto: 'Escriu-nos i et respondrem al més aviat possible.', accion: 'Escriure per WhatsApp', url: contact.whatsapp.ca, fuera: true },
+      { titulo: 'Correu', texto: 'Per al que prefereixis explicar amb més calma.', accion: 'Escriure un correu', url: `mailto:${contact.email}`, fuera: false },
+    ] as Via[],
+    dondeTitulo: 'On som',
+    horario: 'Horari',
+    redes: 'També a Instagram',
+    form: 'Formulari de contacte.',
+    formTexto: "La web actual en té un. Si es vol mantenir, l'afegim aquí amb protecció antispam.",
+    ejemplo: 'Per decidir',
+  },
+}[lang];
+---
+<SubHero lang={lang} page="contacto" hora="manana" h1={c.h1} intro={c.intro} />
+
+<section class="vias" data-hora="manana" aria-label={c.h1}>
+  <div class="contenedor">
+    <ul class="vias__lista">
+      {c.vias.map((v, i) => (
+        <li data-sube>
+          <h2>{v.titulo}</h2>
+          <p>{v.texto}</p>
+          <a class:list={['boton', { 'boton--secundario': i > 0 }]} href={v.url} target={v.fuera ? '_blank' : undefined} rel={v.fuera ? 'noopener' : undefined}>{v.accion}</a>
+        </li>
+      ))}
+    </ul>
+    <p class="vias__form"><span class="ejemplo">{c.ejemplo}</span> <strong>{c.form}</strong> {c.formTexto}</p>
+  </div>
+</section>
+
+<section class="ubicacion" data-hora="mediodia" aria-labelledby="ubicacion-titulo">
+  <div class="contenedor ubicacion__rejilla">
+    <div>
+      <h2 id="ubicacion-titulo" class="titular-seccion">{c.dondeTitulo}</h2>
+      <address>{contact.address.map((l) => <span>{l}<br /></span>)}</address>
+      <h3>{c.horario}</h3>
+      <p class="cifra">{contact.hours[lang].map((l) => <span>{l}<br /></span>)}</p>
+      <p><a class="enlace" href={contact.instagram} target="_blank" rel="noopener">{c.redes}</a></p>
+    </div>
+    <Mapa lang={lang} />
+  </div>
+</section>
+
+<style>
+  .vias__lista { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--e-l); }
+  .vias__lista li { display: flex; flex-direction: column; align-items: flex-start; gap: var(--e-s); padding: var(--e-l); border-radius: var(--r-m); background: var(--fondo); border: 1px solid color-mix(in srgb, var(--texto) 10%, transparent); }
+  .vias__lista h2 { font-size: 1.5rem; font-weight: 520; letter-spacing: -0.02em; }
+  .vias__lista p { color: var(--texto-suave); flex: 1; }
+  .vias__lista .boton { white-space: normal; text-align: center; margin-top: var(--e-s); }
+  .vias__form { margin-top: var(--e-xl); color: var(--texto-suave); max-width: 70ch; }
+  .vias__form strong { color: var(--texto); }
+
+  .ubicacion__rejilla { display: grid; grid-template-columns: 5fr 7fr; gap: var(--e-xl); align-items: stretch; }
+  .ubicacion address { font-style: normal; font-size: 1.3rem; font-weight: 520; }
+  .ubicacion h3 { font-size: 1.05rem; letter-spacing: 0; margin: var(--e-l) 0 var(--e-xs); }
+
+  @media (max-width: 1000px) {
+    .vias__lista { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 760px) {
+    .vias__lista, .ubicacion__rejilla { grid-template-columns: 1fr; }
+  }
+</style>

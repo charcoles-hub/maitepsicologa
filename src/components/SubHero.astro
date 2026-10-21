@@ -1,0 +1,57 @@
+---
+import { contact, href, label, ui, type Lang, type PageKey } from '../data/site';
+
+interface Props {
+  lang: Lang;
+  page: PageKey;
+  hora: string;
+  h1: string;
+  intro: string;
+  voces?: readonly string[];
+}
+
+const { lang, page, hora, h1, intro, voces = [] } = Astro.props;
+const t = ui[lang];
+---
+<header class="sub-hero" data-hora={hora}>
+  <div class="contenedor sub-hero__rejilla">
+    <div>
+      <nav class="migas" aria-label={lang === 'ca' ? 'Ruta de navegació' : 'Ruta de navegación'}>
+        <ol>
+          <li><a href={href(lang, 'inicio')}>{label(lang, 'inicio')}</a></li>
+          <li aria-current="page">{label(lang, page)}</li>
+        </ol>
+      </nav>
+      <h1 data-titulo-entrada>{h1}</h1>
+      <p class="sub-hero__intro" data-sube>{intro}</p>
+      <div class="sub-hero__acciones" data-sube>
+        <a class="boton" href={contact.setmore} target="_blank" rel="noopener" data-iman>{t.cta}</a>
+        <a class="enlace" href={contact.phoneHref}>{t.callFull}</a>
+      </div>
+    </div>
+    {voces.length > 0 && (
+      <ul class="sub-hero__voces" aria-label={lang === 'ca' ? 'El que ens expliquen' : 'Lo que nos cuentan'}>
+        {voces.map((v, i) => <li class="voz" style={`--i:${i}`} data-sube>«{v}»</li>)}
+      </ul>
+    )}
+  </div>
+</header>
+
+<style>
+  .sub-hero { padding-block: clamp(24px, 4vw, 56px) clamp(16px, 3vw, 48px); }
+  .sub-hero__rejilla { display: grid; grid-template-columns: 7fr 5fr; gap: var(--e-xl) clamp(32px, 6vw, 96px); align-items: end; }
+  .sub-hero h1 { font-size: var(--t-display); font-weight: 480; line-height: 0.98; letter-spacing: -0.045em; max-width: 13ch; }
+  .sub-hero__intro { margin-top: var(--e-l); max-width: 46ch; font-size: 1.15rem; color: var(--texto-suave); }
+  .sub-hero__acciones { display: flex; flex-wrap: wrap; align-items: center; gap: var(--e-m) var(--e-l); margin-top: var(--e-xl); }
+  .sub-hero__voces { list-style: none; padding: 0; display: grid; gap: var(--e-l); }
+  .sub-hero__voces li {
+    font-size: clamp(1.3rem, 1rem + 1.1vw, 2rem);
+    line-height: 1.25;
+    color: color-mix(in srgb, var(--texto) 78%, transparent);
+    padding-left: calc(var(--i) * clamp(16px, 3vw, 48px));
+  }
+  .sub-hero__voces li:nth-child(2) { font-size: clamp(1.1rem, 0.95rem + 0.7vw, 1.5rem); }
+  @media (max-width: 860px) {
+    .sub-hero__rejilla { grid-template-columns: 1fr; }
+  }
+</style>

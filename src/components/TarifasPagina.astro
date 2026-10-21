@@ -1,0 +1,93 @@
+---
+import type { Lang } from '../data/site';
+import SubHero from './SubHero.astro';
+import Faq from './Faq.astro';
+import Cierre from './Cierre.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const c = {
+  es: {
+    h1: 'Tarifas',
+    intro: 'Precios claros desde el principio. Todas las sesiones duran 55 minutos, en la consulta de Granollers o por videollamada.',
+    tablaTitulo: 'Precio por sesión',
+    filas: [['Sesión individual', 'En la consulta', '60 €'], ['Sesión individual', 'Online, por videollamada o teléfono', '60 €', 'desde'], ['Pareja o familia', 'En la consulta', '75 €'], ['Pareja o familia', 'Online', '75 €']],
+    incluyeTitulo: 'Cada sesión incluye',
+    incluye: [['55 minutos', 'Tiempo para hablar con calma, sin mirar el reloj.'], ['Ejercicios entre sesiones', 'Adaptados a ti, para avanzar también durante la semana.'], ['WhatsApp para dudas', 'Si te surge algo entre una sesión y la siguiente.']],
+    pendTitulo: 'Pendiente de confirmar',
+    pend: [['Seguimiento online de 30 minutos', 'Para terapias ya avanzadas. Precio por confirmar.'], ['Formas de pago', 'Efectivo, tarjeta, Bizum o transferencia: por confirmar.'], ['Cambios y cancelaciones', 'Con cuánta antelación se puede cambiar una cita sin coste.']],
+    ejemplo: 'Ejemplo',
+    faqTitulo: 'Sobre las tarifas',
+    faq: [['¿La primera sesión tiene el mismo precio?', 'Sí, la primera sesión cuesta lo mismo que las siguientes.'], ['¿Por qué la sesión online es «desde» 60 €?', 'Porque el precio puede variar según la profesional. Te lo confirmamos al reservar.']],
+  },
+  ca: {
+    h1: 'Tarifes',
+    intro: 'Preus clars des del principi. Totes les sessions duren 55 minuts, a la consulta de Granollers o per videotrucada.',
+    tablaTitulo: 'Preu per sessió',
+    filas: [['Sessió individual', 'A la consulta', '60 €'], ['Sessió individual', 'Online, per videotrucada o telèfon', '60 €', 'des de'], ['Parella o família', 'A la consulta', '75 €'], ['Parella o família', 'Online', '75 €']],
+    incluyeTitulo: 'Cada sessió inclou',
+    incluye: [['55 minuts', 'Temps per parlar amb calma, sense mirar el rellotge.'], ['Exercicis entre sessions', 'Adaptats a tu, per avançar també durant la setmana.'], ['WhatsApp per als dubtes', 'Si et sorgeix alguna cosa entre una sessió i la següent.']],
+    pendTitulo: 'Pendent de confirmar',
+    pend: [['Seguiment online de 30 minuts', 'Per a teràpies ja avançades. Preu per confirmar.'], ['Formes de pagament', 'Efectiu, targeta, Bizum o transferència: per confirmar.'], ['Canvis i cancel·lacions', 'Amb quanta antelació es pot canviar una cita sense cost.']],
+    ejemplo: 'Exemple',
+    faqTitulo: 'Sobre les tarifes',
+    faq: [['La primera sessió té el mateix preu?', 'Sí, la primera sessió costa el mateix que les següents.'], ['Per què la sessió online és «des de» 60 €?', 'Perquè el preu pot variar segons la professional. Te’l confirmem en reservar.']],
+  },
+}[lang];
+---
+<SubHero lang={lang} page="tarifas" hora="mediodia" h1={c.h1} intro={c.intro} />
+
+<!-- PENDIENTE: Maite confirma precios, sesión de 30 min, formas de pago, cancelaciones y las respuestas -->
+<section class="tabla" data-hora="mediodia" aria-labelledby="tabla-titulo">
+  <div class="contenedor tabla__rejilla">
+    <h2 id="tabla-titulo" class="titular-seccion">{c.tablaTitulo}</h2>
+    <dl class="tabla__precios">
+      {c.filas.map(([s, m, p, desde]) => (
+        <div data-sube>
+          <dt>{s}<span>{m}</span></dt>
+          <dd class="cifra">{desde && <span>{desde} </span>}{p}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<section class="incluye" data-hora="tarde" aria-labelledby="incluye-titulo">
+  <div class="contenedor">
+    <h2 id="incluye-titulo" class="titular-seccion">{c.incluyeTitulo}</h2>
+    <dl class="incluye__lista">
+      {c.incluye.map(([k, v]) => <div data-sube><dt>{k}</dt><dd>{v}</dd></div>)}
+    </dl>
+    <h3 class="incluye__pend">{c.pendTitulo} <span class="ejemplo">{c.ejemplo}</span></h3>
+    <dl class="incluye__lista incluye__lista--pend">
+      {c.pend.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+    </dl>
+  </div>
+</section>
+
+<Faq titulo={c.faqTitulo} preguntas={c.faq} hora="ocaso" />
+
+<Cierre lang={lang} />
+
+<style>
+  .tabla__rejilla { display: grid; grid-template-columns: 4fr 7fr; gap: var(--e-xl); align-items: start; }
+  .tabla__precios { border-top: 1px solid color-mix(in srgb, var(--texto) 16%, transparent); }
+  .tabla__precios div { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--e-s) var(--e-l); padding-block: var(--e-l); border-bottom: 1px solid color-mix(in srgb, var(--texto) 16%, transparent); }
+  .tabla__precios dt { font-size: clamp(1.25rem, 1rem + 0.9vw, 1.9rem); font-weight: 540; letter-spacing: -0.02em; }
+  .tabla__precios dt span { display: block; font-size: var(--t-pequeno); font-weight: 450; letter-spacing: 0; color: var(--texto-suave); }
+  .tabla__precios dd { margin: 0; font-size: clamp(2.2rem, 1.4rem + 3vw, 4.4rem); font-weight: 480; letter-spacing: -0.045em; line-height: 1; color: var(--acento); }
+  .tabla__precios dd span { font-size: 0.36em; letter-spacing: 0; font-weight: 500; }
+
+  .incluye__lista { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--e-xl); }
+  .incluye__lista dt { font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem); font-weight: 480; letter-spacing: -0.03em; margin-bottom: var(--e-s); padding-top: var(--e-m); border-top: 1.5px solid var(--acento); }
+  .incluye__lista dd { margin: 0; color: var(--texto-suave); }
+  .incluye__pend { font-size: 1.05rem; letter-spacing: 0; margin: clamp(64px, 8vw, 112px) 0 var(--e-l); display: flex; flex-wrap: wrap; align-items: center; gap: var(--e-s); }
+  .incluye__lista--pend dt { font-size: 1.15rem; font-weight: 560; letter-spacing: 0; border-top: 1.5px dashed color-mix(in srgb, var(--texto) 30%, transparent); }
+
+  @media (max-width: 860px) {
+    .tabla__rejilla, .incluye__lista { grid-template-columns: 1fr; gap: var(--e-l); }
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+interface Props {
+  titulo: string;
+  preguntas: readonly (readonly [string, string])[];
+  hora?: string;
+  nota?: string;
+}
+
+const { titulo, preguntas, hora = 'ocaso', nota } = Astro.props;
+const id = `faq-${titulo.length}-${preguntas.length}`;
+---
+<section class="faq" data-hora={hora} aria-labelledby={id}>
+  <div class="contenedor faq__rejilla">
+    <h2 id={id} class="titular-seccion">{titulo}</h2>
+    <div>
+      {preguntas.map(([p, r]) => (
+        <details>
+          <summary>{p}</summary>
+          <p>{r}</p>
+        </details>
+      ))}
+      {nota && <p class="faq__nota">{nota}</p>}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__rejilla { display: grid; grid-template-columns: 4fr 7fr; gap: var(--e-xl); align-items: start; }
+  details { border-top: 1px solid color-mix(in srgb, var(--texto) 16%, transparent); }
+  details:last-of-type { border-bottom: 1px solid color-mix(in srgb, var(--texto) 16%, transparent); }
+  summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--e-l);
+    min-height: 64px;
+    padding-block: var(--e-m);
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
+    font-weight: 560;
+    cursor: pointer;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: '';
+    flex: none;
+    width: 14px;
+    height: 14px;
+    border-right: 2px solid var(--acento);
+    border-bottom: 2px solid var(--acento);
+    transform: translateY(-3px) rotate(45deg);
+    transition: transform 0.3s var(--ease-out);
+  }
+  details[open] summary::after { transform: translateY(3px) rotate(225deg); }
+  summary:hover { color: var(--acento); }
+  details p { padding-bottom: var(--e-l); max-width: 60ch; color: var(--texto-suave); font-size: 1.05rem; }
+  .faq__nota { margin-top: var(--e-l); font-size: var(--t-pequeno); color: var(--texto-suave); }
+  @media (max-width: 860px) {
+    .faq__rejilla { grid-template-columns: 1fr; gap: var(--e-l); }
+  }
+</style>

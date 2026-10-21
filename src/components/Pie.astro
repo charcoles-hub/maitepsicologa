@@ -15,7 +15,7 @@ const year = new Date().getFullYear();
       <p class="pie__nombre">Maite Vicente</p>
       <p>{t.brandLine}</p>
       <p>{t.colegiada}</p>
-      <a class="boton pie__cta" href={contact.setmore} target="_blank" rel="noopener">{t.cta}</a>
+      <a class="boton boton--claro pie__cta" href={contact.setmore} target="_blank" rel="noopener">{t.cta}</a>
     </div>
 
     <div>
@@ -51,14 +51,15 @@ const year = new Date().getFullYear();
       <a href="https://www.maitepsicologa.com/politica-cookies/">{t.cookies}</a>
     </p>
   </div>
+  <p class="pie__firma" aria-hidden="true">Maite Vicente</p>
 </footer>
 
 <style>
   .pie {
-    margin-top: var(--e-xxl);
-    background: var(--superficie);
-    border-top: 1px solid var(--linea);
-    color: var(--texto);
+    margin-top: 0;
+    overflow: hidden;
+    background: var(--noche);
+    color: var(--noche-texto);
     font-size: 0.95rem;
   }
   .pie__rejilla {
@@ -68,7 +69,10 @@ const year = new Date().getFullYear();
     padding-block: var(--e-xl);
   }
   .pie__nombre { font-weight: 700; font-size: 1.2rem; }
-  .pie__marca p { color: var(--texto-suave); }
+  .pie__marca p { color: var(--noche-suave); }
+  .pie a:not(.boton) { color: var(--noche-texto); }
+  .pie a:not(.boton):hover { color: var(--sobre-acento); }
+  .pie :focus-visible { outline-color: var(--noche-texto); }
   .pie__cta { margin-top: var(--e-l); }
   .pie__titulo { font-size: 0.95rem; font-weight: 650; margin-bottom: var(--e-s); letter-spacing: 0; }
   address { font-style: normal; }
@@ -78,12 +82,24 @@ const year = new Date().getFullYear();
     justify-content: space-between;
     gap: var(--e-m);
     padding-block: var(--e-l);
-    border-top: 1px solid var(--linea);
+    border-top: 1px solid color-mix(in srgb, var(--noche-texto) 16%, transparent);
   }
   .pie__nav { display: flex; flex-wrap: wrap; gap: var(--e-s) var(--e-l); list-style: none; padding: 0; }
   .pie__nav { gap: 0 var(--e-l); }
-  .pie__nav a, .pie__legal a { display: inline-flex; align-items: center; min-height: 44px; color: var(--texto-suave); }
-  .pie__legal { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--e-m); color: var(--texto-suave); }
+  .pie__nav a, .pie__legal a { display: inline-flex; align-items: center; min-height: 44px; }
+  .pie .pie__nav a, .pie .pie__legal a { color: var(--noche-suave); }
+  .pie__legal { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--e-m); color: var(--noche-suave); }
+  .pie__firma {
+    font-size: clamp(4rem, 1rem + 15.5vw, 17rem);
+    font-weight: 480;
+    letter-spacing: -0.055em;
+    line-height: 0.78;
+    white-space: nowrap;
+    text-align: center;
+    color: color-mix(in srgb, var(--noche-texto) 9%, var(--noche));
+    margin-bottom: -0.08em;
+    user-select: none;
+  }
 
   @media (max-width: 860px) {
     .pie__rejilla { grid-template-columns: 1fr 1fr; gap: var(--e-l); }

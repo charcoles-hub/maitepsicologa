@@ -1,0 +1,91 @@
+---
+import { contact, type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const q = encodeURIComponent('Carrer de Roger de Flor 63, 08401 Granollers');
+const embed = `https://maps.google.com/maps?q=${q}&z=16&output=embed`;
+const abrir = `https://www.google.com/maps/search/?api=1&query=${q}`;
+const txt = lang === 'ca'
+  ? { cargar: 'Mostrar el mapa', aviso: 'En carregar-lo, Google Maps rep la teva visita.', abrir: 'Obrir a Google Maps', titulo: 'Mapa de la consulta' }
+  : { cargar: 'Mostrar el mapa', aviso: 'Al cargarlo, Google Maps recibe tu visita.', abrir: 'Abrir en Google Maps', titulo: 'Mapa de la consulta' };
+---
+<div class="mapa" data-mapa={embed} data-mapa-titulo={txt.titulo}>
+  <div class="mapa__calles" aria-hidden="true"></div>
+  <div class="mapa__chincheta" aria-hidden="true"></div>
+  <div class="mapa__pie">
+    <address>{contact.address[0]}<br />{contact.address[1]}</address>
+    <div class="mapa__acciones">
+      <button class="boton boton--secundario" type="button" data-mapa-cargar>{txt.cargar}</button>
+      <a class="enlace" href={abrir} target="_blank" rel="noopener">{txt.abrir}</a>
+    </div>
+    <p class="mapa__aviso">{txt.aviso}</p>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-mapa]').forEach((m) => {
+    m.querySelector('[data-mapa-cargar]')?.addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.src = m.dataset.mapa!;
+      f.title = m.dataset.mapaTitulo!;
+      f.loading = 'lazy';
+      f.referrerPolicy = 'no-referrer-when-downgrade';
+      m.classList.add('mapa--cargado');
+      m.prepend(f);
+    });
+  });
+</script>
+
+<style>
+  .mapa {
+    position: relative;
+    min-height: 340px;
+    border-radius: var(--r-m);
+    overflow: hidden;
+    background: color-mix(in srgb, var(--fondo) 70%, var(--hora, var(--superficie)));
+    border: 1px solid color-mix(in srgb, var(--texto) 12%, transparent);
+    display: flex;
+    align-items: flex-end;
+  }
+  .mapa__calles {
+    position: absolute;
+    inset: 0;
+    opacity: 0.55;
+    background:
+      linear-gradient(28deg, transparent 47%, var(--fondo) 47.5%, var(--fondo) 50.5%, transparent 51%),
+      linear-gradient(118deg, transparent 30%, var(--fondo) 30.4%, var(--fondo) 32.6%, transparent 33%),
+      linear-gradient(118deg, transparent 64%, var(--fondo) 64.3%, var(--fondo) 66%, transparent 66.4%),
+      linear-gradient(8deg, transparent 72%, var(--fondo) 72.3%, var(--fondo) 74%, transparent 74.3%),
+      repeating-linear-gradient(118deg, transparent 0 46px, color-mix(in srgb, var(--texto) 5%, transparent) 46px 47px),
+      repeating-linear-gradient(28deg, transparent 0 58px, color-mix(in srgb, var(--texto) 5%, transparent) 58px 59px);
+  }
+  .mapa__chincheta {
+    position: absolute;
+    left: 50%;
+    top: 34%;
+    width: 30px;
+    height: 30px;
+    margin-left: -15px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    background: var(--acento);
+    box-shadow: 0 0 0 8px color-mix(in srgb, var(--acento) 18%, transparent);
+  }
+  .mapa__pie {
+    position: relative;
+    width: 100%;
+    padding: var(--e-l);
+    display: grid;
+    gap: var(--e-s);
+    background: linear-gradient(to top, color-mix(in srgb, var(--fondo) 96%, transparent) 70%, transparent);
+  }
+  .mapa address { font-style: normal; font-weight: 600; }
+  .mapa__acciones { display: flex; flex-wrap: wrap; align-items: center; gap: var(--e-s) var(--e-l); }
+  .mapa__aviso { font-size: 0.8rem; color: var(--texto-suave); }
+  .mapa :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .mapa--cargado .mapa__pie, .mapa--cargado .mapa__calles, .mapa--cargado .mapa__chincheta { display: none; }
+</style>

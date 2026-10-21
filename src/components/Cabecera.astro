@@ -57,7 +57,7 @@ const other: Lang = lang === 'es' ? 'ca' : 'es';
     position: sticky;
     top: 0;
     z-index: 40;
-    background: color-mix(in srgb, var(--fondo) 94%, transparent);
+    background: color-mix(in srgb, var(--cielo, var(--fondo)) 92%, transparent);
     border-bottom: 1px solid var(--linea);
   }
   @supports (backdrop-filter: blur(8px)) {

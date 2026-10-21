@@ -1,0 +1,113 @@
+---
+import { reviews, type Lang, type PageKey } from '../data/site';
+import { terapias, type Hora } from '../data/paginas';
+import SubHero from './SubHero.astro';
+import Faq from './Faq.astro';
+import Cierre from './Cierre.astro';
+
+interface Props {
+  lang: Lang;
+  page: 'adultos' | 'infantil' | 'pareja' | 'online';
+}
+
+const { lang, page } = Astro.props;
+const d = terapias[page][lang];
+const orden: Hora[] = ['manana', 'mediodia', 'tarde', 'ocaso'];
+const hora = (n: number) => orden[(orden.indexOf(d.hora) + n) % orden.length];
+const resena = d.resena !== undefined ? reviews[d.resena] : undefined;
+const fecha = (iso: string) => new Intl.DateTimeFormat(lang === 'ca' ? 'ca-ES' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(iso));
+---
+<SubHero lang={lang} page={page as PageKey} hora={d.hora} h1={d.h1} intro={d.intro} voces={d.voces} />
+
+<!-- PENDIENTE: Maite revisa y valida los textos de esta página (boceto a partir de su web actual) -->
+<section class="t-ayuda" data-hora={hora(1)} aria-labelledby="t-ayuda">
+  <div class="contenedor">
+    <h2 id="t-ayuda" class="titular-seccion">{d.ayudaTitulo}</h2>
+    <ul class="t-ayuda__lista">
+      {d.ayuda.map(([titulo, texto]) => (
+        <li data-sube>
+          <h3>{titulo}</h3>
+          <p>{texto}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+{d.pasos && (
+  <section class="t-pasos" data-hora={hora(1)} aria-labelledby="t-pasos">
+    <div class="contenedor">
+      <h2 id="t-pasos" class="titular-seccion">{d.pasosTitulo}</h2>
+      <ol class="t-pasos__lista">
+        {d.pasos.map(([titulo, texto], i) => (
+          <li data-sube>
+            <span class="t-pasos__n" aria-hidden="true">{i + 1}</span>
+            <h3>{titulo}</h3>
+            <p>{texto}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+)}
+
+<section class="t-como" data-hora={hora(2)} aria-labelledby="t-como">
+  <div class="contenedor t-como__rejilla">
+    <h2 id="t-como" class="titular-seccion">{d.comoTitulo}</h2>
+    <div class="t-como__texto">
+      {d.como.map((p) => <p>{p}</p>)}
+    </div>
+  </div>
+  {d.frase && (
+    <div class="contenedor">
+      <p class="t-como__frase" data-enciende>{d.frase}</p>
+    </div>
+  )}
+  {resena && (
+    <div class="contenedor">
+      <figure class="t-resena">
+        <blockquote lang={resena.lang}><p>«{resena.text}»</p></blockquote>
+        <figcaption>{resena.name}, en Google · <time datetime={resena.date}>{fecha(resena.date)}</time></figcaption>
+      </figure>
+    </div>
+  )}
+</section>
+
+<Faq titulo={d.faqTitulo} preguntas={d.faq} hora={hora(3)} />
+
+<Cierre lang={lang} />
+
+<style>
+  .t-ayuda__lista { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(32px, 6vw, 96px); }
+  .t-ayuda__lista li { padding-block: var(--e-l); border-top: 1px solid color-mix(in srgb, var(--texto) 16%, transparent); }
+  .t-ayuda__lista h3 { font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.85rem); font-weight: 520; letter-spacing: -0.02em; margin-bottom: var(--e-s); }
+  .t-ayuda__lista p { color: var(--texto-suave); max-width: 46ch; }
+
+  .t-pasos__lista { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--e-l); }
+  .t-pasos__lista li { padding: var(--e-l); border-radius: var(--r-m); background: var(--fondo); border: 1px solid color-mix(in srgb, var(--texto) 10%, transparent); }
+  .t-pasos__n { display: block; font-size: 3.4rem; font-weight: 480; line-height: 1; letter-spacing: -0.05em; color: var(--acento); margin-bottom: var(--e-m); }
+  .t-pasos__lista h3 { font-size: 1.25rem; margin-bottom: var(--e-s); }
+  .t-pasos__lista p { color: var(--texto-suave); font-size: 0.98rem; }
+
+  .t-como__rejilla { display: grid; grid-template-columns: 4fr 7fr; gap: var(--e-xl); align-items: start; }
+  .t-como__texto { display: grid; gap: var(--e-m); font-size: 1.15rem; max-width: 60ch; }
+  .t-como__frase {
+    margin-top: clamp(64px, 9vw, 128px);
+    font-size: clamp(2.2rem, 1.2rem + 4vw, 5rem);
+    font-weight: 480;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+    max-width: 18ch;
+    text-wrap: balance;
+  }
+  .t-resena { margin-top: clamp(64px, 9vw, 128px); max-width: 36em; margin-left: auto; }
+  .t-resena blockquote p { font-family: var(--voz); font-style: italic; font-size: var(--t-voz); line-height: 1.4; }
+  .t-resena figcaption { margin-top: var(--e-s); color: var(--texto-suave); font-size: var(--t-pequeno); }
+
+  @media (max-width: 1000px) {
+    .t-pasos__lista { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 760px) {
+    .t-ayuda__lista, .t-como__rejilla, .t-pasos__lista { grid-template-columns: 1fr; }
+  }
+</style>

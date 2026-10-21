@@ -1,0 +1,42 @@
+---
+interface Props {
+  iniciales: string;
+  pie: string;
+  etiqueta: string;
+  formato?: 'retrato' | 'apaisado';
+}
+
+const { iniciales, pie, etiqueta, formato = 'retrato' } = Astro.props;
+---
+<figure class:list={['retrato', `retrato--${formato}`]} data-desvela>
+  <div class="retrato__marco" aria-hidden="true">
+    <span>{iniciales}</span>
+  </div>
+  <figcaption><span class="ejemplo">{etiqueta}</span> {pie}</figcaption>
+</figure>
+
+<style>
+  .retrato { display: grid; gap: var(--e-s); }
+  .retrato__marco {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--r-m);
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 30% 25%, color-mix(in srgb, var(--sol, var(--sol-tarde)) 90%, white) 0%, transparent 55%),
+      linear-gradient(160deg, color-mix(in srgb, var(--hora, var(--superficie)) 60%, white), color-mix(in srgb, var(--acento) 22%, var(--hora, var(--superficie))));
+    border: 1px solid color-mix(in srgb, var(--texto) 10%, transparent);
+  }
+  .retrato--apaisado .retrato__marco { aspect-ratio: 4 / 3; }
+  .retrato__marco span {
+    font-family: var(--voz);
+    font-style: italic;
+    font-size: clamp(4rem, 2rem + 6vw, 8rem);
+    color: color-mix(in srgb, var(--acento) 55%, transparent);
+    letter-spacing: -0.04em;
+  }
+  .retrato--apaisado .retrato__marco span { font-size: clamp(2.2rem, 1.4rem + 2vw, 3.4rem); }
+  figcaption { font-size: var(--t-pequeno); color: var(--texto-suave); }
+</style>

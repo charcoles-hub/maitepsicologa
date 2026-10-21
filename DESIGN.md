@@ -13,6 +13,10 @@ colors:
   acento: "#0E6E73"
   acento-hover: "#0A5357"
   sobre-acento: "#FFFFFF"
+  manana: "#E3F2EE"
+  mediodia: "#EFF3E6"
+  tarde: "#FCEBDC"
+  ocaso: "#EBE6F5"
   error: "#B3261E"
 typography:
   display:
@@ -92,10 +96,12 @@ Cada sección tiene después su propio momento: la reseña que se enciende palab
 
 ## Color
 
+- **El día avanza** (21-10, elegido por Sergio): tras el amanecer de la portada, cada sección es una hora del día (`data-hora`: mañana verde agua, mediodía salvia, tarde melocotón, ocaso lavanda). Con movimiento, el fondo de la página (`--cielo`) se funde de una hora a otra con el scroll y un sol difuso cruza la pantalla y se pone antes del cierre; sin movimiento, cada sección lleva su banda de color. El cierre es el atardecer (`acento`) y el pie vuelve a ser `noche`, con la firma «Maite Vicente» enorme: el ciclo completo. Las subpáginas usan el mismo sistema. Pasteles por gusto expreso de Maite.
+
 - `fondo` blanco con un hilo de verde azulado; `superficie` para bandas de reseñas y bloques de datos.
 - `acento` es el turquesa de su web actual llevado a un tono más profundo y sobrio. Solo para acciones, enlaces y el subrayado de las rutas. Nunca como fondo de secciones enteras.
 - Contrastes: `texto` sobre `fondo` 13:1; `texto-suave` sobre `fondo` 6,4:1; `sobre-acento` sobre `acento` 6:1.
-- Sin modo oscuro. `noche` solo existe en la escena de la portada; `noche-texto` sobre `noche` 14:1.
+- Sin modo oscuro. `noche` solo en la escena de la portada y en el pie; `noche-texto` sobre `noche` 14:1.
 - El `acento` a sangre se usa una sola vez: el bloque de cierre.
 
 ## Tipografía
@@ -163,6 +169,8 @@ GSAP + ScrollTrigger + SplitText y Lenis (solo escritorio con puntero fino), con
 - Mejora progresiva: sin JS o con `prefers-reduced-motion`, se ve directamente el estado en calma (sin pensamientos ni noche).
 
 ## Imagen
+
+- Mientras no haya fotos, los huecos son retratos de ejemplo claramente marcados (iniciales en Literata sobre degradado de la hora y etiqueta «Foto pendiente»). Todo lo que es de relleno lleva la etiqueta discontinua `.ejemplo`.
 
 - Solo fotos reales de Maite, su compañera y la consulta de Roger de Flor. Hasta tenerlas, la web se sostiene con tipografía y huecos marcados como pendientes.
 - Nada de fotos de banco con personas que parezcan pacientes o equipo, ni retratos generados con IA presentados como reales.

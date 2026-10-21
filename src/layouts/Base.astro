@@ -64,6 +64,7 @@ const jsonLd = {
     <script is:inline>if(!matchMedia('(prefers-reduced-motion: reduce)').matches){var r=document.documentElement;r.classList.add('mov');setTimeout(function(){if(!r.classList.contains('mov-listo'))r.classList.remove('mov')},2500)}</script>
   </head>
   <body class:list={{ 'con-escena': escena }}>
+    <div class="sol" aria-hidden="true"></div>
     <a class="saltar" href="#contenido">{t.skip}</a>
     <Cabecera lang={lang} page={page} />
     <main id="contenido">
@@ -73,6 +74,7 @@ const jsonLd = {
     <BarraMovil lang={lang} />
     <script>
       import '../scripts/movimiento-premium';
+      import '../scripts/dia';
     </script>
   </body>
 </html>
