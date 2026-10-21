@@ -16,24 +16,24 @@ colors:
   error: "#B3261E"
 typography:
   display:
-    fontFamily: "'Figtree Variable', system-ui, sans-serif"
+    fontFamily: "'Bricolage Grotesque Variable', system-ui, sans-serif"
     fontSize: clamp(2.9rem, 1.6rem + 5.2vw, 6.4rem)
     fontWeight: 480
     lineHeight: 0.98
     letterSpacing: -0.045em
   titulo:
-    fontFamily: "'Figtree Variable', system-ui, sans-serif"
+    fontFamily: "'Bricolage Grotesque Variable', system-ui, sans-serif"
     fontSize: clamp(1.75rem, 1.35rem + 1.6vw, 2.6rem)
     fontWeight: 620
     lineHeight: 1.1
     letterSpacing: -0.015em
   ruta:
-    fontFamily: "'Figtree Variable', system-ui, sans-serif"
+    fontFamily: "'Bricolage Grotesque Variable', system-ui, sans-serif"
     fontSize: clamp(1.35rem, 1.1rem + 1.1vw, 2rem)
     fontWeight: 520
     lineHeight: 1.2
   cuerpo:
-    fontFamily: "'Figtree Variable', system-ui, sans-serif"
+    fontFamily: "'Bricolage Grotesque Variable', system-ui, sans-serif"
     fontSize: 1.0625rem
     fontWeight: 400
     lineHeight: 1.6
@@ -44,7 +44,7 @@ typography:
     fontWeight: 400
     lineHeight: 1.4
   pequeno:
-    fontFamily: "'Figtree Variable', system-ui, sans-serif"
+    fontFamily: "'Bricolage Grotesque Variable', system-ui, sans-serif"
     fontSize: 0.9rem
     lineHeight: 1.5
 rounded:
@@ -100,7 +100,7 @@ Cada sección tiene después su propio momento: la reseña que se enciende palab
 
 ## Tipografía
 
-- **Figtree** (SIL OFL) para todo lo que dice la consulta: titulares, rutas, texto e interfaz. Cálida y muy legible, cubre `ç l·l à è ò ï`.
+- **Bricolage Grotesque** (SIL OFL, ejes de peso y tamaño óptico) para todo lo que dice la consulta: titulares, rutas, texto e interfaz. En grande, el tamaño óptico le da trazos con carácter (contraformas apretadas, terminaciones vivas); en texto se vuelve sobria y muy legible. Cubre `ç l·l à è ò ï`. Sustituye a Figtree (21-10): era correcta pero sin personalidad.
 - **Literata cursiva** (SIL OFL) solo para la voz de los pacientes: los pensamientos de la escena y las reseñas citadas enteras. La voz del paciente se distingue tipográficamente de la de la consulta; nunca se usa para destacar palabras sueltas.
 - Titular de portada grande y de peso medio (480) con tracking cerrado; a ese tamaño el peso medio se lee más fino que el negro.
 - Autoalojadas con Fontsource (woff2 variable, subconjunto latino).

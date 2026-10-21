@@ -79,7 +79,7 @@ const other: Lang = lang === 'es' ? 'ca' : 'es';
     padding-block: 11px;
   }
   .marca__nombre { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; }
-  .marca__linea { font-size: 0.8rem; color: var(--texto-suave); }
+  .marca__linea { font-size: 0.8rem; color: var(--texto-suave); white-space: nowrap; }
 
   .nav ul { display: flex; gap: 20px; list-style: none; padding: 0; }
   .nav a {
@@ -171,7 +171,7 @@ const other: Lang = lang === 'es' ? 'ca' : 'es';
     white-space: nowrap;
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1400px) {
     .nav { display: none; }
     .menu-boton { display: inline-flex; align-items: center; }
   }

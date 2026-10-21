@@ -1,4 +1,4 @@
-@import '@fontsource-variable/figtree/wght.css';
+@import '@fontsource-variable/bricolage-grotesque/opsz.css';
 @import '@fontsource-variable/literata/wght-italic.css';
 
 :root {
@@ -15,7 +15,7 @@
   --sobre-acento: #ffffff;
   --error: #b3261e;
 
-  --ui: 'Figtree Variable', system-ui, sans-serif;
+  --ui: 'Bricolage Grotesque Variable', system-ui, sans-serif;
   --voz: 'Literata Variable', Georgia, serif;
 
   --t-display: clamp(2.4rem, 1.7rem + 3vw, 4.25rem);
@@ -105,6 +105,7 @@ p { text-wrap: pretty; }
   background: var(--texto);
   color: var(--fondo);
   padding: var(--e-s) var(--e-m);
+  min-height: 44px;
   border-radius: var(--r-s);
 }
 .saltar:focus { top: var(--e-m); color: var(--fondo); }
