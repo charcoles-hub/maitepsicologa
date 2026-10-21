@@ -21,7 +21,7 @@ colors:
 typography:
   display:
     fontFamily: "'Bricolage Grotesque Variable', system-ui, sans-serif"
-    fontSize: clamp(2.9rem, 1.6rem + 5.2vw, 6.4rem)
+    fontSize: clamp(2.4rem, 1.7rem + 3vw, 4.25rem)
     fontWeight: 480
     lineHeight: 0.98
     letterSpacing: -0.045em

@@ -21,7 +21,7 @@ const year = new Date().getFullYear();
     <div>
       <h2 class="pie__titulo">{t.where}</h2>
       <address>
-        {contact.address.map((l) => <span>{l}<br /></span>)}
+        {contact.address[lang].map((l) => <span>{l}<br /></span>)}
       </address>
     </div>
 

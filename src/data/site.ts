@@ -10,7 +10,10 @@ export const contact = {
   email: 'hola@maitepsicologa.com',
   setmore: 'https://maitevicente.setmore.com/',
   instagram: 'https://www.instagram.com/maite_vicente_psicologa/',
-  address: ['Carrer de Roger de Flor, 63, 1º 2ª', '08401 Granollers (Barcelona)'],
+  address: {
+    es: ['Carrer de Roger de Flor, 63, 1º 2ª', '08401 Granollers (Barcelona)'],
+    ca: ['Carrer de Roger de Flor, 63, 1r 2a', '08401 Granollers (Barcelona)'],
+  },
   hours: {
     es: ['Lunes a viernes, de 10:00 a 21:00', 'Sábados, de 10:00 a 13:00'],
     ca: ['De dilluns a divendres, de 10:00 a 21:00', 'Dissabtes, de 10:00 a 13:00'],
@@ -35,7 +38,7 @@ export const navKeys: PageKey[] = ['adultos', 'infantil', 'pareja', 'online', 'n
 
 export function href(lang: Lang, key: PageKey) {
   const slug = pages.find((p) => p.key === key)![lang].slug;
-  const path = `${lang === 'ca' ? 'ca/' : ''}${slug}`;
+  const path = lang === 'ca' ? (slug ? `ca/${slug}` : 'ca') : slug;
   const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   return path ? `${base}${path}/` : base;
 }
@@ -46,7 +49,7 @@ export function label(lang: Lang, key: PageKey) {
 
 export const ui = {
   es: {
-    brandLine: 'Psicología en Granollers y online',
+    brandLine: 'Consulta de psicología',
     cta: 'Pedir primera sesión',
     call: 'Llamar',
     callFull: `Llamar al ${contact.phone}`,
@@ -67,7 +70,7 @@ export const ui = {
     colegiada: `Colegiada nº ${contact.colegiada}`,
   },
   ca: {
-    brandLine: 'Psicologia a Granollers i online',
+    brandLine: 'Consulta de psicologia',
     cta: 'Demanar primera sessió',
     call: 'Trucar',
     callFull: `Trucar al ${contact.phone}`,
@@ -91,19 +94,19 @@ export const ui = {
 
 export const reviews = [
   {
-    name: 'Monica Carrillo',
+    name: 'Monica C.',
     date: '2023-11-22',
     lang: 'es',
     text: 'Una gran profesional, muy cercana, estoy encantada con ella. Sin ninguna duda la mejor decision que he tomado ha sido venir a terapia con ella',
   },
   {
-    name: 'Aleix Duran',
+    name: 'Aleix D.',
     date: '2023-10-13',
     lang: 'ca',
     text: "100% recomanable. Com a persona és un encant i com a professional excel·lent. Gràcies a les xerrades a les sessions i aplicant els consells, realment m'ha canviat la vida a millor sens dubte.",
   },
   {
-    name: 'Miguel Pujazón Cárdenas',
+    name: 'Miguel P.',
     date: '2023-03-10',
     lang: 'es',
     text: 'Sus sesiones me han ayudado mucho, es de agradecer su cercanía y profesionalidad!!',

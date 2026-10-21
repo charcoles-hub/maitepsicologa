@@ -70,7 +70,7 @@ html {
 }
 
 body {
-  background: var(--cielo, var(--fondo));
+  background: var(--fondo);
   color: var(--texto);
   font-family: var(--ui);
   font-size: var(--t-cuerpo);
@@ -194,7 +194,8 @@ html.lenis, html.lenis body { height: auto; }
 [data-hora] { background: var(--hora); padding-block: clamp(48px, 8vw, 120px); }
 .mov [data-hora] { background: transparent; }
 
-.sol { display: none; }
+.cielo, .sol { display: none; }
+.mov .cielo { display: block; position: fixed; inset: 0; z-index: 0; background: var(--fondo); pointer-events: none; }
 .mov .sol {
   display: block;
   position: fixed;

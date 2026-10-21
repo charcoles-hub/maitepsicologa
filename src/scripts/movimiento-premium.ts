@@ -32,7 +32,7 @@ import Lenis from 'lenis';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const raiz = document.documentElement;
-const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches || !raiz.classList.contains('mov');
 const punteroFino = matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 if (!reducir && punteroFino) {

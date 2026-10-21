@@ -7,10 +7,11 @@ const escena = document.querySelector<HTMLElement>('[data-escena]');
 const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const punteroFino = matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-if (escena && !reducir) {
+if (escena && !reducir && document.documentElement.classList.contains('mov')) {
   const css = getComputedStyle(document.documentElement);
   const token = (n: string) => css.getPropertyValue(n).trim();
   const noche = { '--e-fondo': token('--noche'), '--e-texto': token('--noche-texto'), '--e-suave': token('--noche-suave'), '--grano': 0.06 };
+  const alba = { '--e-fondo': '#1d5a5c', '--e-texto': token('--noche-texto'), '--e-suave': token('--noche-suave'), '--grano': 0.03 };
   const dia = { '--e-fondo': token('--fondo'), '--e-texto': token('--texto'), '--e-suave': token('--texto-suave'), '--grano': 0 };
 
   const cabecera = document.querySelector<HTMLElement>('.cabecera');
@@ -66,7 +67,8 @@ if (escena && !reducir) {
       },
     });
 
-    tl.fromTo(escena, noche, { ...dia, duration: 0.5 }, 0.12)
+    tl.fromTo(escena, noche, { ...alba, duration: 0.22 }, 0.12)
+      .to(escena, { ...dia, duration: 0.28 }, 0.34)
       .fromTo(relleno, { autoAlpha: 1, y: 0, filter: 'blur(0px)' }, { autoAlpha: 0, y: (i) => -30 - (i % 4) * 14, filter: 'blur(6px)', duration: 0.32, stagger: 0.015 }, 0.02)
       .fromTo(pregunta, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.18, ease: 'power2.out' }, 0.5)
       .fromTo(filas, { '--l': 0 }, { '--l': 1, duration: 0.3, stagger: 0.03, ease: 'power2.inOut' }, 0.42);
@@ -77,11 +79,11 @@ if (escena && !reducir) {
         clave,
         { x: 0, y: 0, scale: 1, autoAlpha: 1 },
         { x: () => vuelo(i).x, y: () => vuelo(i).y, scale: () => vuelo(i).scale, duration: 0.5, ease: 'power2.inOut' },
-        0.18 + i * 0.03,
+        0.16 + i * 0.05,
       );
-      tl.to(clave.querySelector('.pensamiento__par'), { opacity: 1, duration: 0.3 }, 0.2 + i * 0.03);
+      tl.to(clave.querySelector('.pensamiento__par'), { opacity: 1, duration: 0.3 }, 0.18 + i * 0.05);
       tl.to(clave, { autoAlpha: 0, duration: 0.1 }, 0.72 + i * 0.02);
-      tl.fromTo(destinos[i], { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 }, 0.7 + i * 0.02);
+      tl.fromTo(destinos[i], { opacity: 0 }, { opacity: 1, duration: 0.1 }, 0.7 + i * 0.02);
     });
 
     tl.to({}, { duration: 0.12 });

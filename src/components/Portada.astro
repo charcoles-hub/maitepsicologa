@@ -19,13 +19,13 @@ const pensamientos: Pensamiento[] = [
   { es: 'otra noche sin dormir', ca: 'una altra nit sense dormir', t: 'l', d: 1, x: 56, y: 20, xm: 36, ym: 10, ruta: 0, movil: true },
   { es: '¿y si a mi hija le pasa algo?', ca: 'i si a la meva filla li passa alguna cosa?', t: 'm', d: 0.7, x: 66, y: 44, xm: 30, ym: 92, ruta: 1 },
   { es: 'discutimos por todo', ca: 'discutim per tot', t: 'l', d: 0.9, x: 54, y: 64, xm: 46, ym: 33, ruta: 2, movil: true },
-  { es: 'no tengo tiempo de ir a ninguna parte', ca: "no tinc temps d'anar enlloc", t: 's', d: 0.5, x: 63, y: 84, xm: 8, ym: 98, ruta: 3 },
+  { es: 'no tengo tiempo de ir a ninguna parte', ca: "no tinc temps d’anar enlloc", t: 's', d: 0.5, x: 63, y: 84, xm: 8, ym: 98, ruta: 3 },
   { es: 'no sé qué me pasa', ca: 'no sé què em passa', t: 'm', d: 0.8, x: 79, y: 30, xm: 58, ym: 24, ruta: 4, movil: true },
   { es: 'todo me supera', ca: 'tot em supera', t: 's', d: 0.4, x: 7, y: 12, xm: 56, ym: 46, movil: true },
   { es: '¿será culpa mía?', ca: 'serà culpa meva?', t: 'm', d: 0.6, x: 34, y: 8, xm: 52, ym: 41, movil: true },
-  { es: 'estoy cansada de estar cansada', ca: "estic cansada d'estar cansada", t: 's', d: 0.35, x: 72, y: 7, xm: 0, ym: 0 },
-  { es: 'mañana se me pasa', ca: 'demà se me passa', t: 'm', d: 0.5, x: 5, y: 88, xm: 0, ym: 0 },
-  { es: 'el pecho me aprieta', ca: "el pit m'oprimeix", t: 's', d: 0.4, x: 31, y: 93, xm: 0, ym: 0 },
+  { es: 'estoy cansada de estar cansada', ca: "estic cansada d’estar cansada", t: 's', d: 0.35, x: 72, y: 7, xm: 0, ym: 0 },
+  { es: 'mañana se me pasa', ca: 'demà se’m passa', t: 'm', d: 0.5, x: 5, y: 88, xm: 0, ym: 0 },
+  { es: 'el pecho me aprieta', ca: "el pit m’oprimeix", t: 's', d: 0.4, x: 31, y: 93, xm: 0, ym: 0 },
   { es: 'ya no somos los de antes', ca: 'ja no som els d’abans', t: 's', d: 0.45, x: 84, y: 60, xm: 0, ym: 0 },
   { es: 'no puedo más', ca: 'no puc més', t: 's', d: 0.3, x: 45, y: 38, xm: 62, ym: 17, movil: true },
   { es: 'nadie lo entiende', ca: 'ningú ho entén', t: 's', d: 0.35, x: 87, y: 90, xm: 0, ym: 0 },
@@ -50,7 +50,6 @@ const copy = {
     resenaEjemplo: 'Aquí irá una reseña de Setmore, citada entera, con su nombre y su fecha.',
     resenaEjemploPie: 'Reseña de Setmore pendiente',
     ayudaTitulo: 'En qué te podemos ayudar',
-    reservar: 'Reservar en la agenda',
     pasosDatos: [[['Duración', '55 minutos'], ['Dónde', 'Granollers o videollamada'], ['Lo que cuentas', 'Confidencial']], [['Entre sesiones', 'Ejercicios adaptados'], ['Dudas', 'Por WhatsApp'], ['Objetivos', 'Los revisamos juntos']]],
     pasosTitulo: 'Cómo es empezar',
     pasos: [
@@ -96,7 +95,7 @@ const copy = {
     rutas: [
       ['Ansietat, estrès o no aconsegueixo dormir', 'adultos'],
       ['Em preocupa el meu fill o la meva filla', 'infantil'],
-      ["Discutim tota l'estona", 'pareja'],
+      ["Discutim tota l’estona", 'pareja'],
       ['Prefereixo fer-ho online', 'online'],
       ['No sé ben bé què em passa', 'contacto'],
     ] as [string, PageKey][],
@@ -107,15 +106,14 @@ const copy = {
     resenaEjemplo: 'Aquí hi anirà una ressenya de Setmore, citada sencera, amb el nom i la data.',
     resenaEjemploPie: 'Ressenya de Setmore pendent',
     ayudaTitulo: 'En què et podem ajudar',
-    reservar: "Reservar a l'agenda",
     pasosDatos: [[['Durada', '55 minuts'], ['On', 'Granollers o videotrucada'], ['El que expliques', 'Confidencial']], [['Entre sessions', 'Exercicis adaptats'], ['Dubtes', 'Per WhatsApp'], ['Objectius', 'Els revisem junts']]],
     pasosTitulo: 'Com és començar',
     pasos: [
-      ['Reserva o escriu-nos', "Tria dia i hora a l'agenda online. Si prefereixes parlar abans, truca'ns o escriu-nos per WhatsApp."],
+      ['Reserva o escriu-nos', "Tria dia i hora a l’agenda online. Si prefereixes parlar abans, truca’ns o escriu-nos per WhatsApp."],
       ['La primera sessió', 'Ens expliques què et passa, sense presses. Són 55 minuts, a la consulta de Granollers o per videotrucada.'],
       ['Un pla per a tu', 'Acordem objectius i la freqüència de les sessions, i els anem revisant a mesura que avances.'],
     ],
-    equipoTitulo: "Qui t'acompanya",
+    equipoTitulo: "Qui t’acompanya",
     maite: 'Llicenciada en Psicologia (UAB i UOC), amb un màster en Psicologia Infantil i Juvenil (URJC) i un altre en Teràpies de Tercera Generació (Universidad Isabel I).',
     enfoques: 'Treballem des de la psicologia integrativa, la teràpia breu estratègica, la sistèmica i la cognitivoconductual.',
     companera: 'Aquí hi anirà una presentació breu: la seva formació, amb qui treballa i quins dies és a la consulta.',
@@ -129,7 +127,7 @@ const copy = {
     presencial: 'Presencial',
     presencialTexto: 'Les sessions amb infants són sempre presencials.',
     online: 'Online',
-    onlineTexto: "Per videotrucada o telèfon, des d'on estiguis a gust. Pots combinar presencial i online quan vulguis.",
+    onlineTexto: "Per videotrucada o telèfon, des d’on estiguis a gust. Pots combinar presencial i online quan vulguis.",
     onlineEnlace: 'Com funciona la teràpia online',
     tarifasTitulo: 'Tarifes',
     tarifas: [['Sessió individual', 'A la consulta', '60 €'], ['Sessió individual', 'Online', '60 €', 'des de'], ['Parella o família', 'A la consulta', '75 €'], ['Parella o família', 'Online', '75 €']],
@@ -139,7 +137,7 @@ const copy = {
     faqNota: 'Si no trobes el teu dubte, escriu-nos per WhatsApp.',
     faq: [
       ['Quant dura una sessió?', '55 minuts, tant a la consulta com online.'],
-      ['Com reservo la primera sessió?', "A l'agenda online, triant dia i hora. Si ho prefereixes, truca'ns al 613 00 16 09 o escriu-nos per WhatsApp."],
+      ['Com reservo la primera sessió?', "A l’agenda online, triant dia i hora. Si ho prefereixes, truca’ns al 613 00 16 09 o escriu-nos per WhatsApp."],
       ['Ateneu infants online?', 'No. Les sessions amb infants són sempre presencials, a la consulta de Granollers.'],
       ['El que explico és confidencial?', 'Sí. Tot el que parles en sessió està protegit pel secret professional.'],
       ['Puc combinar presencial i online?', 'Sí, pots alternar segons et vagi millor cada setmana.'],
@@ -199,7 +197,7 @@ const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vic
         {resto.map((r) => (
           <figure class="resena" data-sube>
             <blockquote lang={r.lang}><p>«{r.text}»</p></blockquote>
-            <figcaption>{r.name} · <time datetime={r.date}>{fecha(r.date)}</time></figcaption>
+            <figcaption>{r.name}, en Google · <time datetime={r.date}>{fecha(r.date)}</time></figcaption>
           </figure>
         ))}
         <figure class="resena resena--ejemplo">
@@ -247,7 +245,7 @@ const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vic
           <div class="paso__extra">
             {i === 0 && (
               <div class="paso__acciones">
-                <a class="boton" href={contact.setmore} target="_blank" rel="noopener">{copy.reservar}</a>
+                <a class="boton" href={contact.setmore} target="_blank" rel="noopener">{t.cta}</a>
                 <a class="boton boton--secundario" href={contact.phoneHref}>{t.call}</a>
                 <a class="boton boton--secundario" href={contact.whatsapp[lang]} target="_blank" rel="noopener">{t.whatsapp}</a>
               </div>
@@ -447,6 +445,7 @@ const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vic
     transition: text-decoration-color 0.2s ease, color 0.2s ease, transform 0.45s var(--ease-out);
   }
   .rutas a:hover, .rutas a:focus-visible { color: var(--acento); text-decoration-color: var(--acento); }
+  .rutas a:focus { opacity: 1 !important; }
   @media (hover: hover) and (pointer: fine) {
     .rutas a:hover { transform: translateX(10px); }
   }
@@ -455,10 +454,10 @@ const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vic
   figcaption { margin-top: var(--e-s); color: var(--texto-suave); font-size: var(--t-pequeno); }
 
   .resenas__rejilla { display: grid; grid-template-columns: 7fr 5fr; gap: var(--e-xl) clamp(32px, 6vw, 96px); align-items: start; }
-  .resena--grande blockquote p { font-size: clamp(1.9rem, 1.1rem + 2.6vw, 3.4rem); line-height: 1.15; letter-spacing: -0.015em; }
   .resenas__lista { display: grid; gap: var(--e-l); }
   .resenas__lista .resena { padding-top: var(--e-l); border-top: 1px solid color-mix(in srgb, var(--texto) 14%, transparent); }
   .resena blockquote p { font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); }
+  .resena--grande blockquote p { font-size: clamp(1.9rem, 1.1rem + 2.6vw, 3.4rem); line-height: 1.15; letter-spacing: -0.015em; }
   .resena--ejemplo blockquote p { color: var(--texto-suave); }
   .resenas__pie { margin-top: var(--e-xl); color: var(--texto-suave); font-size: var(--t-pequeno); display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--e-l); }
 
@@ -534,8 +533,8 @@ const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vic
     :global(.mov) .escena__rejilla { min-height: 0; }
     .pensamiento { left: var(--xm); top: var(--ym); }
     .p--solo-escritorio { display: none; }
-    .p--l .pensamiento__par { opacity: 0.34; }
-    .p--m .pensamiento__par, .p--s .pensamiento__par { opacity: 0.22; }
+    .p--l .pensamiento__par { opacity: 0.2; }
+    .p--m .pensamiento__par, .p--s .pensamiento__par { opacity: 0.13; }
   }
   @media (max-width: 1100px) {
     .equipo__rejilla { grid-template-columns: 1fr; }

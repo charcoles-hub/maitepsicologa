@@ -57,7 +57,7 @@ const other: Lang = lang === 'es' ? 'ca' : 'es';
     position: sticky;
     top: 0;
     z-index: 40;
-    background: color-mix(in srgb, var(--cielo, var(--fondo)) 92%, transparent);
+    background: color-mix(in srgb, var(--fondo) 78%, transparent);
     border-bottom: 1px solid var(--linea);
   }
   @supports (backdrop-filter: blur(8px)) {
@@ -81,7 +81,7 @@ const other: Lang = lang === 'es' ? 'ca' : 'es';
   .marca__nombre { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; }
   .marca__linea { font-size: 0.8rem; color: var(--texto-suave); white-space: nowrap; }
 
-  .nav ul { display: flex; gap: 20px; list-style: none; padding: 0; }
+  .nav ul { display: flex; gap: 14px; list-style: none; padding: 0; }
   .nav a {
     color: var(--texto-suave);
     font-weight: 550;
@@ -171,7 +171,7 @@ const other: Lang = lang === 'es' ? 'ca' : 'es';
     white-space: nowrap;
   }
 
-  @media (max-width: 1400px) {
+  @media (max-width: 1279px) {
     .nav { display: none; }
     .menu-boton { display: inline-flex; align-items: center; }
   }

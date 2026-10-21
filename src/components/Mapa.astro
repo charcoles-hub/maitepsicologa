@@ -17,7 +17,7 @@ const txt = lang === 'ca'
   <div class="mapa__calles" aria-hidden="true"></div>
   <div class="mapa__chincheta" aria-hidden="true"></div>
   <div class="mapa__pie">
-    <address>{contact.address[0]}<br />{contact.address[1]}</address>
+    <address>{contact.address[lang][0]}<br />{contact.address[lang][1]}</address>
     <div class="mapa__acciones">
       <button class="boton boton--secundario" type="button" data-mapa-cargar>{txt.cargar}</button>
       <a class="enlace" href={abrir} target="_blank" rel="noopener">{txt.abrir}</a>
@@ -36,6 +36,8 @@ const txt = lang === 'ca'
       f.referrerPolicy = 'no-referrer-when-downgrade';
       m.classList.add('mapa--cargado');
       m.prepend(f);
+      f.tabIndex = 0;
+      f.focus();
     });
   });
 </script>

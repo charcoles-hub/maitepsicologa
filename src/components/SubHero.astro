@@ -30,9 +30,12 @@ const t = ui[lang];
       </div>
     </div>
     {voces.length > 0 && (
-      <ul class="sub-hero__voces" aria-label={lang === 'ca' ? 'El que ens expliquen' : 'Lo que nos cuentan'}>
-        {voces.map((v, i) => <li class="voz" style={`--i:${i}`} data-sube>«{v}»</li>)}
-      </ul>
+      <div class="sub-hero__voces">
+        <p class="sub-hero__suena">{lang === 'ca' ? 'Et sona?' : '¿Te suena?'}</p>
+        <ul>
+          {voces.map((v, i) => <li class="voz" style={`--i:${i}`} data-sube>{v}</li>)}
+        </ul>
+      </div>
     )}
   </div>
 </header>
@@ -43,7 +46,8 @@ const t = ui[lang];
   .sub-hero h1 { font-size: var(--t-display); font-weight: 480; line-height: 0.98; letter-spacing: -0.045em; max-width: 13ch; }
   .sub-hero__intro { margin-top: var(--e-l); max-width: 46ch; font-size: 1.15rem; color: var(--texto-suave); }
   .sub-hero__acciones { display: flex; flex-wrap: wrap; align-items: center; gap: var(--e-m) var(--e-l); margin-top: var(--e-xl); }
-  .sub-hero__voces { list-style: none; padding: 0; display: grid; gap: var(--e-l); }
+  .sub-hero__suena { font-size: var(--t-pequeno); font-weight: 600; color: var(--texto-suave); margin-bottom: var(--e-m); }
+  .sub-hero__voces ul { list-style: none; padding: 0; display: grid; gap: var(--e-l); }
   .sub-hero__voces li {
     font-size: clamp(1.3rem, 1rem + 1.1vw, 2rem);
     line-height: 1.25;
