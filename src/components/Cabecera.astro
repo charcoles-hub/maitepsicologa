@@ -1,0 +1,167 @@
+---
+import { contact, href, label, navKeys, ui, type Lang, type PageKey } from '../data/site';
+
+interface Props {
+  lang: Lang;
+  page: PageKey;
+}
+
+const { lang, page } = Astro.props;
+const t = ui[lang];
+const other: Lang = lang === 'es' ? 'ca' : 'es';
+---
+<header class="cabecera">
+  <div class="contenedor cabecera__fila">
+    <a class="marca" href={href(lang, 'inicio')} aria-current={page === 'inicio' ? 'page' : undefined}>
+      <span class="marca__nombre">Maite Vicente</span>
+      <span class="marca__linea">{t.brandLine}</span>
+    </a>
+
+    <nav class="nav" aria-label={t.menu}>
+      <ul>
+        {navKeys.map((k) => (
+          <li><a href={href(lang, k)} aria-current={page === k ? 'page' : undefined}>{label(lang, k)}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="cabecera__acciones">
+      <a class="idioma" href={href(other, page)} hreflang={other} lang={other}>
+        <span aria-hidden="true">{t.otherLangShort}</span><span class="vh">{t.otherLang}</span>
+      </a>
+      <a class="boton cabecera__cta" href={contact.setmore} target="_blank" rel="noopener">{t.cta}</a>
+      <button class="menu-boton" type="button" popovertarget="menu-movil">{t.menu}</button>
+    </div>
+  </div>
+
+  <div id="menu-movil" class="menu-movil" popover>
+    <div class="menu-movil__cabeza">
+      <span class="marca__nombre">Maite Vicente</span>
+      <button class="menu-boton" type="button" popovertarget="menu-movil" popovertargetaction="hide">{t.close}</button>
+    </div>
+    <nav aria-label={t.menu}>
+      <ul>
+        <li><a href={href(lang, 'inicio')} aria-current={page === 'inicio' ? 'page' : undefined}>{label(lang, 'inicio')}</a></li>
+        {navKeys.map((k) => (
+          <li><a href={href(lang, k)} aria-current={page === k ? 'page' : undefined}>{label(lang, k)}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <a class="boton menu-movil__cta" href={contact.setmore} target="_blank" rel="noopener">{t.cta}</a>
+    <p class="menu-movil__tel"><a href={contact.phoneHref}>{t.callFull}</a></p>
+  </div>
+</header>
+
+<style>
+  .cabecera {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--fondo) 94%, transparent);
+    border-bottom: 1px solid var(--linea);
+  }
+  @supports (backdrop-filter: blur(8px)) {
+    .cabecera { backdrop-filter: blur(8px); }
+  }
+  .cabecera__fila {
+    display: flex;
+    align-items: center;
+    gap: var(--e-l);
+    min-height: 72px;
+  }
+  .marca {
+    display: flex;
+    flex-direction: column;
+    color: var(--texto);
+    text-decoration: none;
+    line-height: 1.15;
+    margin-right: auto;
+    padding-block: 11px;
+  }
+  .marca__nombre { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; }
+  .marca__linea { font-size: 0.8rem; color: var(--texto-suave); }
+
+  .nav ul { display: flex; gap: 20px; list-style: none; padding: 0; }
+  .nav a {
+    color: var(--texto-suave);
+    font-weight: 550;
+    font-size: 0.95rem;
+    text-decoration: none;
+    white-space: nowrap;
+    padding-block: var(--e-s);
+  }
+  .nav a:hover, .nav a[aria-current='page'] { color: var(--texto); text-decoration: underline; text-decoration-color: var(--acento); }
+
+  .cabecera__acciones { display: flex; align-items: center; gap: var(--e-m); }
+  .idioma {
+    display: inline-grid;
+    place-items: center;
+    min-width: 44px;
+    min-height: 44px;
+    font-weight: 650;
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+    text-decoration: none;
+  }
+  .idioma:hover { color: var(--acento); }
+
+  .menu-boton {
+    display: none;
+    min-height: 44px;
+    padding: 0 var(--e-m);
+    border: 1.5px solid var(--linea);
+    border-radius: var(--r-pildora);
+    background: var(--fondo);
+    color: var(--texto);
+    font: 600 0.95rem var(--ui);
+    cursor: pointer;
+  }
+
+  .menu-movil {
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    border: 0;
+    padding: var(--e-m) var(--margen) calc(var(--e-l) + env(safe-area-inset-bottom));
+    background: var(--fondo);
+    color: var(--texto);
+  }
+  .menu-movil:popover-open { display: flex; flex-direction: column; gap: var(--e-l); }
+  .menu-movil__cabeza { display: flex; align-items: center; justify-content: space-between; min-height: 56px; }
+  .menu-movil__cabeza .menu-boton { display: inline-flex; align-items: center; }
+  .menu-movil ul { list-style: none; padding: 0; }
+  .menu-movil li a {
+    display: block;
+    padding: 12px 0;
+    border-top: 1px solid var(--linea);
+    color: var(--texto);
+    font-size: 1.35rem;
+    font-weight: 560;
+    text-decoration: none;
+  }
+  .menu-movil li a[aria-current='page'] { color: var(--acento); }
+  .menu-movil__cta { align-self: stretch; }
+  .menu-movil__tel { text-align: center; }
+
+  .vh {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1300px) {
+    .nav { display: none; }
+    .menu-boton { display: inline-flex; align-items: center; }
+  }
+  @media (max-width: 640px) {
+    .cabecera__cta { display: none; }
+    .marca__linea { display: none; }
+    .cabecera__acciones { gap: var(--e-s); }
+  }
+</style>

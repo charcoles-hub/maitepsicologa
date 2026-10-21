@@ -1,0 +1,42 @@
+---
+import { contact, ui, type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+<nav class="barra" aria-label={t.talk}>
+  <a href={contact.phoneHref}>{t.call}</a>
+  <a href={contact.whatsapp[lang]} target="_blank" rel="noopener">{t.whatsapp}</a>
+</nav>
+
+<style>
+  .barra {
+    display: none;
+  }
+  @media (max-width: 860px) {
+    .barra {
+      position: fixed;
+      inset: auto 0 0 0;
+      z-index: 30;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-bottom: env(safe-area-inset-bottom);
+      background: var(--fondo);
+      border-top: 1px solid var(--linea);
+      box-shadow: 0 -8px 24px -16px rgb(20 48 47 / 0.35);
+    }
+    .barra a {
+      display: grid;
+      place-items: center;
+      min-height: var(--barra-movil);
+      font-weight: 650;
+      color: var(--acento);
+      text-decoration: none;
+    }
+    .barra a + a { border-left: 1px solid var(--linea); }
+  }
+</style>

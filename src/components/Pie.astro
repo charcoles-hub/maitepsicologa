@@ -1,0 +1,95 @@
+---
+import { contact, href, label, navKeys, ui, type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+const year = new Date().getFullYear();
+---
+<footer class="pie">
+  <div class="contenedor pie__rejilla">
+    <div class="pie__marca">
+      <p class="pie__nombre">Maite Vicente</p>
+      <p>{t.brandLine}</p>
+      <p>{t.colegiada}</p>
+      <a class="boton pie__cta" href={contact.setmore} target="_blank" rel="noopener">{t.cta}</a>
+    </div>
+
+    <div>
+      <h2 class="pie__titulo">{t.where}</h2>
+      <address>
+        {contact.address.map((l) => <span>{l}<br /></span>)}
+      </address>
+    </div>
+
+    <div>
+      <h2 class="pie__titulo">{t.when}</h2>
+      <p class="cifra">{contact.hours[lang].map((l) => <span>{l}<br /></span>)}</p>
+    </div>
+
+    <div>
+      <h2 class="pie__titulo">{t.talk}</h2>
+      <p>
+        <a href={contact.phoneHref}>{contact.phone}</a><br />
+        <a href={`mailto:${contact.email}`}>{contact.email}</a><br />
+        <a href={contact.instagram} target="_blank" rel="noopener">Instagram</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="contenedor pie__base">
+    <ul class="pie__nav">
+      {navKeys.map((k) => <li><a href={href(lang, k)}>{label(lang, k)}</a></li>)}
+    </ul>
+    <p class="pie__legal">
+      <span>© {year} Maite Vicente</span>
+      <!-- PENDIENTE: páginas legales nuevas (aviso legal, privacidad, cookies) con revisión legal -->
+      <a href="https://www.maitepsicologa.com/politica-privacidad/">{t.privacy}</a>
+      <a href="https://www.maitepsicologa.com/politica-cookies/">{t.cookies}</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .pie {
+    margin-top: var(--e-xxl);
+    background: var(--superficie);
+    border-top: 1px solid var(--linea);
+    color: var(--texto);
+    font-size: 0.95rem;
+  }
+  .pie__rejilla {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: var(--e-xl);
+    padding-block: var(--e-xl);
+  }
+  .pie__nombre { font-weight: 700; font-size: 1.2rem; }
+  .pie__marca p { color: var(--texto-suave); }
+  .pie__cta { margin-top: var(--e-l); }
+  .pie__titulo { font-size: 0.95rem; font-weight: 650; margin-bottom: var(--e-s); letter-spacing: 0; }
+  address { font-style: normal; }
+  .pie__base {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--e-m);
+    padding-block: var(--e-l);
+    border-top: 1px solid var(--linea);
+  }
+  .pie__nav { display: flex; flex-wrap: wrap; gap: var(--e-s) var(--e-l); list-style: none; padding: 0; }
+  .pie__nav { gap: 0 var(--e-l); }
+  .pie__nav a, .pie__legal a { display: inline-flex; align-items: center; min-height: 44px; color: var(--texto-suave); }
+  .pie__legal { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--e-m); color: var(--texto-suave); }
+
+  @media (max-width: 860px) {
+    .pie__rejilla { grid-template-columns: 1fr 1fr; gap: var(--e-l); }
+    .pie__marca { grid-column: 1 / -1; }
+  }
+  @media (max-width: 480px) {
+    .pie__rejilla { grid-template-columns: 1fr; }
+  }
+</style>

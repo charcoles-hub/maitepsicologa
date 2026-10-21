@@ -1,0 +1,21 @@
+---
+import { contact, label, ui, type Lang, type PageKey } from '../data/site';
+
+interface Props {
+  lang: Lang;
+  page: PageKey;
+}
+
+const { lang, page } = Astro.props;
+const t = ui[lang];
+---
+<section class="interior contenedor">
+  <h1>{label(lang, page)}</h1>
+  <p class="pendiente">{t.soon}</p>
+  <a class="boton" href={contact.setmore} target="_blank" rel="noopener">{t.cta}</a>
+</section>
+
+<style>
+  .interior { padding-top: clamp(40px, 7vw, 96px); display: grid; gap: var(--e-l); justify-items: start; max-width: 780px; margin-inline: auto; }
+  .interior h1 { font-size: var(--t-display); font-weight: 650; letter-spacing: -0.025em; }
+</style>
