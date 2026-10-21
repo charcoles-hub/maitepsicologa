@@ -110,7 +110,7 @@ if (!reducir) {
     const tarjetas = gsap.utils.toArray<HTMLElement>('[data-apila]');
     tarjetas.forEach((t, i) => {
       const siguiente = tarjetas[i + 1];
-      if (siguiente) gsap.to(t, { scale: 0.94, filter: 'brightness(0.42)', ease: 'none', scrollTrigger: { trigger: siguiente, start: 'top 85%', end: 'top 25%', scrub: true } });
+      if (siguiente) gsap.fromTo(t, { scale: 1, filter: 'brightness(1) saturate(1)' }, { scale: 0.95, filter: 'brightness(0.94) saturate(0.85)', ease: 'none', scrollTrigger: { trigger: siguiente, start: 'top 55%', end: () => `top ${parseFloat(getComputedStyle(siguiente).top) || 0}px`, scrub: true, invalidateOnRefresh: true } });
     });
   });
 

@@ -61,7 +61,8 @@ const copy = {
     onlineTexto: 'Por videollamada o teléfono, desde donde estés a gusto. Puedes combinar presencial y online cuando quieras.',
     onlineEnlace: 'Cómo funciona la terapia online',
     tarifasTitulo: 'Tarifas',
-    tarifasPendiente: 'PENDIENTE: precios de sesión individual, pareja o familia, online y consulta breve de 30 minutos.',
+    tarifas: [['Sesión individual', 'En la consulta', '60 €'], ['Sesión individual', 'Online', '60 €', 'desde'], ['Pareja o familia', 'En la consulta', '75 €'], ['Pareja o familia', 'Online', '75 €']],
+    tarifasNota: 'Sesiones de 55 minutos.',
     tarifasEnlace: 'Ver tarifas',
     cierreTitulo: 'Cuando quieras, empezamos',
     cierreTexto: 'Reserva tu primera sesión o escríbenos y te respondemos lo antes posible.',
@@ -100,7 +101,8 @@ const copy = {
     onlineTexto: "Per videotrucada o telèfon, des d'on estiguis a gust. Pots combinar presencial i online quan vulguis.",
     onlineEnlace: 'Com funciona la teràpia online',
     tarifasTitulo: 'Tarifes',
-    tarifasPendiente: 'PENDENT: preus de sessió individual, parella o família, online i consulta breu de 30 minuts.',
+    tarifas: [['Sessió individual', 'A la consulta', '60 €'], ['Sessió individual', 'Online', '60 €', 'des de'], ['Parella o família', 'A la consulta', '75 €'], ['Parella o família', 'Online', '75 €']],
+    tarifasNota: 'Sessions de 55 minuts.',
     tarifasEnlace: 'Veure tarifes',
     cierreTitulo: 'Quan vulguis, comencem',
     cierreTexto: 'Reserva la teva primera sessió o escriu-nos i et respondrem al més aviat possible.',
@@ -223,7 +225,16 @@ const mapa = 'https://www.google.com/maps/search/?api=1&query=Carrer+de+Roger+de
 
 <section class="tarifas contenedor" aria-labelledby="tarifas-titulo">
   <h2 id="tarifas-titulo">{copy.tarifasTitulo}</h2>
-  <p class="pendiente">{copy.tarifasPendiente}</p>
+  <!-- PENDIENTE: Maite confirma precios (correo 21-10, «le doy una vuelta») -->
+  <dl class="precios">
+    {copy.tarifas.map(([sesion, modo, precio, desde]) => (
+      <div class="precio" data-sube>
+        <dt>{sesion} <span>{modo}</span></dt>
+        <dd class="cifra">{desde && <span>{desde} </span>}{precio}</dd>
+      </div>
+    ))}
+  </dl>
+  <p class="precios__nota">{copy.tarifasNota}</p>
   <p><a class="enlace" href={href(lang, 'tarifas')}>{copy.tarifasEnlace}</a></p>
 </section>
 
@@ -407,7 +418,13 @@ const mapa = 'https://www.google.com/maps/search/?api=1&query=Carrer+de+Roger+de
   .donde address { font-style: normal; }
 
   .tarifas { padding-top: var(--e-xxl); }
-  .tarifas .pendiente { margin-bottom: var(--e-m); }
+  .precios { margin: var(--e-l) 0 var(--e-s); border-top: 1px solid var(--linea); }
+  .precio { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--e-s) var(--e-l); padding: var(--e-m) 0; border-bottom: 1px solid var(--linea); }
+  .precio dt { font-size: clamp(1.15rem, 1rem + 0.6vw, 1.6rem); font-weight: 560; }
+  .precio dt span { display: block; font-size: var(--t-pequeno); font-weight: 450; color: var(--texto-suave); }
+  .precio dd { margin: 0; font-size: clamp(1.8rem, 1.2rem + 2.4vw, 3.4rem); font-weight: 480; letter-spacing: -0.04em; line-height: 1; color: var(--acento); }
+  .precio dd span { font-size: 0.4em; letter-spacing: 0; font-weight: 500; }
+  .precios__nota { color: var(--texto-suave); margin-bottom: var(--e-m); }
 
   .cierre {
     margin-top: var(--e-xxl);
