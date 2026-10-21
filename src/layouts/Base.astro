@@ -14,6 +14,7 @@ interface Props {
 
 const { lang, page, title, description } = Astro.props;
 const t = ui[lang];
+const preview = Astro.site?.hostname !== 'www.maitepsicologa.com';
 const canonical = new URL(href(lang, page), Astro.site);
 const alternates = (['es', 'ca'] as const).map((l) => ({ lang: l, url: new URL(href(l, page), Astro.site) }));
 
@@ -47,6 +48,7 @@ const jsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {preview && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.url} />)}
     <link rel="alternate" hreflang="x-default" href={alternates[0].url} />
