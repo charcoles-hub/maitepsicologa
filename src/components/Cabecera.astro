@@ -146,6 +146,22 @@ const other: Lang = lang === 'es' ? 'ca' : 'es';
   .menu-movil__cta { align-self: stretch; }
   .menu-movil__tel { text-align: center; }
 
+  :global(html.mov body.con-escena) .cabecera { margin-bottom: calc(-1 * var(--alto-cabecera)); }
+  :global(html.mov body.con-escena) .cabecera:not(.cabecera--dia) {
+    background: transparent;
+    border-bottom-color: transparent;
+    backdrop-filter: none;
+    color: var(--noche-texto);
+  }
+  :global(html.mov body.con-escena) .cabecera:not(.cabecera--dia) :is(.marca, .nav a, .idioma) { color: var(--noche-texto); }
+  :global(html.mov body.con-escena) .cabecera:not(.cabecera--dia) :is(.marca__linea, .nav a:not(:hover)) { color: var(--noche-suave); }
+  :global(html.mov body.con-escena) .cabecera:not(.cabecera--dia) .cabecera__fila > .cabecera__acciones .menu-boton {
+    background: transparent;
+    color: var(--noche-texto);
+    border-color: color-mix(in srgb, var(--noche-texto) 35%, transparent);
+  }
+  .cabecera, .marca, .nav a, .idioma, .menu-boton { transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease; }
+
   .vh {
     position: absolute;
     width: 1px;

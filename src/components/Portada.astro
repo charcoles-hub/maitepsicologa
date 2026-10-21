@@ -8,6 +8,24 @@ interface Props {
 const { lang } = Astro.props;
 const t = ui[lang];
 
+type Pensamiento = { es: string; ca: string; t: 'l' | 'm' | 's'; d: number; x: number; y: number; xm: number; ym: number; ruta?: number; movil?: boolean };
+
+const pensamientos: Pensamiento[] = [
+  { es: 'otra noche sin dormir', ca: 'una altra nit sense dormir', t: 'l', d: 1, x: 56, y: 20, xm: 36, ym: 10, ruta: 0, movil: true },
+  { es: '¿y si a mi hija le pasa algo?', ca: 'i si a la meva filla li passa alguna cosa?', t: 'm', d: 0.7, x: 66, y: 44, xm: 30, ym: 92, ruta: 1 },
+  { es: 'discutimos por todo', ca: 'discutim per tot', t: 'l', d: 0.9, x: 54, y: 64, xm: 46, ym: 33, ruta: 2, movil: true },
+  { es: 'no tengo tiempo de ir a ninguna parte', ca: "no tinc temps d'anar enlloc", t: 's', d: 0.5, x: 63, y: 84, xm: 8, ym: 98, ruta: 3 },
+  { es: 'no sé qué me pasa', ca: 'no sé què em passa', t: 'm', d: 0.8, x: 79, y: 30, xm: 58, ym: 24, ruta: 4, movil: true },
+  { es: 'todo me supera', ca: 'tot em supera', t: 's', d: 0.4, x: 7, y: 12, xm: 56, ym: 46, movil: true },
+  { es: '¿será culpa mía?', ca: 'serà culpa meva?', t: 'm', d: 0.6, x: 34, y: 8, xm: 52, ym: 41, movil: true },
+  { es: 'estoy cansada de estar cansada', ca: "estic cansada d'estar cansada", t: 's', d: 0.35, x: 72, y: 7, xm: 0, ym: 0 },
+  { es: 'mañana se me pasa', ca: 'demà se me passa', t: 'm', d: 0.5, x: 5, y: 88, xm: 0, ym: 0 },
+  { es: 'el pecho me aprieta', ca: "el pit m'oprimeix", t: 's', d: 0.4, x: 31, y: 93, xm: 0, ym: 0 },
+  { es: 'ya no somos los de antes', ca: 'ja no som els d’abans', t: 's', d: 0.45, x: 84, y: 60, xm: 0, ym: 0 },
+  { es: 'no puedo más', ca: 'no puc més', t: 's', d: 0.3, x: 45, y: 38, xm: 62, ym: 17, movil: true },
+  { es: 'nadie lo entiende', ca: 'ningú ho entén', t: 's', d: 0.35, x: 87, y: 90, xm: 0, ym: 0 },
+];
+
 const copy = {
   es: {
     h1: 'Psicología en Granollers y online',
@@ -50,10 +68,10 @@ const copy = {
   },
   ca: {
     h1: 'Psicologia a Granollers i online',
-    lead: "Teràpia per a adults, adolescents, infants, parelles i famílies. Al teu ritme, a la consulta o per videotrucada.",
+    lead: 'Teràpia per a adults, adolescents, infants, parelles i famílies. Al teu ritme, a la consulta o per videotrucada.',
     pregunta: 'Què et porta aquí?',
     rutas: [
-      ["Ansietat, estrès o no aconsegueixo dormir", 'adultos'],
+      ['Ansietat, estrès o no aconsegueixo dormir', 'adultos'],
       ['Em preocupa el meu fill o la meva filla', 'infantil'],
       ["Discutim tota l'estona", 'pareja'],
       ['Prefereixo fer-ho online', 'online'],
@@ -64,16 +82,16 @@ const copy = {
     resenasEnlace: 'Veure totes les ressenyes a Google',
     pasosTitulo: 'Com és començar',
     pasos: [
-      ["Reserva o escriu-nos", "Tria dia i hora a l'agenda online. Si prefereixes parlar abans, truca'ns o escriu-nos per WhatsApp."],
-      ['La primera sessió', "Ens expliques què et passa, sense presses. Són 55 minuts, a la consulta de Granollers o per videotrucada."],
-      ['Un pla per a tu', "Acordem objectius i freqüència. Entre sessions tens exercicis adaptats i accés per WhatsApp."],
+      ['Reserva o escriu-nos', "Tria dia i hora a l'agenda online. Si prefereixes parlar abans, truca'ns o escriu-nos per WhatsApp."],
+      ['La primera sessió', 'Ens expliques què et passa, sense presses. Són 55 minuts, a la consulta de Granollers o per videotrucada.'],
+      ['Un pla per a tu', 'Acordem objectius i freqüència. Entre sessions tens exercicis adaptats i accés per WhatsApp.'],
     ],
     equipoTitulo: "Qui t'acompanya",
-    maite: "Llicenciada en Psicologia (UAB i UOC), amb un màster en Psicologia Infantil i Juvenil (URJC) i un altre en Teràpies de Tercera Generació (Universidad Isabel I).",
-    enfoques: "Treballem des de la psicologia integrativa, la teràpia breu estratègica, la sistèmica i la cognitivoconductual.",
+    maite: 'Llicenciada en Psicologia (UAB i UOC), amb un màster en Psicologia Infantil i Juvenil (URJC) i un altre en Teràpies de Tercera Generació (Universidad Isabel I).',
+    enfoques: 'Treballem des de la psicologia integrativa, la teràpia breu estratègica, la sistèmica i la cognitivoconductual.',
     companera: 'PENDENT: nom, formació, número de col·legiada i foto de la segona psicòloga.',
     fotoPendiente: 'PENDENT: foto real de la Maite.',
-    equipoEnlace: "Coneix-nos millor",
+    equipoEnlace: 'Coneix-nos millor',
     dondeTitulo: 'A la consulta o des de casa',
     presencial: 'Presencial',
     presencialTexto: 'Les sessions amb infants són sempre presencials.',
@@ -96,34 +114,46 @@ const [destacada, ...resto] = reviews;
 const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vicente+Psic%C3%B3loga+Granollers';
 const mapa = 'https://www.google.com/maps/search/?api=1&query=Carrer+de+Roger+de+Flor+63+08401+Granollers';
 ---
-<section class="portada contenedor" aria-labelledby="portada-titulo">
-  <div class="portada__texto">
-    <h1 id="portada-titulo">{copy.h1}</h1>
-    <p class="portada__lead">{copy.lead}</p>
-    <div class="portada__acciones">
-      <a class="boton" href={contact.setmore} target="_blank" rel="noopener">{t.cta}</a>
-      <a class="enlace" href={contact.phoneHref}>{t.callFull}</a>
-    </div>
+<section class="escena" data-escena aria-labelledby="portada-titulo">
+  <div class="escena__ruido" aria-hidden="true">
+    {pensamientos.map((p) => (
+      <span
+        class:list={['pensamiento', `p--${p.t}`, { 'p--solo-escritorio': !p.movil }]}
+        data-pensamiento
+        data-ruta={p.ruta}
+        style={`--x:${p.x}%;--y:${p.y}%;--xm:${p.xm}%;--ym:${p.ym}%;--d:${p.d}`}
+      ><span class="pensamiento__par" data-prof={p.d}><span class="pensamiento__texto">{p[lang]}</span></span></span>
+    ))}
   </div>
 
-  <nav class="rutas" aria-labelledby="rutas-titulo">
-    <h2 id="rutas-titulo" class="rutas__pregunta">{copy.pregunta}</h2>
-    <ul>
-      {copy.rutas.map(([texto, key], i) => (
-        <li style={`--i:${i}`}><a href={href(lang, key)}>{texto}</a></li>
-      ))}
-    </ul>
-  </nav>
+  <div class="contenedor escena__rejilla">
+    <div class="escena__texto">
+      <h1 id="portada-titulo" data-titulo-entrada>{copy.h1}</h1>
+      <p class="escena__lead" data-sube>{copy.lead}</p>
+      <div class="escena__acciones" data-sube>
+        <a class="boton" href={contact.setmore} target="_blank" rel="noopener" data-iman>{t.cta}</a>
+        <a class="enlace escena__tel" href={contact.phoneHref}>{t.callFull}</a>
+      </div>
+    </div>
 
-  <figure class="portada__resena">
-    <blockquote lang={destacada.lang}><p>«{destacada.text}»</p></blockquote>
-    <figcaption>{destacada.name}, en Google · <time datetime={destacada.date}>{fecha(destacada.date)}</time></figcaption>
-  </figure>
+    <nav class="rutas" data-rutas aria-labelledby="rutas-titulo">
+      <h2 id="rutas-titulo" class="rutas__pregunta" data-pregunta>{copy.pregunta}</h2>
+      <ul>
+        {copy.rutas.map(([texto, key], i) => (
+          <li data-ruta-fila={i}><a href={href(lang, key)} data-ruta-destino={i}>{texto}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
 </section>
 
 <section class="resenas" aria-labelledby="resenas-titulo">
   <div class="contenedor">
     <h2 id="resenas-titulo">{copy.resenasTitulo}</h2>
+    <figure class="resena resena--grande">
+      <blockquote lang={destacada.lang}><p data-enciende>«{destacada.text}»</p></blockquote>
+      <figcaption>{destacada.name}, en Google · <time datetime={destacada.date}>{fecha(destacada.date)}</time></figcaption>
+    </figure>
     <div class="resenas__lista">
       {resto.map((r) => (
         <figure class="resena">
@@ -142,11 +172,14 @@ const mapa = 'https://www.google.com/maps/search/?api=1&query=Carrer+de+Roger+de
 
 <section class="pasos contenedor" aria-labelledby="pasos-titulo">
   <h2 id="pasos-titulo">{copy.pasosTitulo}</h2>
-  <ol>
-    {copy.pasos.map(([titulo, texto]) => (
-      <li>
-        <h3>{titulo}</h3>
-        <p>{texto}</p>
+  <ol class="apila">
+    {copy.pasos.map(([titulo, texto], i) => (
+      <li style={`--i:${i}`} data-apila>
+        <span class="paso__n" aria-hidden="true">{i + 1}</span>
+        <div>
+          <h3>{titulo}</h3>
+          <p>{texto}</p>
+        </div>
       </li>
     ))}
   </ol>
@@ -155,36 +188,35 @@ const mapa = 'https://www.google.com/maps/search/?api=1&query=Carrer+de+Roger+de
 <section class="equipo contenedor" aria-labelledby="equipo-titulo">
   <h2 id="equipo-titulo">{copy.equipoTitulo}</h2>
   <div class="equipo__rejilla">
-    <article class="persona persona--principal">
-      <div class="persona__foto pendiente">{copy.fotoPendiente}</div>
-      <div>
-        <h3>Maite Vicente Pérez</h3>
-        <p class="persona__dato">{t.colegiada}</p>
-        <p>{copy.maite}</p>
-        <p>{copy.enfoques}</p>
-      </div>
-    </article>
-    <article class="persona">
+    <div class="equipo__foto pendiente" data-desvela>{copy.fotoPendiente}</div>
+    <div class="equipo__texto">
+      <h3>Maite Vicente Pérez</h3>
+      <p class="equipo__dato">{t.colegiada}</p>
+      <p>{copy.maite}</p>
+      <p>{copy.enfoques}</p>
       <p class="pendiente">{copy.companera}</p>
-    </article>
+      <p><a class="enlace" href={href(lang, 'nosotras')}>{copy.equipoEnlace}</a></p>
+    </div>
   </div>
-  <p><a class="enlace" href={href(lang, 'nosotras')}>{copy.equipoEnlace}</a></p>
 </section>
 
-<section class="donde contenedor" aria-labelledby="donde-titulo">
-  <h2 id="donde-titulo">{copy.dondeTitulo}</h2>
-  <div class="donde__rejilla">
-    <div class="donde__bloque">
-      <h3>{copy.presencial}</h3>
-      <address>{contact.address.map((l) => <span>{l}<br /></span>)}</address>
-      <p class="cifra">{contact.hours[lang].map((l) => <span>{l}<br /></span>)}</p>
-      <p>{copy.presencialTexto}</p>
-      <a class="boton boton--secundario" href={mapa} target="_blank" rel="noopener">{copy.mapa}</a>
-    </div>
-    <div class="donde__bloque">
-      <h3>{copy.online}</h3>
-      <p>{copy.onlineTexto}</p>
-      <p><a class="enlace" href={href(lang, 'online')}>{copy.onlineEnlace}</a></p>
+<section class="donde" aria-labelledby="donde-titulo">
+  <p class="donde__calle" aria-hidden="true"><span data-desliza>Roger de Flor, 63</span></p>
+  <div class="contenedor">
+    <h2 id="donde-titulo">{copy.dondeTitulo}</h2>
+    <div class="donde__rejilla">
+      <div class="donde__bloque">
+        <h3>{copy.presencial}</h3>
+        <address>{contact.address.map((l) => <span>{l}<br /></span>)}</address>
+        <p class="cifra">{contact.hours[lang].map((l) => <span>{l}<br /></span>)}</p>
+        <p>{copy.presencialTexto}</p>
+        <a class="boton boton--secundario" href={mapa} target="_blank" rel="noopener">{copy.mapa}</a>
+      </div>
+      <div class="donde__bloque">
+        <h3>{copy.online}</h3>
+        <p>{copy.onlineTexto}</p>
+        <p><a class="enlace" href={href(lang, 'online')}>{copy.onlineEnlace}</a></p>
+      </div>
     </div>
   </div>
 </section>
@@ -195,36 +227,108 @@ const mapa = 'https://www.google.com/maps/search/?api=1&query=Carrer+de+Roger+de
   <p><a class="enlace" href={href(lang, 'tarifas')}>{copy.tarifasEnlace}</a></p>
 </section>
 
-<section class="cierre contenedor" aria-labelledby="cierre-titulo">
-  <h2 id="cierre-titulo">{copy.cierreTitulo}</h2>
-  <p>{copy.cierreTexto}</p>
-  <div class="cierre__acciones">
-    <a class="boton" href={contact.setmore} target="_blank" rel="noopener">{t.cta}</a>
-    <a class="boton boton--secundario" href={contact.whatsapp[lang]} target="_blank" rel="noopener">{t.whatsappFull}</a>
+<section class="cierre" aria-labelledby="cierre-titulo">
+  <div class="contenedor">
+    <h2 id="cierre-titulo" data-enciende>{copy.cierreTitulo}</h2>
+    <p>{copy.cierreTexto}</p>
+    <div class="cierre__acciones">
+      <a class="boton boton--claro" href={contact.setmore} target="_blank" rel="noopener" data-iman>{t.cta}</a>
+      <a class="boton boton--contorno-claro" href={contact.whatsapp[lang]} target="_blank" rel="noopener">{t.whatsappFull}</a>
+    </div>
   </div>
 </section>
+
+<script>
+  import '../scripts/escena';
+</script>
 
 <style>
   section h2 { font-size: var(--t-titulo); margin-bottom: var(--e-l); }
 
-  .portada {
-    display: grid;
-    grid-template-columns: 5fr 7fr;
-    grid-template-areas:
-      'texto rutas'
-      'resena resena';
-    gap: var(--e-xl) clamp(32px, 6vw, 96px);
-    padding-top: clamp(40px, 7vw, 96px);
+  .escena {
+    --e-fondo: var(--fondo);
+    --e-texto: var(--texto);
+    --e-suave: var(--texto-suave);
+    position: relative;
+    overflow: hidden;
+    background: var(--e-fondo);
+    color: var(--e-texto);
   }
-  .portada__texto { grid-area: texto; align-self: start; }
-  .portada h1 { font-size: var(--t-display); font-weight: 650; line-height: 1.04; letter-spacing: -0.025em; }
-  .portada__lead { margin-top: var(--e-l); color: var(--texto-suave); font-size: 1.15rem; max-width: 34ch; }
-  .portada__acciones { display: flex; flex-wrap: wrap; align-items: center; gap: var(--e-m) var(--e-l); margin-top: var(--e-xl); }
+  :global(.mov) .escena {
+    --e-fondo: var(--noche);
+    --e-texto: var(--noche-texto);
+    --e-suave: var(--noche-suave);
+    min-height: 100svh;
+    padding-top: var(--alto-cabecera);
+  }
+  .escena::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  :global(.mov) .escena::after { opacity: var(--grano, 0.06); }
 
-  .rutas { grid-area: rutas; }
-  .rutas__pregunta { font-size: 1.05rem; font-weight: 650; color: var(--texto-suave); letter-spacing: 0; margin-bottom: var(--e-s); }
-  .rutas ul { list-style: none; padding: 0; border-bottom: 1px solid var(--linea); }
-  .rutas li { border-top: 1px solid var(--linea); animation: entra 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i) * 60ms + 120ms); }
+  .escena__ruido { display: none; }
+  :global(.mov) .escena__ruido { display: block; position: absolute; inset: 0; }
+
+  .pensamiento {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    transform-origin: 0 0;
+    white-space: nowrap;
+    font-family: var(--voz);
+    font-style: italic;
+    line-height: 1.2;
+    color: var(--e-texto);
+  }
+  .pensamiento__par, .pensamiento__texto { display: inline-block; }
+  .p--l { font-size: clamp(1.4rem, 1rem + 1.6vw, 2.5rem); }
+  .p--m { font-size: clamp(1.1rem, 0.9rem + 0.9vw, 1.7rem); }
+  .p--s { font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.2rem); }
+  .p--l .pensamiento__par { opacity: 0.9; }
+  .p--m .pensamiento__par { opacity: 0.55; }
+  .p--s .pensamiento__par { opacity: 0.34; }
+
+  .escena__rejilla {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    gap: var(--e-xl) clamp(32px, 6vw, 96px);
+    align-items: center;
+    padding-block: clamp(40px, 7vw, 96px);
+  }
+  :global(.mov) .escena__rejilla { min-height: calc(100svh - var(--alto-cabecera)); }
+
+  .escena h1 {
+    font-size: var(--t-display);
+    font-weight: 480;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+  }
+  .escena__lead { margin-top: var(--e-l); color: var(--e-suave); font-size: 1.15rem; max-width: 34ch; }
+  .escena__acciones { display: flex; flex-wrap: wrap; align-items: center; gap: var(--e-m) var(--e-l); margin-top: var(--e-xl); }
+  .escena__tel { color: var(--e-texto); }
+
+  .rutas__pregunta { font-size: 1.05rem; font-weight: 650; color: var(--e-suave); letter-spacing: 0; margin-bottom: var(--e-s); }
+  .rutas ul { list-style: none; padding: 0; }
+  .rutas li { position: relative; }
+  .rutas li::before, .rutas li:last-child::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--linea);
+    transform: scaleX(var(--l, 1));
+    transform-origin: left;
+  }
+  .rutas li::before { top: 0; }
+  .rutas li:last-child::after { bottom: 0; }
   .rutas a {
     display: flex;
     align-items: center;
@@ -234,47 +338,69 @@ const mapa = 'https://www.google.com/maps/search/?api=1&query=Carrer+de+Roger+de
     font-weight: 520;
     line-height: 1.2;
     letter-spacing: -0.01em;
-    color: var(--texto);
+    color: var(--e-texto);
     text-decoration: underline;
     text-decoration-color: transparent;
     text-decoration-thickness: 2px;
     text-underline-offset: 0.22em;
-    transition: text-decoration-color 0.2s ease, color 0.2s ease;
+    transition: text-decoration-color 0.2s ease, color 0.2s ease, transform 0.45s var(--ease-out);
   }
   .rutas a:hover, .rutas a:focus-visible { color: var(--acento); text-decoration-color: var(--acento); }
-  @keyframes entra { from { opacity: 0; transform: translateY(8px); } }
-
-  .portada__resena {
-    grid-area: resena;
-    border-left: 0;
-    padding: var(--e-l) 0 0;
-    border-top: 1px solid var(--linea);
-    max-width: 60ch;
+  @media (hover: hover) and (pointer: fine) {
+    .rutas a:hover { transform: translateX(10px); }
   }
+
   blockquote p { font-family: var(--voz); font-style: italic; font-size: var(--t-voz); line-height: 1.4; }
   figcaption { margin-top: var(--e-s); color: var(--texto-suave); font-size: var(--t-pequeno); }
 
-  .resenas { margin-top: var(--e-xxl); padding-block: var(--e-xxl); background: var(--superficie); }
+  .resenas { padding-block: var(--e-xxl); background: var(--superficie); }
+  .resena--grande { margin-bottom: var(--e-xxl); }
+  .resena--grande blockquote p { font-size: clamp(1.9rem, 1.1rem + 3.2vw, 4rem); line-height: 1.15; letter-spacing: -0.015em; }
+  .resena--grande { max-width: 22em; }
   .resenas__lista { display: grid; grid-template-columns: 1fr 1fr; gap: var(--e-xl); }
   .resena blockquote p { font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); }
-  .resenas__pie { margin-top: var(--e-xl); color: var(--texto-suave); font-size: var(--t-pequeno); display: flex; flex-wrap: wrap; gap: var(--e-s) var(--e-l); }
+  .resenas__pie { margin-top: var(--e-xl); color: var(--texto-suave); font-size: var(--t-pequeno); display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--e-l); }
 
   .pasos { padding-top: var(--e-xxl); }
-  .pasos ol { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--e-xl); counter-reset: paso; }
-  .pasos li { counter-increment: paso; border-top: 2px solid var(--acento); padding-top: var(--e-m); }
-  .pasos li::before { content: counter(paso); display: block; font-weight: 700; color: var(--acento); margin-bottom: var(--e-s); }
-  .pasos h3 { font-size: 1.3rem; margin-bottom: var(--e-s); }
-  .pasos p { color: var(--texto-suave); }
+  .apila { list-style: none; padding: 0; display: grid; gap: var(--e-l); }
+  .apila > li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--e-l) var(--e-xl);
+    align-items: start;
+    padding: clamp(24px, 4vw, 56px);
+    border-radius: var(--r-m);
+    background: var(--superficie);
+    border: 1px solid var(--linea);
+  }
+  .paso__n { font-size: clamp(3.5rem, 2rem + 6vw, 8rem); font-weight: 480; line-height: 0.8; letter-spacing: -0.05em; color: var(--acento); font-variant-numeric: tabular-nums; }
+  .apila h3 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.4rem); font-weight: 560; margin-bottom: var(--e-s); }
+  .apila p { color: var(--texto-suave); max-width: 46ch; font-size: 1.1rem; }
+  @media (min-width: 760px) {
+    .apila > li { position: sticky; top: calc(112px + var(--i) * 18px); min-height: 42vh; }
+  }
 
   .equipo { padding-top: var(--e-xxl); }
-  .equipo__rejilla { display: grid; grid-template-columns: 7fr 5fr; gap: var(--e-xl); align-items: start; margin-bottom: var(--e-l); }
-  .persona--principal { display: grid; grid-template-columns: 180px 1fr; gap: var(--e-l); }
-  .persona__foto { aspect-ratio: 4 / 5; display: grid; place-items: center; text-align: center; }
-  .persona h3 { font-size: 1.4rem; }
-  .persona__dato { color: var(--acento); font-weight: 600; margin-bottom: var(--e-s); }
-  .persona p + p { margin-top: var(--e-s); }
+  .equipo__rejilla { display: grid; grid-template-columns: 5fr 7fr; gap: var(--e-xl); align-items: start; }
+  .equipo__foto { aspect-ratio: 4 / 5; display: grid; place-items: center; text-align: center; background: var(--superficie); }
+  .equipo__texto h3 { font-size: clamp(2rem, 1.4rem + 2.4vw, 3.6rem); font-weight: 480; letter-spacing: -0.035em; line-height: 1; }
+  .equipo__dato { color: var(--acento); font-weight: 600; margin: var(--e-s) 0 var(--e-l); }
+  .equipo__texto p + p { margin-top: var(--e-m); }
+  .equipo__texto p:not(.equipo__dato):not(.pendiente) { max-width: 52ch; font-size: 1.1rem; }
 
-  .donde { padding-top: var(--e-xxl); }
+  .donde { padding-top: var(--e-xxl); overflow: hidden; }
+  .donde__calle {
+    font-size: clamp(4rem, 1rem + 13vw, 15rem);
+    font-weight: 480;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+    white-space: nowrap;
+    color: var(--superficie);
+    -webkit-text-stroke: 1.5px var(--linea);
+    margin-bottom: var(--e-xl);
+    padding-left: var(--margen);
+  }
+  .donde__calle span { display: inline-block; }
   .donde__rejilla { display: grid; grid-template-columns: 1fr 1fr; gap: var(--e-l); }
   .donde__bloque { border: 1px solid var(--linea); border-radius: var(--r-m); padding: var(--e-l); display: flex; flex-direction: column; align-items: flex-start; gap: var(--e-m); }
   .donde__bloque h3 { font-size: 1.3rem; }
@@ -283,18 +409,28 @@ const mapa = 'https://www.google.com/maps/search/?api=1&query=Carrer+de+Roger+de
   .tarifas { padding-top: var(--e-xxl); }
   .tarifas .pendiente { margin-bottom: var(--e-m); }
 
-  .cierre { padding-top: var(--e-xxl); text-align: center; }
-  .cierre p { color: var(--texto-suave); max-width: 46ch; margin-inline: auto; }
-  .cierre__acciones { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--e-m); margin-top: var(--e-l); }
-
-  @media (max-width: 860px) {
-    .portada { grid-template-columns: 1fr; grid-template-areas: 'texto' 'rutas' 'resena'; gap: var(--e-xl); }
-    .portada__acciones { margin-top: var(--e-l); }
-    .resenas__lista, .pasos ol, .equipo__rejilla, .donde__rejilla { grid-template-columns: 1fr; }
-    .persona--principal { grid-template-columns: 120px 1fr; }
+  .cierre {
+    margin-top: var(--e-xxl);
+    padding-block: clamp(80px, 12vw, 160px);
+    background: var(--acento);
+    color: var(--sobre-acento);
+    text-align: center;
   }
-  @media (max-width: 480px) {
-    .persona--principal { grid-template-columns: 1fr; }
-    .persona__foto { max-width: 200px; }
+  .cierre h2 { font-size: clamp(2.6rem, 1.4rem + 5vw, 6rem); font-weight: 480; letter-spacing: -0.045em; line-height: 1; margin-bottom: var(--e-l); }
+  .cierre p { max-width: 46ch; margin-inline: auto; font-size: 1.15rem; color: color-mix(in srgb, var(--sobre-acento) 88%, var(--acento)); }
+  .cierre__acciones { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--e-m); margin-top: var(--e-xl); }
+
+  @media (max-width: 999px) {
+    .escena__rejilla { grid-template-columns: 1fr; align-items: start; }
+    :global(.mov) .escena__rejilla { min-height: 0; }
+    .pensamiento { left: var(--xm); top: var(--ym); }
+    .p--solo-escritorio { display: none; }
+    .p--l .pensamiento__par { opacity: 0.34; }
+    .p--m .pensamiento__par, .p--s .pensamiento__par { opacity: 0.22; }
+  }
+  @media (max-width: 860px) {
+    .resenas__lista, .equipo__rejilla, .donde__rejilla { grid-template-columns: 1fr; }
+    .equipo__foto { max-width: 280px; }
+    .apila > li { grid-template-columns: 1fr; }
   }
 </style>

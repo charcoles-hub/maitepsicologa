@@ -2,6 +2,9 @@
 @import '@fontsource-variable/literata/wght-italic.css';
 
 :root {
+  --noche: #0a2426;
+  --noche-texto: #e6f1f0;
+  --noche-suave: #9dbdba;
   --fondo: #fbfcfc;
   --superficie: #eef5f5;
   --texto: #14302f;
@@ -36,6 +39,10 @@
   --contenedor: 1200px;
   --margen: clamp(20px, 5vw, 64px);
   --barra-movil: 64px;
+  --alto-cabecera: 73px;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
   color-scheme: light;
   accent-color: var(--acento);
@@ -116,13 +123,19 @@ p { text-wrap: pretty; }
   font: 600 1rem/1.2 var(--ui);
   text-decoration: none;
   white-space: nowrap;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s var(--ease-out);
 }
 .boton:hover { background: var(--acento-hover); border-color: var(--acento-hover); color: var(--sobre-acento); }
-.boton:active { transform: translateY(1px); }
+.boton:active { transform: scale(0.97); }
 
 .boton--secundario { background: transparent; color: var(--acento); }
 .boton--secundario:hover { background: var(--superficie); color: var(--acento-hover); }
+
+.boton--claro { background: var(--sobre-acento); border-color: var(--sobre-acento); color: var(--acento); }
+.boton--claro:hover { background: var(--superficie); border-color: var(--superficie); color: var(--acento-hover); }
+.boton--contorno-claro { background: transparent; border-color: color-mix(in srgb, var(--sobre-acento) 70%, transparent); color: var(--sobre-acento); }
+.boton--contorno-claro:hover { background: color-mix(in srgb, var(--sobre-acento) 12%, transparent); border-color: var(--sobre-acento); color: var(--sobre-acento); }
+.cierre :focus-visible { outline-color: var(--sobre-acento); }
 
 .cifra { font-variant-numeric: tabular-nums; }
 
@@ -152,3 +165,12 @@ p { text-wrap: pretty; }
   min-height: 44px;
   font-weight: 600;
 }
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+.mov:not(.mov-listo) [data-titulo-entrada],
+.mov:not(.mov-listo) [data-sube],
+.mov:not(.mov-listo) [data-rutas],
+.mov:not(.mov-listo) [data-pensamiento] { visibility: hidden; }

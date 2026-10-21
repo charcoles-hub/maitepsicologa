@@ -1,8 +1,10 @@
 ---
-version: 1
+version: 2
 name: maitepsicologa
-description: Consulta de psicología en Granollers y online. Blanco limpio, un verde azulado profundo heredado de su turquesa y una portada que pregunta «¿Qué te trae?» en palabras del paciente.
+description: Consulta de psicología en Granollers y online. Concepto «Del ruido a la calma»: la portada abre de noche con los pensamientos que no dejan dormir y, al bajar, se ordenan en «¿Qué te trae?» mientras la página amanece.
 colors:
+  noche: "#0A2426"
+  noche-texto: "#E6F1F0"
   fondo: "#FBFCFC"
   superficie: "#EEF5F5"
   texto: "#14302F"
@@ -15,10 +17,10 @@ colors:
 typography:
   display:
     fontFamily: "'Figtree Variable', system-ui, sans-serif"
-    fontSize: clamp(2.4rem, 1.7rem + 3vw, 4.25rem)
-    fontWeight: 650
-    lineHeight: 1.04
-    letterSpacing: -0.025em
+    fontSize: clamp(2.9rem, 1.6rem + 5.2vw, 6.4rem)
+    fontWeight: 480
+    lineHeight: 0.98
+    letterSpacing: -0.045em
   titulo:
     fontFamily: "'Figtree Variable', system-ui, sans-serif"
     fontSize: clamp(1.75rem, 1.35rem + 1.6vw, 2.6rem)
@@ -75,27 +77,32 @@ Web de la consulta de Maite Vicente (y, desde ahora, de una segunda psicóloga) 
 
 Lo leo como: *consulta de psicología de confianza que no compite por precio; tiene que ganar por cercanía y prueba social real (54 reseñas de Google), con un recorrido que empieza en lo que le pasa a la persona y acaba en «Pedir primera sesión» (Setmore).*
 
-- Modo: convencer. Nivel: cuidado.
-- Diales: variación 4 · movimiento 3 · densidad 4.
+- Modo: convencer. Nivel: **premium** (la vendemos como web de diseño; sin 3D ni WebGL de momento).
+- Diales: variación 6 · movimiento 7 · densidad 3.
+- Concepto: **«Del ruido a la calma»**. Lo que hace la terapia (poner orden) es lo que hace la portada.
 - Acción principal: **Pedir primera sesión** (Setmore). Secundarias: llamar y WhatsApp al 613 00 16 09.
 
 ## Ambiente
 
 Tranquila, clara, cercana. Sin aspecto clínico ni de spa.
 
-**Gesto audaz:** la portada pregunta «¿Qué te trae?» y responde con rutas en palabras del paciente («Ansiedad, estrés o no dormir», «Me preocupa mi hijo», «Discutimos todo el rato», «Prefiero hacerlo online»). Cada ruta es un enlace grande a su página. Es lo único grande y expresivo de la web; todo lo demás, sereno.
+**Momento firma (tipografía cinética):** la portada abre de noche (`noche`) con pensamientos sueltos flotando a distintos tamaños y profundidades («otra noche sin dormir», «discutimos por todo», «no sé qué me pasa»…), que se mueven con el ratón. Al bajar, la escena queda anclada: los pensamientos de relleno se disuelven, cinco de ellos vuelan a su sitio y se convierten en las rutas de «¿Qué te trae?», y el fondo pasa de noche a `fondo` (amanece). El estado final es la portada en calma.
+
+Cada sección tiene después su propio momento: la reseña que se enciende palabra a palabra, los pasos que se apilan, la dirección que se desliza en grande, el cierre a sangre en `acento` y la firma enorme del pie.
 
 ## Color
 
 - `fondo` blanco con un hilo de verde azulado; `superficie` para bandas de reseñas y bloques de datos.
 - `acento` es el turquesa de su web actual llevado a un tono más profundo y sobrio. Solo para acciones, enlaces y el subrayado de las rutas. Nunca como fondo de secciones enteras.
 - Contrastes: `texto` sobre `fondo` 13:1; `texto-suave` sobre `fondo` 6,4:1; `sobre-acento` sobre `acento` 6:1.
-- Sin modo oscuro.
+- Sin modo oscuro. `noche` solo existe en la escena de la portada; `noche-texto` sobre `noche` 14:1.
+- El `acento` a sangre se usa una sola vez: el bloque de cierre.
 
 ## Tipografía
 
 - **Figtree** (SIL OFL) para todo lo que dice la consulta: titulares, rutas, texto e interfaz. Cálida y muy legible, cubre `ç l·l à è ò ï`.
-- **Literata cursiva** (SIL OFL) solo para la voz de los pacientes: reseñas citadas enteras. La voz del paciente se distingue tipográficamente de la de la consulta; nunca se usa para destacar palabras sueltas.
+- **Literata cursiva** (SIL OFL) solo para la voz de los pacientes: los pensamientos de la escena y las reseñas citadas enteras. La voz del paciente se distingue tipográficamente de la de la consulta; nunca se usa para destacar palabras sueltas.
+- Titular de portada grande y de peso medio (480) con tracking cerrado; a ese tamaño el peso medio se lee más fino que el negro.
 - Autoalojadas con Fontsource (woff2 variable, subconjunto latino).
 - Titulares de una sola frase, sin palabras destacadas en otro color ni en cursiva.
 
@@ -148,7 +155,12 @@ Botones en píldora, bloques y mapa con radio 14 px, campos con 6 px. Sin sombra
 
 ## Movimiento
 
-Un único momento: al cargar la portada, las rutas entran una tras otra (desplazamiento de 8 px y opacidad, 60 ms de escalonado). Respuesta inmediata en hover y foco. Con `prefers-reduced-motion`, nada se anima.
+GSAP + ScrollTrigger + SplitText y Lenis (solo escritorio con puntero fino), con el motor `src/scripts/movimiento-premium.ts` y la escena en `src/scripts/escena.ts`.
+
+- Portada: entrada del titular por líneas; escena anclada (`+=160%`, escritorio ≥ 1000 px) del ruido a la calma; en móvil sin anclaje, el amanecer va ligado al scroll y las rutas suben escalonadas.
+- Pensamientos: parallax con el ratón según su profundidad. Nada se mueve solo de forma perpetua.
+- Reseña destacada: se enciende palabra a palabra. Pasos: tarjetas que se apilan. Dirección: «Roger de Flor, 63» se desliza en horizontal con el scroll. Botones principales magnéticos.
+- Mejora progresiva: sin JS o con `prefers-reduced-motion`, se ve directamente el estado en calma (sin pensamientos ni noche).
 
 ## Imagen
 
@@ -170,4 +182,7 @@ Un único momento: al cargar la portada, las rutas entran una tras otra (desplaz
 
 - **Demo de julio** (crema + Frank Ruhl Libre + malva, etiquetas en mayúsculas, numeración decorativa, palabra en cursiva): caía en el uniforme 1 de estética IA. Se descarta entera.
 - **Portada con foto de la consulta a sangre:** se aparca hasta que haya fotos reales buenas.
+- **Versión 1 «cuidado»** (21-10): correcta pero demasiado sobria para venderla como web de diseño. Se sube a premium con concepto.
+- **«Las voces»** (muro de reseñas) y **«Respirar»** (forma que respira): descartados frente a «Del ruido a la calma»; el segundo se acerca a app de meditación.
+- **3D y WebGL:** fuera por ahora; posible propuesta aparte.
 - **Turquesa plano de la web actual** (#27AAB6): no da contraste AA con texto blanco; se profundiza a `acento`.

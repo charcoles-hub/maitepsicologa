@@ -10,9 +10,10 @@ interface Props {
   page: PageKey;
   title: string;
   description: string;
+  escena?: boolean;
 }
 
-const { lang, page, title, description } = Astro.props;
+const { lang, page, title, description, escena = false } = Astro.props;
 const t = ui[lang];
 const preview = Astro.site?.hostname !== 'www.maitepsicologa.com';
 const canonical = new URL(href(lang, page), Astro.site);
@@ -60,8 +61,9 @@ const jsonLd = {
     <meta property="og:locale" content={lang === 'ca' ? 'ca_ES' : 'es_ES'} />
     <link rel="icon" href={`${import.meta.env.BASE_URL.replace(/\/?$/, '/')}favicon.svg`} type="image/svg+xml" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline>if(!matchMedia('(prefers-reduced-motion: reduce)').matches){var r=document.documentElement;r.classList.add('mov');setTimeout(function(){if(!r.classList.contains('mov-listo'))r.classList.remove('mov')},2500)}</script>
   </head>
-  <body>
+  <body class:list={{ 'con-escena': escena }}>
     <a class="saltar" href="#contenido">{t.skip}</a>
     <Cabecera lang={lang} page={page} />
     <main id="contenido">
@@ -69,5 +71,8 @@ const jsonLd = {
     </main>
     <Pie lang={lang} />
     <BarraMovil lang={lang} />
+    <script>
+      import '../scripts/movimiento-premium';
+    </script>
   </body>
 </html>
