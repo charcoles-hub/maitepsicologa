@@ -20,8 +20,8 @@ const texto = Astro.props.texto ?? (lang === 'ca' ? 'Reserva la teva primera ses
     <h2 id="cierre-titulo" data-enciende>{titulo}</h2>
     {(parrafos ?? [texto]).map((p) => <p>{p}</p>)}
     <div class="cierre__acciones">
-      <a class="boton boton--claro" href={contact.setmore} target="_blank" rel="noopener" data-iman>{t.cta}</a>
-      <a class:list={["boton boton--contorno-claro", { "boton--envuelve": secundario }]} href={secundario?.href ?? contact.whatsapp[lang]} target="_blank" rel="noopener">{secundario?.texto ?? t.whatsappFull}</a>
+      <a class="boton" href={contact.setmore} target="_blank" rel="noopener" data-iman>{t.cta}</a>
+      <a class:list={["boton boton--secundario", { "boton--envuelve": secundario }]} href={secundario?.href ?? contact.whatsapp[lang]} target="_blank" rel="noopener">{secundario?.texto ?? t.whatsappFull}</a>
     </div>
     {nota && <p class="cierre__nota">{nota}</p>}
   </div>
@@ -32,12 +32,12 @@ const texto = Astro.props.texto ?? (lang === 'ca' ? 'Reserva la teva primera ses
     position: relative;
     z-index: 1;
     padding-block: clamp(80px, 12vw, 160px);
-    background: var(--acento);
-    color: var(--sobre-acento);
+    background: var(--cierre);
+    color: var(--texto);
     text-align: center;
   }
   .cierre h2 { font-size: clamp(2.6rem, 1.4rem + 5vw, 6rem); font-weight: 480; letter-spacing: -0.045em; line-height: 1; margin: 0 auto var(--e-l); max-width: 14ch; }
-  .cierre p { max-width: 46ch; margin-inline: auto; font-size: 1.15rem; color: color-mix(in srgb, var(--sobre-acento) 88%, var(--acento)); }
+  .cierre p { max-width: 46ch; margin-inline: auto; font-size: 1.15rem; color: var(--texto-suave); }
   .cierre p + p { margin-top: var(--e-m); }
   .cierre .cierre__nota { margin-top: var(--e-xl); font-size: var(--t-pequeno); }
   .cierre__acciones { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--e-m); margin-top: var(--e-xl); }

@@ -10,9 +10,9 @@ const punteroFino = matchMedia('(hover: hover) and (pointer: fine)').matches;
 if (escena && !reducir && document.documentElement.classList.contains('mov')) {
   const css = getComputedStyle(document.documentElement);
   const token = (n: string) => css.getPropertyValue(n).trim();
-  const noche = { '--e-fondo': token('--noche'), '--e-texto': token('--noche-texto'), '--e-suave': token('--noche-suave'), '--grano': 0.06 };
-  const alba = { '--e-fondo': '#1d5a5c', '--e-texto': token('--noche-texto'), '--e-suave': token('--noche-suave'), '--grano': 0.03 };
-  const dia = { '--e-fondo': token('--fondo'), '--e-texto': token('--texto'), '--e-suave': token('--texto-suave'), '--grano': 0 };
+  const amanecer = { '--e-fondo': token('--alba'), '--grano': 0.05 };
+  const alba = { '--e-fondo': token('--alba-rosa'), '--grano': 0.03 };
+  const dia = { '--e-fondo': token('--fondo'), '--grano': 0 };
 
   const cabecera = document.querySelector<HTMLElement>('.cabecera');
   const pensamientos = gsap.utils.toArray<HTMLElement>('[data-pensamiento]', escena);
@@ -67,7 +67,7 @@ if (escena && !reducir && document.documentElement.classList.contains('mov')) {
       },
     });
 
-    tl.fromTo(escena, noche, { ...alba, duration: 0.22 }, 0.12)
+    tl.fromTo(escena, amanecer, { ...alba, duration: 0.22 }, 0.12)
       .to(escena, { ...dia, duration: 0.28 }, 0.34)
       .fromTo(relleno, { autoAlpha: 1, y: 0, filter: 'blur(0px)' }, { autoAlpha: 0, y: (i) => -30 - (i % 4) * 14, filter: 'blur(6px)', duration: 0.32, stagger: 0.015 }, 0.02)
       .fromTo(pregunta, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.18, ease: 'power2.out' }, 0.5)
@@ -96,7 +96,7 @@ if (escena && !reducir && document.documentElement.classList.contains('mov')) {
   });
 
   mm.add('(max-width: 999px)', () => {
-    gsap.fromTo(escena, noche, {
+    gsap.fromTo(escena, amanecer, {
       ...dia,
       ease: 'none',
       scrollTrigger: {

@@ -2,24 +2,25 @@
 @import '@fontsource-variable/literata/wght-italic.css';
 
 :root {
-  --noche: #0a2426;
-  --noche-texto: #e6f1f0;
-  --noche-suave: #9dbdba;
-  --fondo: #fbfcfc;
+  --alba: #e6eef4;
+  --alba-rosa: #f7e9e3;
+  --cierre: #cfe9e3;
+  --pie: #e9f0f0;
+  --fondo: #fcfdfd;
   --superficie: #eef5f5;
-  --texto: #14302f;
-  --texto-suave: #4a6362;
+  --texto: #1b3133;
+  --texto-suave: #4f6668;
   --linea: #d5e3e2;
-  --acento: #0e6e73;
-  --acento-hover: #0a5357;
-  --acento-vivo: #3fb3b6;
+  --acento: #236968;
+  --acento-hover: #1a5251;
+  --acento-vivo: #6bbcb6;
   --sobre-acento: #ffffff;
   --error: #b3261e;
 
-  --manana: #e3f2ee;
-  --mediodia: #eff3e6;
-  --tarde: #fcebdc;
-  --ocaso: #e2e9f1;
+  --manana: #e4f3ef;
+  --mediodia: #f0f4e8;
+  --tarde: #fcece2;
+  --ocaso: #e7ebf5;
   --sol-manana: #fff0c2;
   --sol-mediodia: #fff7d6;
   --sol-tarde: #ffd2ad;
@@ -142,11 +143,6 @@ p { text-wrap: pretty; }
 .boton--secundario { background: transparent; color: var(--acento); }
 .boton--secundario:hover { background: var(--superficie); color: var(--acento-hover); }
 
-.boton--claro { background: var(--sobre-acento); border-color: var(--sobre-acento); color: var(--acento); }
-.boton--claro:hover { background: var(--superficie); border-color: var(--superficie); color: var(--acento-hover); }
-.boton--contorno-claro { background: transparent; border-color: color-mix(in srgb, var(--sobre-acento) 70%, transparent); color: var(--sobre-acento); }
-.boton--contorno-claro:hover { background: color-mix(in srgb, var(--sobre-acento) 12%, transparent); border-color: var(--sobre-acento); color: var(--sobre-acento); }
-.cierre :focus-visible { outline-color: var(--sobre-acento); }
 
 .cifra { font-variant-numeric: tabular-nums; }
 
