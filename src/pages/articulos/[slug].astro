@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import Articulo from '../../components/Articulo.astro';
+import { articulos, rutaArticulo, type Articulo as TipoArticulo } from '../../data/articulos';
+import { href } from '../../data/site';
+
+export function getStaticPaths() {
+  return articulos.map((a) => ({ params: { slug: a.slug }, props: { a } }));
+}
+
+const { a } = Astro.props as { a: TipoArticulo };
+const marca = ' | Maite Vicente';
+const title = a.metaTitle.length + marca.length <= 64 ? a.metaTitle + marca : a.metaTitle;
+const url = new URL(rutaArticulo(a.slug), Astro.site).href;
+const ld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: a.titulo,
+      description: a.metaDescription,
+      inLanguage: 'es',
+      mainEntityOfPage: url,
+      image: new URL(`${import.meta.env.BASE_URL.replace(/\/?$/, '/')}og.png`, Astro.site).href,
+      author: { '@type': 'Person', name: 'Maite Vicente', jobTitle: 'Psicóloga' },
+      publisher: { '@type': 'Organization', name: 'Maite Vicente Psicología' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: a.faq.map(([q, r]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: r } })),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: new URL(href('es', 'inicio'), Astro.site).href },
+        { '@type': 'ListItem', position: 2, name: 'Artículos', item: new URL(href('es', 'articulos'), Astro.site).href },
+        { '@type': 'ListItem', position: 3, name: a.titulo, item: url },
+      ],
+    },
+  ],
+};
+---
+<Base lang="es" page="articulos" title={title} description={a.metaDescription} ruta={rutaArticulo(a.slug)} soloEs tipo="article">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(ld)} />
+  <Articulo a={a} />
+</Base>

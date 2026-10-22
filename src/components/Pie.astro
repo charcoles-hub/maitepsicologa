@@ -42,7 +42,7 @@ const year = new Date().getFullYear();
 
   <div class="contenedor pie__base">
     <ul class="pie__nav">
-      {navKeys.map((k) => <li><a href={href(lang, k)}>{label(lang, k)}</a></li>)}
+      {[...navKeys, 'articulos' as const].map((k) => <li><a href={href(lang, k)}>{label(lang, k)}</a></li>)}
     </ul>
     <p class="pie__legal">
       <span>© {year} Maite Vicente</span>

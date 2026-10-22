@@ -8,6 +8,10 @@ export const contact = {
     ca: 'https://wa.me/34613001609?text=Hola%20Maite%2C%20voldria%20informaci%C3%B3%20sobre%20una%20sessi%C3%B3',
   },
   email: 'hola@maitepsicologa.com',
+  whatsappPadres: {
+    es: 'https://wa.me/34613001609?text=Hola%20Maite%2C%20soy%20madre%2Fpadre%20y%20querr%C3%ADa%20consultarte%20antes%20de%20pedir%20cita',
+    ca: 'https://wa.me/34613001609?text=Hola%20Maite%2C%20s%C3%B3c%20mare%2Fpare%20i%20voldria%20consultar-te%20abans%20de%20demanar%20cita',
+  },
   setmore: 'https://maitevicente.setmore.com/',
   instagram: 'https://www.instagram.com/maite_vicente_psicologa/',
   address: {
@@ -24,12 +28,13 @@ export const contact = {
 export const pages = [
   { key: 'inicio', es: { slug: '', label: 'Inicio' }, ca: { slug: '', label: 'Inici' } },
   { key: 'adultos', es: { slug: 'terapia-adultos', label: 'Adultos' }, ca: { slug: 'terapia-adults', label: 'Adults' } },
-  { key: 'infantil', es: { slug: 'terapia-adolescentes-infantil', label: 'Infantil y adolescentes' }, ca: { slug: 'terapia-adolescents-infantil', label: 'Infantil i adolescents' } },
+  { key: 'infantil', es: { slug: 'terapia-adolescentes-infantil', label: 'Niños y adolescentes' }, ca: { slug: 'terapia-adolescents-infantil', label: 'Infants i adolescents' } },
   { key: 'pareja', es: { slug: 'terapia-pareja-familia', label: 'Pareja y familia' }, ca: { slug: 'terapia-parella-familia', label: 'Parella i família' } },
   { key: 'online', es: { slug: 'sesiones-online', label: 'Online' }, ca: { slug: 'sessions-online', label: 'Online' } },
   { key: 'nosotras', es: { slug: 'sobre-nosotras', label: 'Sobre nosotras' }, ca: { slug: 'sobre-nosaltres', label: 'Sobre nosaltres' } },
   { key: 'tarifas', es: { slug: 'tarifas', label: 'Tarifas' }, ca: { slug: 'tarifes', label: 'Tarifes' } },
   { key: 'contacto', es: { slug: 'contacto', label: 'Contacto' }, ca: { slug: 'contacte', label: 'Contacte' } },
+  { key: 'articulos', es: { slug: 'articulos', label: 'Artículos' }, ca: { slug: 'articles', label: 'Articles' } },
 ] as const;
 
 export type PageKey = (typeof pages)[number]['key'];

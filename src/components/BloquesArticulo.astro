@@ -1,0 +1,17 @@
+---
+import { anclaH2, type Bloque } from '../data/articulos';
+
+interface Props {
+  bloques: Bloque[];
+}
+
+const { bloques } = Astro.props;
+---
+{bloques.map((b) => {
+  if (b.t === 'h2') return <h2 id={anclaH2(b.h!)} set:html={b.h} />;
+  if (b.t === 'h3') return <h3 set:html={b.h} />;
+  if (b.t === 'ul') return <ul>{b.items!.map((i) => <li set:html={i} />)}</ul>;
+  if (b.t === 'cita') return <p class="art-cita" set:html={b.h} />;
+  if (b.t === 'destacado') return <p class="art-destacado" set:html={b.h} />;
+  return <p class:list={{ 'art-corta': b.corta }} set:html={b.h} />;
+})}

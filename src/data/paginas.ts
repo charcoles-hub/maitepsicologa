@@ -102,8 +102,8 @@ export const terapias: Record<'adultos' | 'infantil' | 'pareja' | 'online', Reco
   infantil: {
     es: {
       hora: 'tarde',
-      h1: 'Terapia para niños y adolescentes',
-      intro: 'Cuando a tu hijo o a tu hija le cuesta algo, en el cole, en casa, con los amigos o consigo mismo, no tienes por qué saber qué hacer. Trabajamos con ellos y con vosotros, porque la familia es parte de la solución.',
+      h1: 'Psicología para niños y adolescentes',
+      intro: 'Acompañamos a niños a partir de los 8 o 9 años y a adolescentes cuando algo les cuesta: en el cole, en casa, con los amigos o consigo mismos. No tienes por qué saber qué hacer. Trabajamos con ellos y con vosotros, porque la familia es parte de la solución.',
       voces: ['¿y si es culpa nuestra?', 'en el cole dicen que no se concentra', 'ya no nos cuenta nada'],
       ayudaTitulo: 'En qué os podemos ayudar',
       ayuda: [
@@ -131,8 +131,8 @@ export const terapias: Record<'adultos' | 'infantil' | 'pareja' | 'online', Reco
     },
     ca: {
       hora: 'tarde',
-      h1: 'Teràpia per a infants i adolescents',
-      intro: "Quan al teu fill o a la teva filla li costa alguna cosa, a l’escola, a casa, amb els amics o amb si mateix, no tens per què saber què fer. Treballem amb ells i amb vosaltres, perquè la família és part de la solució.",
+      h1: 'Psicologia per a infants i adolescents',
+      intro: "Acompanyem infants a partir dels 8 o 9 anys i adolescents quan alguna cosa els costa: a l’escola, a casa, amb els amics o amb si mateixos. No tens per què saber què fer. Treballem amb ells i amb vosaltres, perquè la família és part de la solució.",
       voces: ['i si és culpa nostra?', "a l’escola diuen que no es concentra", 'ja no ens explica res'],
       ayudaTitulo: 'En què us podem ajudar',
       ayuda: [

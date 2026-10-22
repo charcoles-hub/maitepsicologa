@@ -1,0 +1,62 @@
+---
+import { rutaArticulo, type Articulo } from '../data/articulos';
+import type { Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+  items: Articulo[];
+}
+
+const { lang, items } = Astro.props;
+const otroIdioma = lang === 'ca';
+---
+<ul class="lista-art">
+  {items.map((a) => (
+    <li data-sube>
+      <a href={rutaArticulo(a.slug)} hreflang={otroIdioma ? 'es' : undefined}>
+        <span class="lista-art__titulo" lang={otroIdioma ? 'es' : undefined}>{a.titulo}</span>
+        <span class="lista-art__resumen" lang={otroIdioma ? 'es' : undefined}>{a.metaDescription}</span>
+        <span class="lista-art__min cifra">{a.minutos} min</span>
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .lista-art { list-style: none; padding: 0; }
+  .lista-art li { border-top: 1px solid color-mix(in srgb, var(--texto) 16%, transparent); }
+  .lista-art li:last-child { border-bottom: 1px solid color-mix(in srgb, var(--texto) 16%, transparent); }
+  .lista-art a {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--e-s) var(--e-l);
+    padding-block: var(--e-l);
+    color: var(--texto);
+    text-decoration: none;
+  }
+  .lista-art a::after {
+    content: '';
+    position: absolute;
+    inset: 6px -14px;
+    z-index: -1;
+    border-radius: var(--r-m);
+    background: color-mix(in srgb, var(--acento) 8%, transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--ease-out);
+  }
+  .lista-art a:hover::after, .lista-art a:focus-visible::after { transform: scaleX(1); }
+  .lista-art__titulo {
+    font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.8rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    max-width: 34ch;
+    text-wrap: balance;
+    transition: color 0.2s ease;
+  }
+  .lista-art a:hover .lista-art__titulo, .lista-art a:focus-visible .lista-art__titulo { color: var(--acento); }
+  .lista-art__resumen { grid-column: 1; color: var(--texto-suave); max-width: 62ch; }
+  .lista-art__min { grid-column: 2; grid-row: 1; align-self: start; padding-top: 0.35em; font-size: var(--t-pequeno); font-weight: 600; color: var(--texto-suave); white-space: nowrap; }
+</style>

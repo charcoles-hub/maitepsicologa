@@ -5,9 +5,12 @@ interface Props {
   lang: Lang;
   titulo?: string;
   texto?: string;
+  parrafos?: readonly string[];
+  nota?: string;
+  secundario?: { texto: string; href: string };
 }
 
-const { lang } = Astro.props;
+const { lang, parrafos, nota, secundario } = Astro.props;
 const t = ui[lang];
 const titulo = Astro.props.titulo ?? (lang === 'ca' ? 'Quan vulguis, comencem' : 'Cuando quieras, empezamos');
 const texto = Astro.props.texto ?? (lang === 'ca' ? 'Reserva la teva primera sessió o escriu-nos i et respondrem al més aviat possible.' : 'Reserva tu primera sesión o escríbenos y te respondemos lo antes posible.');
@@ -15,11 +18,12 @@ const texto = Astro.props.texto ?? (lang === 'ca' ? 'Reserva la teva primera ses
 <section class="cierre" aria-labelledby="cierre-titulo">
   <div class="contenedor">
     <h2 id="cierre-titulo" data-enciende>{titulo}</h2>
-    <p>{texto}</p>
+    {(parrafos ?? [texto]).map((p) => <p>{p}</p>)}
     <div class="cierre__acciones">
       <a class="boton boton--claro" href={contact.setmore} target="_blank" rel="noopener" data-iman>{t.cta}</a>
-      <a class="boton boton--contorno-claro" href={contact.whatsapp[lang]} target="_blank" rel="noopener">{t.whatsappFull}</a>
+      <a class:list={["boton boton--contorno-claro", { "boton--envuelve": secundario }]} href={secundario?.href ?? contact.whatsapp[lang]} target="_blank" rel="noopener">{secundario?.texto ?? t.whatsappFull}</a>
     </div>
+    {nota && <p class="cierre__nota">{nota}</p>}
   </div>
 </section>
 
@@ -34,5 +38,7 @@ const texto = Astro.props.texto ?? (lang === 'ca' ? 'Reserva la teva primera ses
   }
   .cierre h2 { font-size: clamp(2.6rem, 1.4rem + 5vw, 6rem); font-weight: 480; letter-spacing: -0.045em; line-height: 1; margin: 0 auto var(--e-l); max-width: 14ch; }
   .cierre p { max-width: 46ch; margin-inline: auto; font-size: 1.15rem; color: color-mix(in srgb, var(--sobre-acento) 88%, var(--acento)); }
+  .cierre p + p { margin-top: var(--e-m); }
+  .cierre .cierre__nota { margin-top: var(--e-xl); font-size: var(--t-pequeno); }
   .cierre__acciones { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--e-m); margin-top: var(--e-xl); }
 </style>

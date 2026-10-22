@@ -235,3 +235,5 @@ main, .pie { position: relative; z-index: 1; }
 
 .titular-seccion { font-size: clamp(2.2rem, 1.2rem + 3.4vw, 4.6rem); font-weight: 480; letter-spacing: -0.045em; line-height: 1; margin-bottom: var(--e-xl); max-width: 16ch; }
 .voz { font-family: var(--voz); font-style: italic; }
+
+.boton--envuelve { white-space: normal; text-align: center; }

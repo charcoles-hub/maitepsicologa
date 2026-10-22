@@ -1,0 +1,192 @@
+---
+import { contact, href, label, ui } from '../data/site';
+import { anclaH2, buscar, grupos, type Articulo } from '../data/articulos';
+import type { Hora } from '../data/paginas';
+import BloquesArticulo from './BloquesArticulo.astro';
+import ListaArticulos from './ListaArticulos.astro';
+import Faq from './Faq.astro';
+import Cierre from './Cierre.astro';
+
+interface Props {
+  a: Articulo;
+}
+
+const { a } = Astro.props;
+const g = grupos[a.grupo];
+const orden: Hora[] = ['manana', 'mediodia', 'tarde', 'ocaso'];
+const hora = (n: number) => orden[Math.min(orden.indexOf(g.hora) + n, orden.length - 1)];
+const indice = a.cuerpo.filter((b) => b.t === 'h2').map((b) => ({ id: anclaH2(b.h!), texto: b.h!.replace(/<[^>]*>/g, '') }));
+const relacionados = a.relacionados.map(buscar);
+const [lede, ...resto] = a.intro;
+const texto = [...resto, ...a.cuerpo];
+
+const cierre = a.grupo === 'infantil'
+  ? {
+      titulo: '¿Te preocupa cómo está tu hijo o tu hija?',
+      parrafos: [
+        'Algunos cambios forman parte del crecimiento, pero cuando el malestar empieza a afectar al colegio, las relaciones, la familia o su día a día, puede ser útil valorar qué está ocurriendo.',
+        'En terapia trabajamos con el niño o adolescente y, cuando resulta necesario, también con la familia, para comprender el problema y establecer objetivos y herramientas adaptados a su edad y situación.',
+      ],
+      nota: `Maite Vicente, psicóloga colegiada nº ${contact.colegiada}. Terapia para niños y adolescentes en Granollers.`,
+      secundario: { texto: 'Soy madre/padre y quiero consultar primero', href: contact.whatsappPadres.es },
+    }
+  : {
+      titulo: '¿Quieres trabajar esto en terapia?',
+      parrafos: ['Cada persona y cada situación son diferentes. En terapia podemos valorar qué está ocurriendo en tu caso y establecer objetivos y herramientas adaptados a tus necesidades.'],
+      nota: `Maite Vicente, psicóloga colegiada nº ${contact.colegiada}. Terapia presencial en Granollers y terapia online.`,
+      secundario: undefined,
+    };
+---
+<article class="art">
+  <header class="art-cabecera" data-hora={g.hora}>
+    <div class="contenedor">
+      <nav class="migas" aria-label="Ruta de navegación">
+        <ol>
+          <li><a href={href('es', 'inicio')}>{label('es', 'inicio')}</a></li>
+          <li><a href={href('es', 'articulos')}>{label('es', 'articulos')}</a></li>
+          <li><a href={`${href('es', 'articulos')}#${a.grupo}`}>{g.titulo.es}</a></li>
+        </ol>
+      </nav>
+      <h1 class="art-titulo" data-titulo-entrada>{a.titulo}</h1>
+      <div class="art-datos" data-sube>
+        <a class="art-grupo" href={href('es', g.key)}>{g.terapia.es}</a>
+        <span class="art-min cifra">{a.minutos} min de lectura</span>
+      </div>
+      {lede && <p class="art-intro" data-sube set:html={lede.h} />}
+      {a.urgencias && (
+        <aside class="art-urgencia" aria-label="Ayuda urgente">
+          <p><strong>Si hay peligro inmediato, llama al <a href="tel:112">112</a>.</strong> Si tienes pensamientos de suicidio o te preocupa alguien, la línea <a href="tel:024">024</a> atiende gratis, las 24 horas, todos los días.</p>
+        </aside>
+      )}
+    </div>
+  </header>
+
+  <div class="art-cuerpo" data-hora={g.hora}>
+    <div class="contenedor art-rejilla">
+      <aside class="art-lateral">
+        <nav class="art-indice" aria-labelledby="art-indice">
+          <p id="art-indice" class="art-indice__titulo">En este artículo</p>
+          <ol>
+            {indice.map((i) => <li><a href={`#${i.id}`}>{i.texto}</a></li>)}
+          </ol>
+        </nav>
+        <a class="boton" href={contact.setmore} target="_blank" rel="noopener">{ui.es.cta}</a>
+      </aside>
+      <div class="art-texto">
+        <BloquesArticulo bloques={texto} />
+      </div>
+    </div>
+  </div>
+</article>
+
+<Faq titulo="Preguntas frecuentes" preguntas={a.faq} hora={hora(1)} />
+
+<section class="art-mas" data-hora={hora(2)} aria-labelledby="art-mas">
+  <div class="contenedor">
+    <h2 id="art-mas" class="titular-seccion">Sigue leyendo</h2>
+    <ListaArticulos lang="es" items={relacionados} />
+    <p class="art-mas__todos"><a class="enlace" href={href('es', 'articulos')}>Ver todos los artículos</a></p>
+  </div>
+</section>
+
+<Cierre lang="es" titulo={cierre.titulo} parrafos={cierre.parrafos} nota={cierre.nota} secundario={cierre.secundario} />
+
+<style>
+  .art-cabecera { padding-block: clamp(24px, 4vw, 56px) var(--e-xl); }
+  .art-titulo {
+    font-size: clamp(2.2rem, 1.4rem + 3.2vw, 4.4rem);
+    font-weight: 480;
+    line-height: 1;
+    letter-spacing: -0.045em;
+    max-width: 21ch;
+    text-wrap: balance;
+  }
+  .art-datos { display: flex; flex-wrap: wrap; align-items: center; gap: var(--e-s) var(--e-l); margin-top: var(--e-l); }
+  .art-grupo {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: var(--r-pildora);
+    border: 1px solid color-mix(in srgb, var(--acento) 40%, transparent);
+    color: var(--acento);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+  }
+  .art-grupo:hover { background: color-mix(in srgb, var(--acento) 8%, transparent); }
+  .art-min { font-size: var(--t-pequeno); font-weight: 600; color: var(--texto-suave); }
+  .art-intro { margin-top: var(--e-xl); max-width: 58ch; font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem); line-height: 1.55; }
+  .art-urgencia {
+    margin-top: var(--e-xl);
+    max-width: 62ch;
+    padding: var(--e-l);
+    border-radius: var(--r-m);
+    background: var(--fondo);
+    border: 1.5px solid var(--acento);
+  }
+  .art-urgencia a { font-weight: 700; }
+
+  .art-cuerpo { padding-block: var(--e-l) clamp(64px, 9vw, 120px); }
+  .art-rejilla { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .art-lateral { position: sticky; top: 112px; display: grid; gap: var(--e-l); justify-items: start; }
+  .art-indice__titulo { font-size: var(--t-pequeno); font-weight: 650; color: var(--texto-suave); margin-bottom: var(--e-s); }
+  .art-indice ol { list-style: none; padding: 0; border-left: 1px solid color-mix(in srgb, var(--texto) 16%, transparent); }
+  .art-indice a {
+    display: block;
+    padding: 7px 0 7px var(--e-m);
+    margin-left: -1px;
+    border-left: 2px solid transparent;
+    color: var(--texto-suave);
+    font-size: 0.95rem;
+    line-height: 1.3;
+    text-decoration: none;
+  }
+  .art-indice a:hover { color: var(--acento); border-left-color: var(--acento-vivo); }
+
+  .art-texto { max-width: 66ch; font-size: 1.125rem; line-height: 1.7; }
+  .art-texto > :global(* + *) { margin-top: 0.85em; }
+  .art-texto :global(h2) {
+    margin-top: 2.2em;
+    font-size: clamp(1.55rem, 1.2rem + 1.3vw, 2.3rem);
+    font-weight: 520;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+    scroll-margin-top: 110px;
+  }
+  .art-texto > :global(h2:first-child) { margin-top: 0; }
+  .art :global(.art-corta + .art-corta) { margin-top: 0.15em; }
+  .art-texto :global(h3) { margin-top: 1.6em; font-size: 1.3rem; font-weight: 620; letter-spacing: -0.015em; line-height: 1.25; }
+  .art :global(strong) { font-weight: 650; }
+  .art :global(.art-cita) {
+    font-family: var(--voz);
+    font-style: italic;
+    font-size: var(--t-voz);
+    line-height: 1.4;
+    color: var(--acento);
+    padding-left: var(--e-l);
+    border-left: 3px solid var(--acento-vivo);
+  }
+  .art :global(.art-cita + .art-cita) { margin-top: 0.35em; }
+  .art :global(.art-destacado) { font-size: 1.3rem; font-weight: 600; line-height: 1.4; letter-spacing: -0.01em; }
+  .art :global(ul) { list-style: none; padding: 0; display: grid; gap: 0.35em; }
+  .art :global(ul li) { position: relative; padding-left: 1.5em; }
+  .art :global(ul li::before) {
+    content: '';
+    position: absolute;
+    left: 0.2em;
+    top: 0.85em;
+    width: 0.7em;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--acento-vivo);
+  }
+
+  .art-mas__todos { margin-top: var(--e-xl); }
+
+  @media (max-width: 1100px) {
+    .art-rejilla { grid-template-columns: minmax(0, 1fr); }
+    .art-lateral { display: none; }
+  }
+</style>

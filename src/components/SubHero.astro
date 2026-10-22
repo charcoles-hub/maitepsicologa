@@ -8,9 +8,10 @@ interface Props {
   h1: string;
   intro: string;
   voces?: readonly string[];
+  secundario?: { texto: string; href: string };
 }
 
-const { lang, page, hora, h1, intro, voces = [] } = Astro.props;
+const { lang, page, hora, h1, intro, voces = [], secundario } = Astro.props;
 const t = ui[lang];
 ---
 <header class="sub-hero" data-hora={hora}>
@@ -26,6 +27,7 @@ const t = ui[lang];
       <p class="sub-hero__intro" data-sube>{intro}</p>
       <div class="sub-hero__acciones" data-sube>
         <a class="boton" href={contact.setmore} target="_blank" rel="noopener" data-iman>{t.cta}</a>
+        {secundario && <a class="boton boton--secundario boton--envuelve" href={secundario.href} target="_blank" rel="noopener">{secundario.texto}</a>}
         <a class="enlace" href={contact.phoneHref}>{t.callFull}</a>
       </div>
     </div>

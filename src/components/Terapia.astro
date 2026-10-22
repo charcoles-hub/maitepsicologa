@@ -1,5 +1,7 @@
 ---
-import { reviews, type Lang, type PageKey } from '../data/site';
+import { contact, href, reviews, type Lang, type PageKey } from '../data/site';
+import { porGrupo } from '../data/articulos';
+import ListaArticulos from './ListaArticulos.astro';
 import { terapias, type Hora } from '../data/paginas';
 import SubHero from './SubHero.astro';
 import Faq from './Faq.astro';
@@ -15,9 +17,11 @@ const d = terapias[page][lang];
 const orden: Hora[] = ['manana', 'mediodia', 'tarde', 'ocaso'];
 const hora = (n: number) => orden[(orden.indexOf(d.hora) + n) % orden.length];
 const resena = d.resena !== undefined ? reviews[d.resena] : undefined;
+const lecturas = page === 'adultos' || page === 'infantil' ? porGrupo(page).slice(0, 4) : [];
+const padres = page === 'infantil' ? { texto: lang === 'ca' ? 'Sóc mare/pare i vull consultar primer' : 'Soy madre/padre y quiero consultar primero', href: contact.whatsappPadres[lang] } : undefined;
 const fecha = (iso: string) => new Intl.DateTimeFormat(lang === 'ca' ? 'ca-ES' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(iso));
 ---
-<SubHero lang={lang} page={page as PageKey} hora={d.hora} h1={d.h1} intro={d.intro} voces={d.voces} />
+<SubHero lang={lang} page={page as PageKey} hora={d.hora} h1={d.h1} intro={d.intro} voces={d.voces} secundario={padres} />
 
 <!-- PENDIENTE: Maite revisa y valida los textos de esta página (boceto a partir de su web actual) -->
 <section class="t-ayuda" data-hora={hora(1)} aria-labelledby="t-ayuda">
@@ -73,6 +77,21 @@ const fecha = (iso: string) => new Intl.DateTimeFormat(lang === 'ca' ? 'ca-ES' :
   )}
 </section>
 
+{lecturas.length > 0 && (
+  <section class="t-leer" data-hora={hora(2)} aria-labelledby="t-leer">
+    <div class="contenedor t-leer__rejilla">
+      <div>
+        <h2 id="t-leer" class="titular-seccion">{lang === 'ca' ? 'Per llegir amb calma' : 'Para leer con calma'}</h2>
+        {lang === 'ca' && <p class="t-leer__nota">De moment, els articles només estan en castellà.</p>}
+      </div>
+      <div>
+        <ListaArticulos lang={lang} items={lecturas} />
+        <p class="t-leer__todos"><a class="enlace" href={`${href(lang, 'articulos')}#${page}`}>{lang === 'ca' ? 'Veure tots els articles' : 'Ver todos los artículos'}</a></p>
+      </div>
+    </div>
+  </section>
+)}
+
 <Faq titulo={d.faqTitulo} preguntas={d.faq} hora={hora(3)} />
 
 <Cierre lang={lang} />
@@ -104,10 +123,14 @@ const fecha = (iso: string) => new Intl.DateTimeFormat(lang === 'ca' ? 'ca-ES' :
   .t-resena blockquote p { font-family: var(--voz); font-style: italic; font-size: var(--t-voz); line-height: 1.4; }
   .t-resena figcaption { margin-top: var(--e-s); color: var(--texto-suave); font-size: var(--t-pequeno); }
 
+  .t-leer__rejilla { display: grid; grid-template-columns: 4fr 8fr; gap: var(--e-xl); align-items: start; }
+  .t-leer__nota { color: var(--texto-suave); max-width: 30ch; }
+  .t-leer__todos { margin-top: var(--e-l); }
+
   @media (max-width: 1000px) {
     .t-pasos__lista { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 760px) {
-    .t-ayuda__lista, .t-como__rejilla, .t-pasos__lista { grid-template-columns: 1fr; }
+    .t-ayuda__lista, .t-como__rejilla, .t-pasos__lista, .t-leer__rejilla { grid-template-columns: 1fr; }
   }
 </style>

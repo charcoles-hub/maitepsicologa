@@ -1,0 +1,49 @@
+---
+import { href, type Lang } from '../data/site';
+import { grupos, porGrupo, type Grupo } from '../data/articulos';
+import SubHero from './SubHero.astro';
+import ListaArticulos from './ListaArticulos.astro';
+import Cierre from './Cierre.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const ca = lang === 'ca';
+const orden: Grupo[] = ['adultos', 'infantil'];
+---
+<SubHero
+  lang={lang}
+  page="articulos"
+  hora="manana"
+  h1={ca ? 'Articles' : 'Artículos'}
+  intro={ca
+    ? 'Per entendre millor el que et passa, o el que li passa a algú de la teva família. De moment, els articles només estan en castellà.'
+    : 'Para entender mejor lo que te pasa, o lo que le pasa a alguien de tu familia. Si después quieres hablarlo, aquí estamos.'}
+/>
+
+{orden.map((g, i) => (
+  <section class="indice-art" id={g} data-hora={i === 0 ? 'mediodia' : grupos[g].hora} aria-labelledby={`indice-${g}`}>
+    <div class="contenedor indice-art__rejilla">
+      <div>
+        <h2 id={`indice-${g}`} class="titular-seccion">{grupos[g].titulo[lang]}</h2>
+        <a class="enlace" href={href(lang, grupos[g].key)}>{grupos[g].terapia[lang]}</a>
+      </div>
+      <ListaArticulos lang={lang} items={porGrupo(g)} />
+    </div>
+  </section>
+))}
+
+<Cierre lang={lang} />
+
+<style>
+  .indice-art { scroll-margin-top: 80px; }
+  .indice-art__rejilla { display: grid; grid-template-columns: 4fr 8fr; gap: var(--e-xl); align-items: start; }
+  .indice-art__rejilla > div:first-child { position: sticky; top: 112px; }
+  .indice-art .titular-seccion { margin-bottom: var(--e-m); }
+  @media (max-width: 960px) {
+    .indice-art__rejilla { grid-template-columns: 1fr; gap: var(--e-l); }
+    .indice-art__rejilla > div:first-child { position: static; }
+  }
+</style>

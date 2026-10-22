@@ -148,7 +148,9 @@ Secuencia de la portada (familia de composición):
 6. Tarifas resumidas (tabla).
 7. Cierre con la acción y el pie completo.
 
-Páginas interiores: titular + párrafo de entrada en palabras del paciente, qué trabajamos (lista), cómo trabajamos, reseña relacionada si existe, acción.
+Páginas interiores: titular + párrafo de entrada en palabras del paciente, qué trabajamos (lista), cómo trabajamos, reseña relacionada si existe, lecturas del grupo (adultos e infantil), acción.
+
+Artículos (solo en castellano; `/ca/articles/` enlaza a ellos): índice por grupo con filas grandes como las rutas. Cada artículo: titular, enlace a su terapia, primer párrafo como entradilla, aviso 112/024 en los temas de riesgo, índice lateral fijo en escritorio, texto a 66 caracteres, frases entre comillas en Literata cursiva con filete `acento-vivo`, preguntas frecuentes, «Sigue leyendo» y cierre propio del grupo (infantil con el botón «Soy madre/padre y quiero consultar primero»). Los textos salen del Word de Maite y se generan en `src/data/articulos.json`; no se editan a mano en la plantilla.
 
 ## Formas y profundidad
 
