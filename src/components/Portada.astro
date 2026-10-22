@@ -2,6 +2,7 @@
 import { contact, href, label, reviews, ui, type Lang, type PageKey } from '../data/site';
 import { especialidades } from '../data/paginas';
 import Retrato from './Retrato.astro';
+import fotoMaite from '../assets/fotos/maite-escritorio.png';
 import Mapa from './Mapa.astro';
 import Faq from './Faq.astro';
 import Cierre from './Cierre.astro';
@@ -65,6 +66,7 @@ const copy = {
     companera: 'Aquí irá una presentación breve: su formación, con quién trabaja y qué días está en la consulta.',
     fotoPendiente: 'Foto pendiente',
     fotoMaite: 'Retrato de Maite en la consulta.',
+    altMaite: 'Maite Vicente, sonriente, sentada a su mesa.',
     fotoCompanera: 'Retrato de la segunda psicóloga.',
     companeraNombre: 'Nombre de la psicóloga',
     companeraDato: 'Colegiada nº pendiente',
@@ -123,6 +125,7 @@ const copy = {
     companera: 'Aquí hi anirà una presentació breu: la seva formació, amb qui treballa i quins dies és a la consulta.',
     fotoPendiente: 'Foto pendent',
     fotoMaite: 'Retrat de la Maite a la consulta.',
+    altMaite: 'La Maite Vicente, somrient, asseguda a la seva taula.',
     fotoCompanera: 'Retrat de la segona psicòloga.',
     companeraNombre: 'Nom de la psicòloga',
     companeraDato: 'Col·legiada núm. pendent',
@@ -275,7 +278,7 @@ const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vic
     <h2 id="equipo-titulo" class="titular-seccion">{copy.equipoTitulo}</h2>
     <div class="equipo__rejilla">
       <article class="persona">
-        <Retrato iniciales="MV" etiqueta={copy.fotoPendiente} pie={copy.fotoMaite} />
+        <Retrato iniciales="MV" etiqueta={copy.fotoPendiente} pie={copy.fotoMaite} foto={fotoMaite} alt={copy.altMaite} sizes="240px" />
         <div class="persona__texto">
           <h3>Maite Vicente Pérez</h3>
           <p class="persona__dato">{t.colegiada}</p>

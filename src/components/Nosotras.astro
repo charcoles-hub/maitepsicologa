@@ -3,6 +3,7 @@ import { ui, type Lang } from '../data/site';
 import { enfoques, formacion } from '../data/paginas';
 import SubHero from './SubHero.astro';
 import Retrato from './Retrato.astro';
+import fotoMaite from '../assets/fotos/maite-sofa.png';
 import Cierre from './Cierre.astro';
 
 interface Props {
@@ -23,6 +24,7 @@ const c = {
     ejemplo: 'Ejemplo',
     foto: 'Foto pendiente',
     fotoMaite: 'Retrato de Maite en la consulta.',
+    altMaite: 'Maite Vicente tomando notas, sentada en un sofá.',
     fotoCompanera: 'Retrato de la segunda psicóloga.',
     enfoquesTitulo: 'Cómo trabajamos',
     espacioTitulo: 'La consulta',
@@ -40,6 +42,7 @@ const c = {
     ejemplo: 'Exemple',
     foto: 'Foto pendent',
     fotoMaite: 'Retrat de la Maite a la consulta.',
+    altMaite: 'La Maite Vicente prenent notes, asseguda en un sofà.',
     fotoCompanera: 'Retrat de la segona psicòloga.',
     enfoquesTitulo: 'Com treballem',
     espacioTitulo: 'La consulta',
@@ -53,7 +56,7 @@ const c = {
 <!-- PENDIENTE: Maite valida la biografía; datos de la compañera y todas las fotos -->
 <section class="perfil" data-hora="tarde" aria-labelledby="perfil-maite">
   <div class="contenedor perfil__rejilla">
-    <Retrato iniciales="MV" etiqueta={c.foto} pie={c.fotoMaite} />
+    <Retrato iniciales="MV" etiqueta={c.foto} pie={c.fotoMaite} foto={fotoMaite} alt={c.altMaite} />
     <div>
       <h2 id="perfil-maite" class="perfil__nombre">Maite Vicente Pérez</h2>
       <p class="perfil__dato">{t.colegiada}</p>
