@@ -17,7 +17,7 @@ const orden: Hora[] = ['manana', 'mediodia', 'tarde', 'ocaso'];
 const hora = (n: number) => orden[Math.min(orden.indexOf(g.hora) + n, orden.length - 1)];
 const indice = a.cuerpo.filter((b) => b.t === 'h2').map((b) => ({ id: anclaH2(b.h!), texto: b.h!.replace(/<[^>]*>/g, '') }));
 const relacionados = a.relacionados.map(buscar);
-const [lede, ...resto] = a.intro;
+const [lede, ...resto] = a.intro[0]?.t === 'cita' ? [undefined, ...a.intro] : a.intro;
 const texto = [...resto, ...a.cuerpo];
 
 const cierre = a.grupo === 'infantil'
@@ -29,6 +29,16 @@ const cierre = a.grupo === 'infantil'
       ],
       nota: `Maite Vicente, psicóloga colegiada nº ${contact.colegiada}. Terapia para niños y adolescentes en Granollers.`,
       secundario: { texto: 'Soy madre/padre y quiero consultar primero', href: contact.whatsappPadres.es },
+    }
+  : a.grupo === 'pareja'
+  ? {
+      titulo: '¿Estáis atravesando un momento difícil como pareja?',
+      parrafos: [
+        'Las crisis de pareja pueden tener causas y dinámicas muy diferentes. En terapia podemos comprender qué está ocurriendo entre vosotros, identificar los patrones que mantienen el problema y trabajar nuevas formas de comunicación y relación adaptadas a vuestra situación.',
+        'La terapia de pareja no consiste en buscar culpables ni en decidir quién tiene razón, sino en comprender la relación y favorecer cambios concretos.',
+      ],
+      nota: `Maite Vicente, psicóloga colegiada nº ${contact.colegiada}. Terapia de pareja presencial en Granollers y online.`,
+      secundario: undefined,
     }
   : {
       titulo: '¿Quieres trabajar esto en terapia?',

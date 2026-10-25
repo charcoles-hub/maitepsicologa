@@ -2,7 +2,7 @@ import datos from './articulos.json';
 import type { Lang, PageKey } from './site';
 import type { Hora } from './paginas';
 
-export type Grupo = 'adultos' | 'infantil';
+export type Grupo = 'adultos' | 'infantil' | 'pareja';
 
 export interface Bloque {
   t: 'p' | 'destacado' | 'cita' | 'h2' | 'h3' | 'ul';
@@ -40,6 +40,12 @@ export const grupos: Record<Grupo, { key: PageKey; hora: Hora; titulo: Record<La
     hora: 'tarde',
     titulo: { es: 'Niños y adolescentes', ca: 'Infants i adolescents' },
     terapia: { es: 'Terapia para niños y adolescentes', ca: 'Teràpia per a infants i adolescents' },
+  },
+  pareja: {
+    key: 'pareja',
+    hora: 'ocaso',
+    titulo: { es: 'Pareja y familia', ca: 'Parella i família' },
+    terapia: { es: 'Terapia de pareja y familia', ca: 'Teràpia de parella i família' },
   },
 };
 

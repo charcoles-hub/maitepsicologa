@@ -156,7 +156,7 @@ const fecha = (iso: string) =>
   new Intl.DateTimeFormat(lang === 'ca' ? 'ca-ES' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(iso));
 
 const [destacada, ...resto] = reviews;
-const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vicente+Psic%C3%B3loga+Granollers';
+const googleReviews = 'https://share.google/dZ5EOrE4EKI2az14z';
 ---
 <section class="escena" data-escena data-pool={JSON.stringify(copy.pool)} aria-labelledby="portada-titulo">
   <div class="escena__ruido" aria-hidden="true">
@@ -216,8 +216,8 @@ const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vic
     </div>
     <p class="resenas__pie">
       {copy.resenasNota}
-      <!-- PENDIENTE: enlace directo a la ficha de Google de la consulta y reseñas de Setmore -->
-      <a class="enlace" href={googleReviews} target="_blank" rel="noopener">{copy.resenasEnlace}</a>
+      <!-- PENDIENTE: reseñas de Setmore -->
+      <a class="boton boton--secundario" href={googleReviews} target="_blank" rel="noopener">{copy.resenasEnlace}</a>
     </p>
   </div>
 </section>
@@ -525,7 +525,7 @@ const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vic
   .resena blockquote p { font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); }
   .resena--grande blockquote p { font-size: clamp(1.9rem, 1.1rem + 2.6vw, 3.4rem); line-height: 1.15; letter-spacing: -0.015em; }
   .resena--ejemplo blockquote p { color: var(--texto-suave); }
-  .resenas__pie { margin-top: var(--e-xl); color: var(--texto-suave); font-size: var(--t-pequeno); display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--e-l); }
+  .resenas__pie { margin-top: var(--e-xl); color: var(--texto-suave); font-size: var(--t-pequeno); display: flex; flex-wrap: wrap; align-items: center; gap: var(--e-m) var(--e-l); }
 
   .ayuda__grupos { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--e-xl); }
   .ayuda__grupo h3 { font-size: 1.05rem; font-weight: 650; letter-spacing: 0; padding-bottom: var(--e-s); border-bottom: 1.5px solid var(--acento); margin-bottom: var(--e-m); }

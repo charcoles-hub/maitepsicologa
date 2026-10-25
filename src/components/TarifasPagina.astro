@@ -15,6 +15,8 @@ const c = {
     intro: 'Precios claros desde el principio. Todas las sesiones duran 55 minutos, en la consulta de Granollers o por videollamada.',
     tablaTitulo: 'Precio por sesión',
     filas: [['Sesión individual', 'En la consulta', '60 €'], ['Sesión individual', 'Online, por videollamada o teléfono', '60 €', 'desde'], ['Pareja o familia', 'En la consulta', '75 €'], ['Pareja o familia', 'Online', '75 €']],
+    packsTitulo: 'Packs de 4 sesiones',
+    packs: [['Individual', '52,50 € por sesión: ahorras 30 €', '210 €'], ['Pareja', '62,50 € por sesión: ahorras 50 €', '250 €']],
     incluyeTitulo: 'Cada sesión incluye',
     incluye: [['55 minutos', 'Tiempo para hablar con calma, sin mirar el reloj.'], ['Ejercicios entre sesiones', 'Adaptados a ti, para avanzar también durante la semana.'], ['WhatsApp para dudas', 'Si te surge algo entre una sesión y la siguiente.']],
     pendTitulo: 'Pendiente de confirmar',
@@ -28,6 +30,8 @@ const c = {
     intro: 'Preus clars des del principi. Totes les sessions duren 55 minuts, a la consulta de Granollers o per videotrucada.',
     tablaTitulo: 'Preu per sessió',
     filas: [['Sessió individual', 'A la consulta', '60 €'], ['Sessió individual', 'Online, per videotrucada o telèfon', '60 €', 'des de'], ['Parella o família', 'A la consulta', '75 €'], ['Parella o família', 'Online', '75 €']],
+    packsTitulo: 'Packs de 4 sessions',
+    packs: [['Individual', '52,50 € per sessió: estalvies 30 €', '210 €'], ['Parella', '62,50 € per sessió: estalvies 50 €', '250 €']],
     incluyeTitulo: 'Cada sessió inclou',
     incluye: [['55 minuts', 'Temps per parlar amb calma, sense mirar el rellotge.'], ['Exercicis entre sessions', 'Adaptats a tu, per avançar també durant la setmana.'], ['WhatsApp per als dubtes', 'Si et sorgeix alguna cosa entre una sessió i la següent.']],
     pendTitulo: 'Pendent de confirmar',
@@ -40,7 +44,7 @@ const c = {
 ---
 <SubHero lang={lang} page="tarifas" hora="mediodia" h1={c.h1} intro={c.intro} />
 
-<!-- PENDIENTE: Maite confirma precios, sesión de 30 min, formas de pago, cancelaciones y las respuestas -->
+<!-- PENDIENTE: Maite confirma si los packs valen también online y su caducidad; precios, sesión de 30 min, formas de pago, cancelaciones y las respuestas -->
 <section class="tabla" data-hora="mediodia" aria-labelledby="tabla-titulo">
   <div class="contenedor tabla__rejilla">
     <h2 id="tabla-titulo" class="titular-seccion">{c.tablaTitulo}</h2>
@@ -49,6 +53,17 @@ const c = {
         <div data-sube>
           <dt>{s}<span>{m}</span></dt>
           <dd class="cifra">{desde && <span>{desde} </span>}{p}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+  <div class="contenedor tabla__rejilla tabla__rejilla--packs">
+    <h2 id="packs-titulo" class="titular-seccion">{c.packsTitulo}</h2>
+    <dl class="tabla__precios" aria-labelledby="packs-titulo">
+      {c.packs.map(([s, m, p]) => (
+        <div data-sube>
+          <dt>{s}<span>{m}</span></dt>
+          <dd class="cifra">{p}</dd>
         </div>
       ))}
     </dl>
@@ -74,6 +89,7 @@ const c = {
 
 <style>
   .tabla__rejilla { display: grid; grid-template-columns: 4fr 7fr; gap: var(--e-xl); align-items: start; }
+  .tabla__rejilla--packs { margin-top: clamp(64px, 8vw, 112px); }
   .tabla__precios { border-top: 1px solid color-mix(in srgb, var(--texto) 16%, transparent); }
   .tabla__precios div { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--e-s) var(--e-l); padding-block: var(--e-l); border-bottom: 1px solid color-mix(in srgb, var(--texto) 16%, transparent); }
   .tabla__precios dt { font-size: clamp(1.25rem, 1rem + 0.9vw, 1.9rem); font-weight: 540; letter-spacing: -0.02em; }

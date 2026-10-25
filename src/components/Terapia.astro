@@ -17,7 +17,7 @@ const d = terapias[page][lang];
 const orden: Hora[] = ['manana', 'mediodia', 'tarde', 'ocaso'];
 const hora = (n: number) => orden[(orden.indexOf(d.hora) + n) % orden.length];
 const resena = d.resena !== undefined ? reviews[d.resena] : undefined;
-const lecturas = page === 'adultos' || page === 'infantil' ? porGrupo(page).slice(0, 4) : [];
+const lecturas = page === 'adultos' || page === 'infantil' || page === 'pareja' ? porGrupo(page).slice(0, 4) : [];
 const padres = page === 'infantil' ? { texto: lang === 'ca' ? 'Sóc mare/pare i vull consultar primer' : 'Soy madre/padre y quiero consultar primero', href: contact.whatsappPadres[lang] } : undefined;
 const fecha = (iso: string) => new Intl.DateTimeFormat(lang === 'ca' ? 'ca-ES' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(iso));
 ---
