@@ -3,6 +3,7 @@ import { contact, href, label, reviews, ui, type Lang, type PageKey } from '../d
 import { especialidades } from '../data/paginas';
 import Retrato from './Retrato.astro';
 import fotoMaite from '../assets/fotos/maite-escritorio.png';
+import fotoMartina from '../assets/fotos/martina.jpg';
 import Mapa from './Mapa.astro';
 import Faq from './Faq.astro';
 import Cierre from './Cierre.astro';
@@ -63,13 +64,12 @@ const copy = {
     equipoTitulo: 'Quién te acompaña',
     maite: 'Licenciada en Psicología (UAB y UOC), con un máster en Psicología Infantil y Juvenil (URJC) y otro en Terapias de Tercera Generación (Universidad Isabel I).',
     enfoques: 'Trabajamos desde la psicología integrativa, la terapia breve estratégica, la sistémica y la cognitivo-conductual.',
-    companera: 'Aquí irá una presentación breve: su formación, con quién trabaja y qué días está en la consulta.',
+    companera: 'Psicóloga especializada en ansiedad, autoestima y dependencia emocional. Trabaja sobre todo desde la terapia cognitivo-conductual, con herramientas prácticas adaptadas a cada persona. Presencial y online.',
     fotoPendiente: 'Foto pendiente',
     fotoMaite: 'Retrato de Maite en la consulta.',
     altMaite: 'Maite Vicente, sonriente, sentada a su mesa.',
-    fotoCompanera: 'Retrato de la segunda psicóloga.',
-    companeraNombre: 'Nombre de la psicóloga',
-    companeraDato: 'Colegiada nº pendiente',
+    fotoCompanera: 'Retrato de Martina en la consulta.',
+    altCompanera: 'Martina Pages, con gafas y americana negra, sentada a su mesa.',
     equipoEnlace: 'Conocernos mejor',
     dondeTitulo: 'En la consulta o desde casa',
     presencial: 'Presencial',
@@ -122,13 +122,12 @@ const copy = {
     equipoTitulo: "Qui t’acompanya",
     maite: 'Llicenciada en Psicologia (UAB i UOC), amb un màster en Psicologia Infantil i Juvenil (URJC) i un altre en Teràpies de Tercera Generació (Universidad Isabel I).',
     enfoques: 'Treballem des de la psicologia integrativa, la teràpia breu estratègica, la sistèmica i la cognitivoconductual.',
-    companera: 'Aquí hi anirà una presentació breu: la seva formació, amb qui treballa i quins dies és a la consulta.',
+    companera: 'Psicòloga especialitzada en ansietat, autoestima i dependència emocional. Treballa sobretot des de la teràpia cognitivoconductual, amb eines pràctiques adaptades a cada persona. Presencial i online.',
     fotoPendiente: 'Foto pendent',
     fotoMaite: 'Retrat de la Maite a la consulta.',
     altMaite: 'La Maite Vicente, somrient, asseguda a la seva taula.',
-    fotoCompanera: 'Retrat de la segona psicòloga.',
-    companeraNombre: 'Nom de la psicòloga',
-    companeraDato: 'Col·legiada núm. pendent',
+    fotoCompanera: 'Retrat de la Martina a la consulta.',
+    altCompanera: 'La Martina Pages, amb ulleres i americana negra, asseguda a la seva taula.',
     equipoEnlace: 'Coneix-nos millor',
     dondeTitulo: 'A la consulta o des de casa',
     presencial: 'Presencial',
@@ -285,11 +284,11 @@ const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vic
           <p>{copy.maite}</p>
         </div>
       </article>
-      <article class="persona persona--ejemplo">
-        <Retrato iniciales="?" etiqueta={copy.fotoPendiente} pie={copy.fotoCompanera} />
+      <article class="persona">
+        <Retrato iniciales="MP" etiqueta={copy.fotoPendiente} pie={copy.fotoCompanera} foto={fotoMartina} alt={copy.altCompanera} sizes="240px" />
         <div class="persona__texto">
-          <h3>{copy.companeraNombre} <span class="ejemplo">{copy.ejemplo}</span></h3>
-          <p class="persona__dato">{copy.companeraDato}</p>
+          <h3>Martina Pages</h3>
+          <!-- PENDIENTE: número de colegiada de Martina y días de consulta -->
           <p>{copy.companera}</p>
         </div>
       </article>
@@ -564,8 +563,8 @@ const googleReviews = 'https://www.google.com/maps/search/?api=1&query=Maite+Vic
   .persona__texto { padding-top: var(--e-m); }
   .persona__texto h3 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.4rem); font-weight: 480; letter-spacing: -0.03em; line-height: 1.05; }
   .persona__dato { color: var(--acento); font-weight: 600; margin: var(--e-s) 0 var(--e-m); }
+  .persona__texto h3 + p:not(.persona__dato) { margin-top: var(--e-m); }
   .persona__texto p:last-child { color: var(--texto-suave); }
-  .persona--ejemplo .persona__dato { color: var(--texto-suave); }
   .equipo__enfoques { margin-top: var(--e-xl); max-width: 60ch; font-size: 1.15rem; }
 
   .donde { overflow: hidden; }

@@ -4,6 +4,10 @@ import { enfoques, formacion } from '../data/paginas';
 import SubHero from './SubHero.astro';
 import Retrato from './Retrato.astro';
 import fotoMaite from '../assets/fotos/maite-sofa.png';
+import fotoMartina from '../assets/fotos/martina.jpg';
+import fotoSala from '../assets/fotos/consulta-sala.png';
+import fotoMesa from '../assets/fotos/consulta-mesa.png';
+import fotoDetalle from '../assets/fotos/consulta-detalle.png';
 import Cierre from './Cierre.astro';
 
 interface Props {
@@ -18,42 +22,44 @@ const c = {
     intro: 'Una consulta pequeña en Granollers, también online. Aquí cada persona tiene su tiempo y sabe en todo momento qué estamos haciendo y por qué.',
     maite: 'Licenciada en Psicología en 2014, trabaja con adultos, adolescentes, niños, parejas y familias en su consulta de Granollers y por videollamada. Se ha especializado en infancia y adolescencia y en las terapias de tercera generación.',
     formacion: 'Formación',
-    companeraNombre: 'Nombre de la psicóloga',
-    companeraDato: 'Colegiada nº pendiente',
-    companera: 'Aquí irá su presentación: formación, especialidades y qué días pasa consulta (una mañana y una tarde a la semana).',
-    ejemplo: 'Ejemplo',
+    companera: [
+      'Psicóloga especializada en ansiedad, autoestima y dependencia emocional. Acompaña a personas que sienten que el malestar emocional, la inseguridad o algunas relaciones están interfiriendo en su día a día.',
+      'Trabaja sobre todo desde la terapia cognitivo-conductual, con herramientas prácticas para entender qué está pasando, ver los patrones que mantienen el malestar y encontrar nuevas formas de afrontarlo: la gestión de las emociones, los pensamientos repetitivos, poner límites, el miedo al rechazo o la dependencia en las relaciones. Atiende en la consulta de Granollers y online.',
+    ],
     foto: 'Foto pendiente',
     fotoMaite: 'Retrato de Maite en la consulta.',
     altMaite: 'Maite Vicente tomando notas, sentada en un sofá.',
-    fotoCompanera: 'Retrato de la segunda psicóloga.',
+    fotoCompanera: 'Retrato de Martina en la consulta.',
+    altCompanera: 'Martina Pages, con gafas y americana negra, sentada a su mesa.',
     enfoquesTitulo: 'Cómo trabajamos',
     espacioTitulo: 'La consulta',
     espacioIntro: 'Carrer de Roger de Flor, 63, 1º 2ª, en Granollers. Un espacio tranquilo para hablar sin prisas.',
-    espacio: [['Sala', 'Foto de la sala donde se hacen las sesiones.'], ['Entrada', 'Foto de la entrada o la sala de espera.'], ['Portal', 'Foto del portal, para reconocerlo al llegar.']],
+    espacio: ['Sala de la consulta: sofá beige con cojines rosa, butaca rosa, alfombra de yute y una ventana grande con cortinas claras.', 'Mesa de trabajo blanca con dos sillas, un ramo de flores granate y una lámpara rosa encendida.', 'Detalle de la mesa: una libreta, una vela encendida y flores.'],
   },
   ca: {
     h1: 'Sobre nosaltres',
     intro: 'Una consulta petita a Granollers, també online. Aquí cada persona té el seu temps i sap en tot moment què estem fent i per què.',
     maite: "Llicenciada en Psicologia el 2014, treballa amb adults, adolescents, infants, parelles i famílies a la seva consulta de Granollers i per videotrucada. S’ha especialitzat en infància i adolescència i en les teràpies de tercera generació.",
     formacion: 'Formació',
-    companeraNombre: 'Nom de la psicòloga',
-    companeraDato: 'Col·legiada núm. pendent',
-    companera: 'Aquí hi anirà la seva presentació: formació, especialitats i quins dies passa consulta (un matí i una tarda a la setmana).',
-    ejemplo: 'Exemple',
+    companera: [
+      'Psicòloga especialitzada en ansietat, autoestima i dependència emocional. Acompanya persones que senten que el malestar emocional, la inseguretat o algunes relacions estan interferint en el seu dia a dia.',
+      'Treballa sobretot des de la teràpia cognitivoconductual, amb eines pràctiques per entendre què està passant, veure els patrons que mantenen el malestar i trobar noves maneres d’afrontar-lo: la gestió de les emocions, els pensaments repetitius, posar límits, la por al rebuig o la dependència en les relacions. Atén a la consulta de Granollers i online.',
+    ],
     foto: 'Foto pendent',
     fotoMaite: 'Retrat de la Maite a la consulta.',
     altMaite: 'La Maite Vicente prenent notes, asseguda en un sofà.',
-    fotoCompanera: 'Retrat de la segona psicòloga.',
+    fotoCompanera: 'Retrat de la Martina a la consulta.',
+    altCompanera: 'La Martina Pages, amb ulleres i americana negra, asseguda a la seva taula.',
     enfoquesTitulo: 'Com treballem',
     espacioTitulo: 'La consulta',
     espacioIntro: 'Carrer de Roger de Flor, 63, 1r 2a, a Granollers. Un espai tranquil per parlar sense presses.',
-    espacio: [['Sala', 'Foto de la sala on es fan les sessions.'], ['Entrada', "Foto de l’entrada o la sala d’espera."], ['Portal', 'Foto del portal, per reconèixer-lo en arribar.']],
+    espacio: ['Sala de la consulta: sofà beix amb coixins roses, butaca rosa, catifa de jute i una finestra gran amb cortines clares.', 'Taula de treball blanca amb dues cadires, un ram de flors granat i un llum rosa encès.', 'Detall de la taula: una llibreta, una espelma encesa i flors.'],
   },
 }[lang];
 ---
 <SubHero lang={lang} page="nosotras" hora="tarde" h1={c.h1} intro={c.intro} />
 
-<!-- PENDIENTE: Maite valida la biografía; datos de la compañera y todas las fotos -->
+<!-- PENDIENTE: Maite valida la biografía; colegiada y días de Martina; fotos de recepción y portal -->
 <section class="perfil" data-hora="tarde" aria-labelledby="perfil-maite">
   <div class="contenedor perfil__rejilla">
     <Retrato iniciales="MV" etiqueta={c.foto} pie={c.fotoMaite} foto={fotoMaite} alt={c.altMaite} />
@@ -72,11 +78,10 @@ const c = {
 <section class="perfil" data-hora="ocaso" aria-labelledby="perfil-companera">
   <div class="contenedor perfil__rejilla perfil__rejilla--invertida">
     <div>
-      <h2 id="perfil-companera" class="perfil__nombre">{c.companeraNombre} <span class="ejemplo">{c.ejemplo}</span></h2>
-      <p class="perfil__dato perfil__dato--ejemplo">{c.companeraDato}</p>
-      <p class="perfil__bio">{c.companera}</p>
+      <h2 id="perfil-companera" class="perfil__nombre perfil__nombre--sola">Martina Pages</h2>
+      {c.companera.map((p) => <p class="perfil__bio">{p}</p>)}
     </div>
-    <Retrato iniciales="?" etiqueta={c.foto} pie={c.fotoCompanera} />
+    <Retrato iniciales="MP" etiqueta={c.foto} pie={c.fotoCompanera} foto={fotoMartina} alt={c.altCompanera} />
   </div>
 </section>
 
@@ -99,7 +104,7 @@ const c = {
     <h2 id="espacio-titulo" class="titular-seccion">{c.espacioTitulo}</h2>
     <p class="espacio__intro">{c.espacioIntro}</p>
     <div class="espacio__fotos">
-      {c.espacio.map(([n, p]) => <Retrato iniciales={n} etiqueta={c.foto} pie={p} formato="apaisado" />)}
+      {[fotoSala, fotoMesa, fotoDetalle].map((f, i) => <Retrato iniciales="" etiqueta={c.foto} pie="" foto={f} alt={c.espacio[i]} formato={i === 0 ? 'apaisado' : 'retrato'} sizes={i === 0 ? '(min-width: 860px) 560px, 92vw' : '(min-width: 860px) 340px, 46vw'} />)}
     </div>
   </div>
 </section>
@@ -111,7 +116,8 @@ const c = {
   .perfil__rejilla--invertida { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); }
   .perfil__nombre { font-size: clamp(2.2rem, 1.4rem + 3vw, 4.4rem); font-weight: 480; letter-spacing: -0.04em; line-height: 1; }
   .perfil__dato { color: var(--acento); font-weight: 600; margin: var(--e-s) 0 var(--e-l); }
-  .perfil__dato--ejemplo { color: var(--texto-suave); }
+  .perfil__nombre--sola { margin-bottom: var(--e-l); }
+  .perfil__bio + .perfil__bio { margin-top: var(--e-s); }
   .perfil__bio { font-size: 1.2rem; max-width: 52ch; }
   .perfil__sub { font-size: 1.05rem; letter-spacing: 0; margin: var(--e-xl) 0 var(--e-s); }
   .perfil__formacion { list-style: none; padding: 0; }
@@ -123,10 +129,13 @@ const c = {
   .enfoques__lista dd { margin: 0; color: var(--texto-suave); max-width: 44ch; font-size: 1.1rem; }
 
   .espacio__intro { max-width: 52ch; font-size: 1.15rem; margin: calc(-1 * var(--e-l)) 0 var(--e-xl); color: var(--texto-suave); }
-  .espacio__fotos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--e-l); }
+  .espacio__fotos { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr); gap: var(--e-l); align-items: start; }
+  .espacio__fotos :global(.retrato--retrato .retrato__marco) { aspect-ratio: 5 / 6; }
 
   @media (max-width: 860px) {
-    .perfil__rejilla, .perfil__rejilla--invertida, .enfoques__lista, .espacio__fotos { grid-template-columns: 1fr; }
+    .perfil__rejilla, .perfil__rejilla--invertida, .enfoques__lista { grid-template-columns: 1fr; }
+    .espacio__fotos { grid-template-columns: 1fr 1fr; }
+    .espacio__fotos :global(.retrato--apaisado) { grid-column: 1 / -1; }
     .perfil :global(.retrato) { max-width: 300px; }
   }
 </style>
