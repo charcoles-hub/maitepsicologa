@@ -56,6 +56,7 @@ export const ui = {
   es: {
     brandLine: 'Consulta de psicología',
     cta: 'Pedir primera sesión',
+    ctaCorto: 'Pedir cita',
     call: 'Llamar',
     callFull: `Llamar al ${contact.phone}`,
     whatsapp: 'WhatsApp',
@@ -77,6 +78,7 @@ export const ui = {
   ca: {
     brandLine: 'Consulta de psicologia',
     cta: 'Demanar primera sessió',
+    ctaCorto: 'Demanar cita',
     call: 'Trucar',
     callFull: `Trucar al ${contact.phone}`,
     whatsapp: 'WhatsApp',
