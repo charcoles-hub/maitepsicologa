@@ -3,23 +3,23 @@ version: 2
 name: maitepsicologa
 description: Consulta de psicología en Granollers y online. Concepto «Del ruido a la calma»: la portada abre al alba, con los pensamientos que no dejan dormir, y al bajar se ordenan en «¿Qué te trae?» mientras se hace de día.
 colors:
-  alba: "#E6EEF4"
-  alba-rosa: "#F7E9E3"
-  cierre: "#CFE9E3"
-  pie: "#E9F0F0"
-  fondo: "#FCFDFD"
-  superficie: "#EEF5F5"
-  texto: "#1B3133"
-  texto-suave: "#4F6668"
-  linea: "#D5E3E2"
-  acento: "#236968"
-  acento-hover: "#1A5251"
-  acento-vivo: "#6BBCB6"
+  alba: "#F5E1E0"
+  alba-rosa: "#F9EBE7"
+  cierre: "#F2D9DA"
+  pie: "#F6ECEA"
+  fondo: "#FDF9F8"
+  superficie: "#F8EDEC"
+  texto: "#3A2529"
+  texto-suave: "#6E5357"
+  linea: "#ECD9D8"
+  acento: "#8E3B4A"
+  acento-hover: "#74303C"
+  acento-vivo: "#E3A9AE"
   sobre-acento: "#FFFFFF"
-  manana: "#E4F3EF"
-  mediodia: "#F0F4E8"
-  tarde: "#FCECE2"
-  ocaso: "#E7EBF5"
+  manana: "#F9ECE6"
+  mediodia: "#F7F0E6"
+  tarde: "#FBE7E3"
+  ocaso: "#EFE4EC"
   error: "#B3261E"
 typography:
   display:
@@ -99,10 +99,10 @@ Cada sección tiene después su propio momento: la reseña que se enciende palab
 
 ## Color
 
-- **El día avanza** (21-10, elegido por Sergio): tras el amanecer de la portada, cada sección es una hora del día (`data-hora`: mañana verde agua, mediodía salvia, tarde melocotón, ocaso azul de anochecer). Con movimiento, el fondo de la página (`--cielo`) se funde de una hora a otra con el scroll y un sol difuso cruza la pantalla y se pone antes del cierre; sin movimiento, cada sección lleva su banda de color. El cierre es una banda verde agua (`cierre`) y el pie, gris verdoso muy claro (`pie`), con la firma «Maite Vicente» enorme en `acento-vivo` muy diluido. **22-10: Maite pide colores más claros y pasteles («paz y calma»); Sergio elige la paleta «Amanecer turquesa»: sin ninguna zona oscura en toda la web.** Las subpáginas usan el mismo sistema. Pasteles por gusto expreso de Maite.
+- **El día avanza** (21-10, elegido por Sergio): tras el amanecer de la portada, cada sección es una hora del día (`data-hora`: mañana melocotón, mediodía lino, tarde rosa, ocaso malva). Con movimiento, el fondo de la página (`--cielo`) se funde de una hora a otra con el scroll y un sol difuso cruza la pantalla y se pone antes del cierre; sin movimiento, cada sección lleva su banda de color. El cierre es una banda rosa (`cierre`) y el pie, rosa muy claro (`pie`), con la firma «Maite Vicente» enorme en `acento-vivo` muy diluido. **22-10: Maite pide colores más claros y pasteles («paz y calma»); Sergio elige la paleta «Amanecer turquesa»: sin ninguna zona oscura en toda la web.** **25-10: Maite elige el logo A (Amanecer) y pide rosas y granates como su consulta; Sergio elige «Rosa empolvado»: fondo blanco rosado, sol rosa (`acento-vivo`) y granate (`acento`, 7,3:1 con blanco) en acciones. Favicon, imagen social y logo recoloreados (logo en `Documents\clientes-web\maite-logoinal`).** Las subpáginas usan el mismo sistema. Pasteles por gusto expreso de Maite.
 
 - `fondo` blanco con un hilo de verde azulado; `superficie` para bandas de reseñas y bloques de datos.
-- `acento` es el turquesa de su web actual llevado a un tono más profundo y sobrio. Solo para acciones, enlaces y el subrayado de las rutas. Nunca como fondo de secciones enteras.
+- `acento` es el granate de las flores de su consulta, apagado para que sea sobrio. Solo para acciones, enlaces y el subrayado de las rutas. Nunca como fondo de secciones enteras.
 - Contrastes: `texto` sobre `fondo` 13:1; `texto-suave` sobre `fondo` 6,4:1; `sobre-acento` sobre `acento` 6:1.
 - Sin modo oscuro ni zonas oscuras. `texto` sobre cualquier fondo de la web ≥10:1; `acento` sobre los pastel ≥4,9:1 y botón blanco sobre `acento` 6,4:1.
 - El `acento` a sangre se usa una sola vez: el bloque de cierre.

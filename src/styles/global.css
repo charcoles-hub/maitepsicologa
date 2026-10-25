@@ -2,29 +2,29 @@
 @import '@fontsource-variable/literata/wght-italic.css';
 
 :root {
-  --alba: #e6eef4;
-  --alba-rosa: #f7e9e3;
-  --cierre: #cfe9e3;
-  --pie: #e9f0f0;
-  --fondo: #fcfdfd;
-  --superficie: #eef5f5;
-  --texto: #1b3133;
-  --texto-suave: #4f6668;
-  --linea: #d5e3e2;
-  --acento: #236968;
-  --acento-hover: #1a5251;
-  --acento-vivo: #6bbcb6;
+  --alba: #f5e1e0;
+  --alba-rosa: #f9ebe7;
+  --cierre: #f2d9da;
+  --pie: #f6ecea;
+  --fondo: #fdf9f8;
+  --superficie: #f8edec;
+  --texto: #3a2529;
+  --texto-suave: #6e5357;
+  --linea: #ecd9d8;
+  --acento: #8e3b4a;
+  --acento-hover: #74303c;
+  --acento-vivo: #e3a9ae;
   --sobre-acento: #ffffff;
   --error: #b3261e;
 
-  --manana: #e4f3ef;
-  --mediodia: #f0f4e8;
-  --tarde: #fcece2;
-  --ocaso: #e7ebf5;
-  --sol-manana: #fff0c2;
-  --sol-mediodia: #fff7d6;
-  --sol-tarde: #ffd2ad;
-  --sol-ocaso: #f4d6ae;
+  --manana: #f9ece6;
+  --mediodia: #f7f0e6;
+  --tarde: #fbe7e3;
+  --ocaso: #efe4ec;
+  --sol-manana: #ffe6d6;
+  --sol-mediodia: #fff1e3;
+  --sol-tarde: #ffd2c4;
+  --sol-ocaso: #f3cfd6;
 
   --ui: 'Bricolage Grotesque Variable', system-ui, sans-serif;
   --voz: 'Literata Variable', Georgia, serif;
