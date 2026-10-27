@@ -16,6 +16,7 @@ const c = {
     tablaTitulo: 'Precio por sesión',
     filas: [['Sesión individual', 'En la consulta', '60 €'], ['Sesión individual', 'Online, por videollamada o teléfono', '60 €', 'desde'], ['Pareja o familia', 'En la consulta', '75 €'], ['Pareja o familia', 'Online', '75 €']],
     packsTitulo: 'Packs de 4 sesiones',
+    packsNota: 'Valen para sesiones en la consulta y online, y no caducan.',
     packs: [['Individual', '52,50 € por sesión: ahorras 30 €', '210 €'], ['Pareja', '62,50 € por sesión: ahorras 50 €', '250 €']],
     incluyeTitulo: 'Cada sesión incluye',
     incluye: [['55 minutos', 'Tiempo para hablar con calma, sin mirar el reloj.'], ['Ejercicios entre sesiones', 'Adaptados a ti, para avanzar también durante la semana.'], ['WhatsApp para dudas', 'Si te surge algo entre una sesión y la siguiente.']],
@@ -23,7 +24,7 @@ const c = {
     pend: [['Seguimiento online de 30 minutos', 'Para terapias ya avanzadas. Precio por confirmar.'], ['Formas de pago', 'Efectivo, tarjeta, Bizum o transferencia: por confirmar.'], ['Cambios y cancelaciones', 'Con cuánta antelación se puede cambiar una cita sin coste.']],
     ejemplo: 'Ejemplo',
     faqTitulo: 'Sobre las tarifas',
-    faq: [['¿La primera sesión tiene el mismo precio?', 'Sí, la primera sesión cuesta lo mismo que las siguientes.'], ['¿Por qué la sesión online es «desde» 60 €?', 'Porque el precio puede variar según la profesional. Te lo confirmamos al reservar.']],
+    faq: [['¿La primera sesión tiene el mismo precio?', 'Sí, la primera sesión cuesta lo mismo que las siguientes.'], ['¿Los packs sirven para las sesiones online?', 'Sí. Los packs de 4 sesiones valen tanto en la consulta como online, y no caducan.'], ['¿Por qué la sesión online es «desde» 60 €?', 'Porque el precio puede variar según la profesional. Te lo confirmamos al reservar.']],
   },
   ca: {
     h1: 'Tarifes',
@@ -31,6 +32,7 @@ const c = {
     tablaTitulo: 'Preu per sessió',
     filas: [['Sessió individual', 'A la consulta', '60 €'], ['Sessió individual', 'Online, per videotrucada o telèfon', '60 €', 'des de'], ['Parella o família', 'A la consulta', '75 €'], ['Parella o família', 'Online', '75 €']],
     packsTitulo: 'Packs de 4 sessions',
+    packsNota: 'Serveixen per a sessions a la consulta i online, i no caduquen.',
     packs: [['Individual', '52,50 € per sessió: estalvies 30 €', '210 €'], ['Parella', '62,50 € per sessió: estalvies 50 €', '250 €']],
     incluyeTitulo: 'Cada sessió inclou',
     incluye: [['55 minuts', 'Temps per parlar amb calma, sense mirar el rellotge.'], ['Exercicis entre sessions', 'Adaptats a tu, per avançar també durant la setmana.'], ['WhatsApp per als dubtes', 'Si et sorgeix alguna cosa entre una sessió i la següent.']],
@@ -38,13 +40,13 @@ const c = {
     pend: [['Seguiment online de 30 minuts', 'Per a teràpies ja avançades. Preu per confirmar.'], ['Formes de pagament', 'Efectiu, targeta, Bizum o transferència: per confirmar.'], ['Canvis i cancel·lacions', 'Amb quanta antelació es pot canviar una cita sense cost.']],
     ejemplo: 'Exemple',
     faqTitulo: 'Sobre les tarifes',
-    faq: [['La primera sessió té el mateix preu?', 'Sí, la primera sessió costa el mateix que les següents.'], ['Per què la sessió online és «des de» 60 €?', 'Perquè el preu pot variar segons la professional. Te’l confirmem en reservar.']],
+    faq: [['La primera sessió té el mateix preu?', 'Sí, la primera sessió costa el mateix que les següents.'], ['Els packs serveixen per a les sessions online?', 'Sí. Els packs de 4 sessions serveixen tant a la consulta com online, i no caduquen.'], ['Per què la sessió online és «des de» 60 €?', 'Perquè el preu pot variar segons la professional. Te’l confirmem en reservar.']],
   },
 }[lang];
 ---
 <SubHero lang={lang} page="tarifas" hora="mediodia" h1={c.h1} intro={c.intro} />
 
-<!-- PENDIENTE: Maite confirma si los packs valen también online y su caducidad; precios, sesión de 30 min, formas de pago, cancelaciones y las respuestas -->
+<!-- PENDIENTE: Maite confirma precios, sesión de 30 min, formas de pago, cancelaciones y las respuestas -->
 <section class="tabla" data-hora="mediodia" aria-labelledby="tabla-titulo">
   <div class="contenedor tabla__rejilla">
     <h2 id="tabla-titulo" class="titular-seccion">{c.tablaTitulo}</h2>
@@ -58,7 +60,10 @@ const c = {
     </dl>
   </div>
   <div class="contenedor tabla__rejilla tabla__rejilla--packs">
-    <h2 id="packs-titulo" class="titular-seccion">{c.packsTitulo}</h2>
+    <div>
+      <h2 id="packs-titulo" class="titular-seccion">{c.packsTitulo}</h2>
+      <p class="tabla__nota">{c.packsNota}</p>
+    </div>
     <dl class="tabla__precios" aria-labelledby="packs-titulo">
       {c.packs.map(([s, m, p]) => (
         <div data-sube>
@@ -90,6 +95,7 @@ const c = {
 <style>
   .tabla__rejilla { display: grid; grid-template-columns: 4fr 7fr; gap: var(--e-xl); align-items: start; }
   .tabla__rejilla--packs { margin-top: clamp(64px, 8vw, 112px); }
+  .tabla__nota { color: var(--texto-suave); max-width: 32ch; margin-top: var(--e-m); }
   .tabla__precios { border-top: 1px solid color-mix(in srgb, var(--texto) 16%, transparent); }
   .tabla__precios div { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--e-s) var(--e-l); padding-block: var(--e-l); border-bottom: 1px solid color-mix(in srgb, var(--texto) 16%, transparent); }
   .tabla__precios dt { font-size: clamp(1.25rem, 1rem + 0.9vw, 1.9rem); font-weight: 540; letter-spacing: -0.02em; }

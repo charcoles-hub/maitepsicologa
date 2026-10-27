@@ -292,13 +292,15 @@ export const formacion = {
     ['Licenciada en Psicología', 'UAB y UOC, 2014'],
     ['Máster en Psicología Infantil y Juvenil', 'Universidad Rey Juan Carlos, 2017'],
     ['Máster en Terapias de Tercera Generación', 'Universidad Isabel I'],
-    ['Formación en disciplina positiva y método Montessori', ''],
+    ['Formación en Disciplina Positiva', ''],
+    ['Formación en Método Montessori', ''],
   ],
   ca: [
     ['Llicenciada en Psicologia', 'UAB i UOC, 2014'],
     ['Màster en Psicologia Infantil i Juvenil', 'Universidad Rey Juan Carlos, 2017'],
     ['Màster en Teràpies de Tercera Generació', 'Universidad Isabel I'],
-    ['Formació en disciplina positiva i mètode Montessori', ''],
+    ['Formació en Disciplina Positiva', ''],
+    ['Formació en Mètode Montessori', ''],
   ],
 } as const;
 

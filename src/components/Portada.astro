@@ -65,6 +65,7 @@ const copy = {
     maite: 'Licenciada en Psicología (UAB y UOC), con un máster en Psicología Infantil y Juvenil (URJC) y otro en Terapias de Tercera Generación (Universidad Isabel I).',
     enfoques: 'Trabajamos desde la psicología integrativa, la terapia breve estratégica, la sistémica y la cognitivo-conductual.',
     companera: 'Psicóloga especializada en ansiedad, autoestima y dependencia emocional. Trabaja sobre todo desde la terapia cognitivo-conductual, con herramientas prácticas adaptadas a cada persona. Presencial y online.',
+    martinaDias: 'Miércoles tarde y viernes mañana',
     fotoPendiente: 'Foto pendiente',
     fotoMaite: 'Retrato de Maite en la consulta.',
     altMaite: 'Maite Vicente, sonriente, sentada a su mesa.',
@@ -123,6 +124,7 @@ const copy = {
     maite: 'Llicenciada en Psicologia (UAB i UOC), amb un màster en Psicologia Infantil i Juvenil (URJC) i un altre en Teràpies de Tercera Generació (Universidad Isabel I).',
     enfoques: 'Treballem des de la psicologia integrativa, la teràpia breu estratègica, la sistèmica i la cognitivoconductual.',
     companera: 'Psicòloga especialitzada en ansietat, autoestima i dependència emocional. Treballa sobretot des de la teràpia cognitivoconductual, amb eines pràctiques adaptades a cada persona. Presencial i online.',
+    martinaDias: 'Dimecres tarda i divendres matí',
     fotoPendiente: 'Foto pendent',
     fotoMaite: 'Retrat de la Maite a la consulta.',
     altMaite: 'La Maite Vicente, somrient, asseguda a la seva taula.',
@@ -288,7 +290,8 @@ const googleReviews = 'https://share.google/dZ5EOrE4EKI2az14z';
         <Retrato iniciales="MP" etiqueta={copy.fotoPendiente} pie={copy.fotoCompanera} foto={fotoMartina} alt={copy.altCompanera} sizes="240px" />
         <div class="persona__texto">
           <h3>Martina Pages</h3>
-          <!-- PENDIENTE: número de colegiada de Martina y días de consulta -->
+          <!-- PENDIENTE: número de colegiada de Martina -->
+          <p class="persona__dato">{copy.martinaDias}</p>
           <p>{copy.companera}</p>
         </div>
       </article>

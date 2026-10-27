@@ -8,6 +8,8 @@ import fotoMartina from '../assets/fotos/martina.jpg';
 import fotoSala from '../assets/fotos/consulta-sala.png';
 import fotoMesa from '../assets/fotos/consulta-mesa.png';
 import fotoDetalle from '../assets/fotos/consulta-detalle.png';
+import fotoRecepcion from '../assets/fotos/consulta-recepcion.png';
+import fotoPortal from '../assets/fotos/consulta-portal.png';
 import Cierre from './Cierre.astro';
 
 interface Props {
@@ -20,53 +22,77 @@ const c = {
   es: {
     h1: 'Sobre nosotras',
     intro: 'Una consulta pequeña en Granollers, también online. Aquí cada persona tiene su tiempo y sabe en todo momento qué estamos haciendo y por qué.',
-    maite: 'Licenciada en Psicología en 2014, trabaja con adultos, adolescentes, niños, parejas y familias en su consulta de Granollers y por videollamada. Se ha especializado en infancia y adolescencia y en las terapias de tercera generación.',
+    maite: [
+      "Soy licenciada en Psicología desde 2014 y desarrollo mi actividad profesional como psicóloga en Granollers, además de ofrecer terapia online por videollamada.",
+      "Trabajo con adultos, niños y adolescentes, parejas y familias, adaptando cada proceso terapéutico a las necesidades, objetivos y momento vital de cada persona.",
+      "En el trabajo con adultos acompaño especialmente dificultades relacionadas con la ansiedad, la autoestima, la gestión emocional, la dependencia emocional, el estrés, los bloqueos personales y los problemas relacionales. En terapia buscamos comprender qué está generando o manteniendo el malestar y desarrollar herramientas prácticas que ayuden a recuperar equilibrio, seguridad y bienestar en el día a día.",
+      "También trabajo con parejas que atraviesan dificultades de comunicación, conflictos repetitivos, celos, pérdida de confianza, distanciamiento emocional, problemas de convivencia o crisis derivadas de cambios importantes en la relación. El objetivo es comprender los patrones que se repiten, mejorar la comunicación y favorecer formas de relación más saludables y satisfactorias.",
+      "En niños y adolescentes trabajo dificultades emocionales, conductuales y relacionales, así como problemas de ansiedad, autoestima, regulación emocional, TDAH, TOC, dificultades sociales y situaciones relacionadas con el ámbito familiar o escolar. En estos casos, cuando es necesario, el proceso también incluye orientación y trabajo con la familia para favorecer cambios que puedan mantenerse fuera de la consulta.",
+      "A lo largo de mi trayectoria me he especializado especialmente en infancia y adolescencia y en terapias de tercera generación, ampliando mi formación con herramientas orientadas a la regulación emocional, las relaciones, la conducta y el bienestar psicológico.",
+      "Mi forma de trabajar busca ofrecer un espacio cercano, profesional y seguro, en el que puedas comprender mejor lo que te ocurre, identificar los patrones que mantienen el malestar y desarrollar recursos prácticos que te ayuden a generar cambios duraderos.",
+    ],
     formacion: 'Formación',
     companera: [
-      'Psicóloga especializada en ansiedad, autoestima y dependencia emocional. Acompaña a personas que sienten que el malestar emocional, la inseguridad o algunas relaciones están interfiriendo en su día a día.',
-      'Trabaja sobre todo desde la terapia cognitivo-conductual, con herramientas prácticas para entender qué está pasando, ver los patrones que mantienen el malestar y encontrar nuevas formas de afrontarlo: la gestión de las emociones, los pensamientos repetitivos, poner límites, el miedo al rechazo o la dependencia en las relaciones. Atiende en la consulta de Granollers y online.',
+      "Soy psicóloga especializada en ansiedad, autoestima y dependencia emocional. Acompaño a personas que sienten que el malestar emocional, la inseguridad o determinadas relaciones están interfiriendo en su bienestar y en su día a día.",
+      "Trabajo principalmente desde la terapia cognitivo-conductual, utilizando herramientas prácticas y adaptadas a cada persona para comprender qué está ocurriendo, identificar los patrones que mantienen el malestar y desarrollar nuevas formas de afrontar las dificultades.",
+      "En terapia podemos trabajar, entre otros aspectos, la regulación y gestión emocional, los pensamientos repetitivos, la inseguridad, la dificultad para poner límites, el miedo al rechazo, la necesidad de aprobación o los patrones de dependencia en las relaciones.",
+      "Mi objetivo es ofrecer un espacio profesional, cercano y seguro donde puedas comprender mejor lo que te ocurre, adquirir herramientas útiles y avanzar de forma progresiva hacia un mayor equilibrio emocional, autonomía y bienestar.",
+      "Ofrezco terapia psicológica presencial y online, adaptando el proceso a tus necesidades, objetivos y momento vital.",
     ],
     foto: 'Foto pendiente',
     fotoMaite: 'Retrato de Maite en la consulta.',
     altMaite: 'Maite Vicente tomando notas, sentada en un sofá.',
     fotoCompanera: 'Retrato de Martina en la consulta.',
     altCompanera: 'Martina Pages, con gafas y americana negra, sentada a su mesa.',
+    martinaDias: 'En la consulta los miércoles por la tarde y los viernes por la mañana',
     enfoquesTitulo: 'Cómo trabajamos',
     espacioTitulo: 'La consulta',
     espacioIntro: 'Carrer de Roger de Flor, 63, 1º 2ª, en Granollers. Un espacio tranquilo para hablar sin prisas.',
-    espacio: ['Sala de la consulta: sofá beige con cojines rosa, butaca rosa, alfombra de yute y una ventana grande con cortinas claras.', 'Mesa de trabajo blanca con dos sillas, un ramo de flores granate y una lámpara rosa encendida.', 'Detalle de la mesa: una libreta, una vela encendida y flores.'],
+    espacio: ['Sala de la consulta: sofá beige con cojines rosa, butaca rosa, alfombra de yute y una ventana grande con cortinas claras.', 'Mesa de trabajo blanca con dos sillas, un ramo de flores granate y una lámpara rosa encendida.', 'Detalle de la mesa: una libreta, una vela encendida y flores.', 'Recepción: mostrador de madera clara, sillas de espera y puertas verdes que dan a las salas.', 'Portal del número 63 de la calle Roger de Flor: puerta dorada de cristal en una fachada de ladrillo.'],
   },
   ca: {
     h1: 'Sobre nosaltres',
     intro: 'Una consulta petita a Granollers, també online. Aquí cada persona té el seu temps i sap en tot moment què estem fent i per què.',
-    maite: "Llicenciada en Psicologia el 2014, treballa amb adults, adolescents, infants, parelles i famílies a la seva consulta de Granollers i per videotrucada. S’ha especialitzat en infància i adolescència i en les teràpies de tercera generació.",
+    maite: [
+      "Soc llicenciada en Psicologia des del 2014 i desenvolupo la meva activitat professional com a psicòloga a Granollers, a més d’oferir teràpia online per videotrucada.",
+      "Treballo amb adults, infants i adolescents, parelles i famílies, i adapto cada procés terapèutic a les necessitats, els objectius i el moment vital de cada persona.",
+      "En el treball amb adults acompanyo especialment dificultats relacionades amb l’ansietat, l’autoestima, la gestió emocional, la dependència emocional, l’estrès, els bloquejos personals i els problemes relacionals. En teràpia busquem comprendre què està generant o mantenint el malestar i desenvolupar eines pràctiques que ajudin a recuperar l’equilibri, la seguretat i el benestar en el dia a dia.",
+      "També treballo amb parelles que travessen dificultats de comunicació, conflictes repetitius, gelosia, pèrdua de confiança, distanciament emocional, problemes de convivència o crisis derivades de canvis importants en la relació. L’objectiu és comprendre els patrons que es repeteixen, millorar la comunicació i afavorir maneres de relacionar-se més saludables i satisfactòries.",
+      "Amb infants i adolescents treballo dificultats emocionals, conductuals i relacionals, així com problemes d’ansietat, autoestima, regulació emocional, TDAH, TOC, dificultats socials i situacions relacionades amb l’àmbit familiar o escolar. En aquests casos, quan cal, el procés també inclou orientació i treball amb la família per afavorir canvis que es puguin mantenir fora de la consulta.",
+      "Al llarg de la meva trajectòria m’he especialitzat sobretot en infància i adolescència i en teràpies de tercera generació, i he ampliat la meva formació amb eines orientades a la regulació emocional, les relacions, la conducta i el benestar psicològic.",
+      "La meva manera de treballar busca oferir un espai proper, professional i segur, on puguis comprendre millor el que et passa, identificar els patrons que mantenen el malestar i desenvolupar recursos pràctics que t’ajudin a generar canvis duradors.",
+    ],
     formacion: 'Formació',
     companera: [
-      'Psicòloga especialitzada en ansietat, autoestima i dependència emocional. Acompanya persones que senten que el malestar emocional, la inseguretat o algunes relacions estan interferint en el seu dia a dia.',
-      'Treballa sobretot des de la teràpia cognitivoconductual, amb eines pràctiques per entendre què està passant, veure els patrons que mantenen el malestar i trobar noves maneres d’afrontar-lo: la gestió de les emocions, els pensaments repetitius, posar límits, la por al rebuig o la dependència en les relacions. Atén a la consulta de Granollers i online.',
+      "Soc psicòloga especialitzada en ansietat, autoestima i dependència emocional. Acompanyo persones que senten que el malestar emocional, la inseguretat o determinades relacions estan interferint en el seu benestar i en el seu dia a dia.",
+      "Treballo principalment des de la teràpia cognitivoconductual, amb eines pràctiques i adaptades a cada persona per comprendre què està passant, identificar els patrons que mantenen el malestar i desenvolupar noves maneres d’afrontar les dificultats.",
+      "En teràpia podem treballar, entre altres aspectes, la regulació i la gestió emocional, els pensaments repetitius, la inseguretat, la dificultat per posar límits, la por al rebuig, la necessitat d’aprovació o els patrons de dependència en les relacions.",
+      "El meu objectiu és oferir un espai professional, proper i segur on puguis comprendre millor el que et passa, adquirir eines útils i avançar de manera progressiva cap a un equilibri emocional, una autonomia i un benestar més grans.",
+      "Ofereixo teràpia psicològica presencial i online, i adapto el procés a les teves necessitats, els teus objectius i el teu moment vital.",
     ],
     foto: 'Foto pendent',
     fotoMaite: 'Retrat de la Maite a la consulta.',
     altMaite: 'La Maite Vicente prenent notes, asseguda en un sofà.',
     fotoCompanera: 'Retrat de la Martina a la consulta.',
     altCompanera: 'La Martina Pages, amb ulleres i americana negra, asseguda a la seva taula.',
+    martinaDias: 'A la consulta els dimecres a la tarda i els divendres al matí',
     enfoquesTitulo: 'Com treballem',
     espacioTitulo: 'La consulta',
     espacioIntro: 'Carrer de Roger de Flor, 63, 1r 2a, a Granollers. Un espai tranquil per parlar sense presses.',
-    espacio: ['Sala de la consulta: sofà beix amb coixins roses, butaca rosa, catifa de jute i una finestra gran amb cortines clares.', 'Taula de treball blanca amb dues cadires, un ram de flors granat i un llum rosa encès.', 'Detall de la taula: una llibreta, una espelma encesa i flors.'],
+    espacio: ['Sala de la consulta: sofà beix amb coixins roses, butaca rosa, catifa de jute i una finestra gran amb cortines clares.', 'Taula de treball blanca amb dues cadires, un ram de flors granat i un llum rosa encès.', 'Detall de la taula: una llibreta, una espelma encesa i flors.', 'Recepció: taulell de fusta clara, cadires d’espera i portes verdes que donen a les sales.', 'Portal del número 63 del carrer Roger de Flor: porta daurada de vidre en una façana de maó.'],
   },
 }[lang];
 ---
 <SubHero lang={lang} page="nosotras" hora="tarde" h1={c.h1} intro={c.intro} />
 
-<!-- PENDIENTE: Maite valida la biografía; colegiada y días de Martina; fotos de recepción y portal -->
+<!-- PENDIENTE: colegiada de Martina -->
 <section class="perfil" data-hora="tarde" aria-labelledby="perfil-maite">
   <div class="contenedor perfil__rejilla">
     <Retrato iniciales="MV" etiqueta={c.foto} pie={c.fotoMaite} foto={fotoMaite} alt={c.altMaite} />
     <div>
       <h2 id="perfil-maite" class="perfil__nombre">Maite Vicente Pérez</h2>
       <p class="perfil__dato">{t.colegiada}</p>
-      <p class="perfil__bio">{c.maite}</p>
+      {c.maite.map((p) => <p class="perfil__bio">{p}</p>)}
       <h3 class="perfil__sub">{c.formacion}</h3>
       <ul class="perfil__formacion">
         {formacion[lang].map(([titulo, lugar]) => <li><span>{titulo}</span>{lugar && <span>{lugar}</span>}</li>)}
@@ -78,7 +104,8 @@ const c = {
 <section class="perfil" data-hora="ocaso" aria-labelledby="perfil-companera">
   <div class="contenedor perfil__rejilla perfil__rejilla--invertida">
     <div>
-      <h2 id="perfil-companera" class="perfil__nombre perfil__nombre--sola">Martina Pages</h2>
+      <h2 id="perfil-companera" class="perfil__nombre">Martina Pages</h2>
+      <p class="perfil__dato">{c.martinaDias}</p>
       {c.companera.map((p) => <p class="perfil__bio">{p}</p>)}
     </div>
     <Retrato iniciales="MP" etiqueta={c.foto} pie={c.fotoCompanera} foto={fotoMartina} alt={c.altCompanera} />
@@ -104,7 +131,7 @@ const c = {
     <h2 id="espacio-titulo" class="titular-seccion">{c.espacioTitulo}</h2>
     <p class="espacio__intro">{c.espacioIntro}</p>
     <div class="espacio__fotos">
-      {[fotoSala, fotoMesa, fotoDetalle].map((f, i) => <Retrato iniciales="" etiqueta={c.foto} pie="" foto={f} alt={c.espacio[i]} formato={i === 0 ? 'apaisado' : 'retrato'} sizes={i === 0 ? '(min-width: 860px) 560px, 92vw' : '(min-width: 860px) 340px, 46vw'} />)}
+      {[fotoSala, fotoMesa, fotoDetalle, fotoRecepcion, fotoPortal].map((f, i) => <Retrato iniciales="" etiqueta={c.foto} pie="" foto={f} alt={c.espacio[i]} formato={i === 0 || i === 3 ? 'apaisado' : 'retrato'} sizes={i === 3 ? '(min-width: 860px) 900px, 92vw' : i === 0 ? '(min-width: 860px) 560px, 92vw' : '(min-width: 860px) 340px, 46vw'} />)}
     </div>
   </div>
 </section>
@@ -116,7 +143,6 @@ const c = {
   .perfil__rejilla--invertida { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); }
   .perfil__nombre { font-size: clamp(2.2rem, 1.4rem + 3vw, 4.4rem); font-weight: 480; letter-spacing: -0.04em; line-height: 1; }
   .perfil__dato { color: var(--acento); font-weight: 600; margin: var(--e-s) 0 var(--e-l); }
-  .perfil__nombre--sola { margin-bottom: var(--e-l); }
   .perfil__bio + .perfil__bio { margin-top: var(--e-s); }
   .perfil__bio { font-size: 1.2rem; max-width: 52ch; }
   .perfil__sub { font-size: 1.05rem; letter-spacing: 0; margin: var(--e-xl) 0 var(--e-s); }
@@ -131,11 +157,15 @@ const c = {
   .espacio__intro { max-width: 52ch; font-size: 1.15rem; margin: calc(-1 * var(--e-l)) 0 var(--e-xl); color: var(--texto-suave); }
   .espacio__fotos { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr); gap: var(--e-l); align-items: start; }
   .espacio__fotos :global(.retrato--retrato .retrato__marco) { aspect-ratio: 5 / 6; }
+  .espacio__fotos :global(.retrato:nth-child(4)) { grid-column: span 2; }
+  .espacio__fotos :global(.retrato:nth-child(4) .retrato__marco) { aspect-ratio: 13 / 6; }
 
   @media (max-width: 860px) {
     .perfil__rejilla, .perfil__rejilla--invertida, .enfoques__lista { grid-template-columns: 1fr; }
     .espacio__fotos { grid-template-columns: 1fr 1fr; }
-    .espacio__fotos :global(.retrato--apaisado) { grid-column: 1 / -1; }
+    .espacio__fotos :global(.retrato--apaisado), .espacio__fotos :global(.retrato:nth-child(5)) { grid-column: 1 / -1; }
+    .espacio__fotos :global(.retrato:nth-child(4) .retrato__marco) { aspect-ratio: 4 / 3; }
+    .espacio__fotos :global(.retrato:nth-child(5) .retrato__marco) { aspect-ratio: 1; }
     .perfil :global(.retrato) { max-width: 300px; }
   }
 </style>
