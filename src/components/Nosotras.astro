@@ -85,7 +85,6 @@ const c = {
 ---
 <SubHero lang={lang} page="nosotras" hora="tarde" h1={c.h1} intro={c.intro} />
 
-<!-- PENDIENTE: colegiada de Martina -->
 <section class="perfil" data-hora="tarde" aria-labelledby="perfil-maite">
   <div class="contenedor perfil__rejilla">
     <Retrato iniciales="MV" etiqueta={c.foto} pie={c.fotoMaite} foto={fotoMaite} alt={c.altMaite} />
@@ -105,6 +104,7 @@ const c = {
   <div class="contenedor perfil__rejilla perfil__rejilla--invertida">
     <div>
       <h2 id="perfil-companera" class="perfil__nombre">Martina Pages</h2>
+      <p class="perfil__dato">{t.colegiadaMartina}</p>
       <p class="perfil__dato">{c.martinaDias}</p>
       {c.companera.map((p) => <p class="perfil__bio">{p}</p>)}
     </div>
@@ -143,6 +143,7 @@ const c = {
   .perfil__rejilla--invertida { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); }
   .perfil__nombre { font-size: clamp(2.2rem, 1.4rem + 3vw, 4.4rem); font-weight: 480; letter-spacing: -0.04em; line-height: 1; }
   .perfil__dato { color: var(--acento); font-weight: 600; margin: var(--e-s) 0 var(--e-l); }
+  .perfil__dato:has(+ .perfil__dato) { margin-bottom: 0; }
   .perfil__bio + .perfil__bio { margin-top: var(--e-s); }
   .perfil__bio { font-size: 1.2rem; max-width: 52ch; }
   .perfil__sub { font-size: 1.05rem; letter-spacing: 0; margin: var(--e-xl) 0 var(--e-s); }

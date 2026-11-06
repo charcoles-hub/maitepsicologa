@@ -3,7 +3,7 @@ import { contact, href, label, reviews, ui, type Lang, type PageKey } from '../d
 import { especialidades } from '../data/paginas';
 import Retrato from './Retrato.astro';
 import fotoMaite from '../assets/fotos/maite-escritorio.png';
-import fotoMartina from '../assets/fotos/martina.jpg';
+import fotoMartina from '../assets/fotos/martina-mesa.jpg';
 import Mapa from './Mapa.astro';
 import Faq from './Faq.astro';
 import Cierre from './Cierre.astro';
@@ -70,7 +70,7 @@ const copy = {
     fotoMaite: 'Retrato de Maite en la consulta.',
     altMaite: 'Maite Vicente, sonriente, sentada a su mesa.',
     fotoCompanera: 'Retrato de Martina en la consulta.',
-    altCompanera: 'Martina Pages, con gafas y americana negra, sentada a su mesa.',
+    altCompanera: 'Martina Pages, con camiseta blanca, sonriendo en su mesa de la consulta con una libreta.',
     equipoEnlace: 'Conocernos mejor',
     dondeTitulo: 'En la consulta o desde casa',
     presencial: 'Presencial',
@@ -129,7 +129,7 @@ const copy = {
     fotoMaite: 'Retrat de la Maite a la consulta.',
     altMaite: 'La Maite Vicente, somrient, asseguda a la seva taula.',
     fotoCompanera: 'Retrat de la Martina a la consulta.',
-    altCompanera: 'La Martina Pages, amb ulleres i americana negra, asseguda a la seva taula.',
+    altCompanera: 'La Martina Pages, amb samarreta blanca, somrient a la seva taula de la consulta amb una llibreta.',
     equipoEnlace: 'Coneix-nos millor',
     dondeTitulo: 'A la consulta o des de casa',
     presencial: 'Presencial',
@@ -290,7 +290,7 @@ const googleReviews = 'https://share.google/dZ5EOrE4EKI2az14z';
         <Retrato iniciales="MP" etiqueta={copy.fotoPendiente} pie={copy.fotoCompanera} foto={fotoMartina} alt={copy.altCompanera} sizes="240px" />
         <div class="persona__texto">
           <h3>Martina Pages</h3>
-          <!-- PENDIENTE: número de colegiada de Martina -->
+          <p class="persona__dato">{t.colegiadaMartina}</p>
           <p class="persona__dato">{copy.martinaDias}</p>
           <p>{copy.companera}</p>
         </div>
@@ -566,6 +566,7 @@ const googleReviews = 'https://share.google/dZ5EOrE4EKI2az14z';
   .persona__texto { padding-top: var(--e-m); }
   .persona__texto h3 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.4rem); font-weight: 480; letter-spacing: -0.03em; line-height: 1.05; }
   .persona__dato { color: var(--acento); font-weight: 600; margin: var(--e-s) 0 var(--e-m); }
+  .persona__dato:has(+ .persona__dato) { margin-bottom: 0; }
   .persona__texto h3 + p:not(.persona__dato) { margin-top: var(--e-m); }
   .persona__texto p:last-child { color: var(--texto-suave); }
   .equipo__enfoques { margin-top: var(--e-xl); max-width: 60ch; font-size: 1.15rem; }

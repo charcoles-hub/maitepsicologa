@@ -23,6 +23,7 @@ export const contact = {
     ca: ['De dilluns a divendres, de 10:00 a 21:00', 'Dissabtes, de 10:00 a 13:00'],
   },
   colegiada: '28300',
+  colegiadaMartina: '37523',
 };
 
 export const pages = [
@@ -74,6 +75,7 @@ export const ui = {
     when: 'Horario',
     talk: 'Contacto',
     colegiada: `Colegiada nº ${contact.colegiada}`,
+    colegiadaMartina: `Colegiada nº ${contact.colegiadaMartina}`,
   },
   ca: {
     brandLine: 'Consulta de psicologia',
@@ -96,6 +98,7 @@ export const ui = {
     when: 'Horari',
     talk: 'Contacte',
     colegiada: `Col·legiada núm. ${contact.colegiada}`,
+    colegiadaMartina: `Col·legiada núm. ${contact.colegiadaMartina}`,
   },
 } as const;
 
