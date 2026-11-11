@@ -46,9 +46,7 @@ const year = new Date().getFullYear();
     </ul>
     <p class="pie__legal">
       <span>© {year} Maite Vicente</span>
-      <!-- PENDIENTE: páginas legales nuevas (aviso legal, privacidad, cookies) con revisión legal -->
-      <a href="https://www.maitepsicologa.com/politica-privacidad/">{t.privacy}</a>
-      <a href="https://www.maitepsicologa.com/politica-cookies/">{t.cookies}</a>
+      {(['legal', 'privacidad', 'cookies'] as const).map((k) => <a href={href(lang, k)}>{label(lang, k)}</a>)}
     </p>
   </div>
   <p class="pie__firma" aria-hidden="true">Maite Vicente</p>

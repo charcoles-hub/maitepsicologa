@@ -1,0 +1,8 @@
+---
+import Base from '../layouts/Base.astro';
+import LegalPagina from '../components/LegalPagina.astro';
+import { legal } from '../data/legal';
+---
+<Base lang="es" page="cookies" title="Política de cookies | Maite Vicente Psicóloga en Granollers" description={legal.es.cookies.descripcion}>
+  <LegalPagina lang="es" doc="cookies" />
+</Base>

@@ -1,0 +1,8 @@
+---
+import Base from '../layouts/Base.astro';
+import LegalPagina from '../components/LegalPagina.astro';
+import { legal } from '../data/legal';
+---
+<Base lang="es" page="legal" title="Aviso legal | Maite Vicente Psicóloga en Granollers" description={legal.es.legal.descripcion}>
+  <LegalPagina lang="es" doc="legal" />
+</Base>

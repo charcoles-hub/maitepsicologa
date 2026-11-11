@@ -1,0 +1,61 @@
+---
+import { href, label, type Lang } from '../data/site';
+import { legal, type DocLegal } from '../data/legal';
+
+interface Props {
+  lang: Lang;
+  doc: DocLegal;
+}
+
+const { lang, doc } = Astro.props;
+const d = legal[lang][doc];
+---
+<article class="legal" data-hora="manana">
+  <div class="contenedor">
+    <nav class="migas" aria-label={lang === 'ca' ? 'Ruta de navegació' : 'Ruta de navegación'}>
+      <ol>
+        <li><a href={href(lang, 'inicio')}>{label(lang, 'inicio')}</a></li>
+        <li aria-current="page">{d.titulo}</li>
+      </ol>
+    </nav>
+    <h1 class="legal__titulo">{d.titulo}</h1>
+    <p class="legal__fecha">{d.actualizado}</p>
+    <div class="legal__texto">
+      {d.secciones.map((s) => (
+        <section>
+          <h2>{s.h2}</h2>
+          {s.bloques.map((b) => {
+            if (typeof b === 'string') return <p set:html={b} />;
+            if ('ul' in b) return <ul>{b.ul.map((i) => <li set:html={i} />)}</ul>;
+            return (
+              <div class="legal__tabla">
+                <table>
+                  <thead><tr><th scope="col">{b.cabecera[0]}</th><th scope="col">{b.cabecera[1]}</th></tr></thead>
+                  <tbody>{b.tabla.map(([x, y]) => <tr><th scope="row">{x}</th><td>{y}</td></tr>)}</tbody>
+                </table>
+              </div>
+            );
+          })}
+        </section>
+      ))}
+    </div>
+  </div>
+</article>
+
+<style>
+  .legal { padding-block: clamp(24px, 4vw, 56px) clamp(64px, 9vw, 120px); }
+  .legal__titulo { margin-top: var(--e-l); font-size: clamp(2.2rem, 1.4rem + 3.2vw, 4.4rem); font-weight: 480; line-height: 1; letter-spacing: -0.045em; }
+  .legal__fecha { margin-top: var(--e-m); font-size: var(--t-pequeno); font-weight: 600; color: var(--texto-suave); }
+  .legal__texto { max-width: 66ch; margin-top: var(--e-xl); font-size: 1.0625rem; line-height: 1.7; }
+  .legal__texto section + section { margin-top: 2em; }
+  .legal__texto h2 { font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.75rem); font-weight: 520; line-height: 1.15; letter-spacing: -0.02em; }
+  .legal__texto :is(p, ul, .legal__tabla) { margin-top: 0.85em; }
+  .legal__texto ul { padding-left: 1.2em; }
+  .legal__texto li + li { margin-top: 0.35em; }
+  .legal__texto a { overflow-wrap: anywhere; }
+  .legal__tabla { overflow-x: auto; }
+  .legal__tabla table { width: 100%; border-collapse: collapse; font-size: 0.98rem; line-height: 1.5; }
+  .legal__tabla :is(th, td) { padding: var(--e-s) var(--e-m) var(--e-s) 0; text-align: left; vertical-align: top; border-bottom: 1px solid color-mix(in srgb, var(--texto) 14%, transparent); }
+  .legal__tabla thead th { font-size: var(--t-pequeno); color: var(--texto-suave); font-weight: 650; }
+  .legal__tabla tbody th { font-weight: 600; width: 45%; }
+</style>

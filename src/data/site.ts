@@ -36,6 +36,9 @@ export const pages = [
   { key: 'tarifas', es: { slug: 'tarifas', label: 'Tarifas' }, ca: { slug: 'tarifes', label: 'Tarifes' } },
   { key: 'contacto', es: { slug: 'contacto', label: 'Contacto' }, ca: { slug: 'contacte', label: 'Contacte' } },
   { key: 'articulos', es: { slug: 'articulos', label: 'Artículos' }, ca: { slug: 'articles', label: 'Articles' } },
+  { key: 'legal', es: { slug: 'aviso-legal', label: 'Aviso legal' }, ca: { slug: 'avis-legal', label: 'Avís legal' } },
+  { key: 'privacidad', es: { slug: 'politica-privacidad', label: 'Privacidad' }, ca: { slug: 'politica-privacitat', label: 'Privacitat' } },
+  { key: 'cookies', es: { slug: 'politica-cookies', label: 'Cookies' }, ca: { slug: 'politica-galetes', label: 'Galetes' } },
 ] as const;
 
 export type PageKey = (typeof pages)[number]['key'];
