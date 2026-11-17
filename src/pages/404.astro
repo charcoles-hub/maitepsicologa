@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import { contact, href } from '../data/site';
+---
+<Base lang="es" page="inicio" title="Página no encontrada | Maite Vicente" description="Esta página no existe o ha cambiado de dirección." ruta={href('es', 'inicio')}>
+  <meta slot="head" name="robots" content="noindex" />
+  <section class="perdida" data-hora="manana" aria-labelledby="perdida-titulo">
+    <div class="contenedor">
+      <h1 id="perdida-titulo" class="titular-seccion">Esta página no existe</h1>
+      <p class="perdida__texto">Puede que la dirección haya cambiado o que esté mal escrita. Desde aquí llegas a lo importante.</p>
+      <div class="perdida__acciones">
+        <a class="boton" href={href('es', 'inicio')}>Ir al inicio</a>
+        <a class="boton boton--secundario" href={contact.setmore} target="_blank" rel="noopener">Pedir primera sesión</a>
+        <a class="enlace" href={contact.phoneHref}>Llamar al {contact.phone}</a>
+      </div>
+      <p class="perdida__ca" lang="ca">Aquesta pàgina no existeix. <a class="enlace" href={href('ca', 'inicio')}>Anar a l’inici en català</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .perdida { padding-block: clamp(96px, 14vw, 200px); }
+  .perdida__texto { color: var(--texto-suave); max-width: 40ch; margin-top: var(--e-m); font-size: 1.15rem; }
+  .perdida__acciones { display: flex; flex-wrap: wrap; align-items: center; gap: var(--e-m) var(--e-l); margin-top: var(--e-l); }
+  .perdida__ca { margin-top: var(--e-xl); color: var(--texto-suave); font-size: var(--t-pequeno); }
+</style>
