@@ -105,23 +105,128 @@ export const ui = {
   },
 } as const;
 
-export const reviews = [
+export type Review = {
+  name: string;
+  lang: 'es' | 'ca';
+  text: string;
+  source: 'google' | 'setmore';
+  date?: string;
+  year?: string;
+  portada?: boolean;
+};
+
+export const reviews: Review[] = [
   {
     name: 'Monica C.',
     date: '2023-11-22',
     lang: 'es',
+    source: 'google',
+    portada: true,
     text: 'Una gran profesional, muy cercana, estoy encantada con ella. Sin ninguna duda la mejor decision que he tomado ha sido venir a terapia con ella',
   },
   {
     name: 'Aleix D.',
     date: '2023-10-13',
     lang: 'ca',
+    source: 'google',
+    portada: true,
     text: "100% recomanable. Com a persona és un encant i com a professional excel·lent. Gràcies a les xerrades a les sessions i aplicant els consells, realment m'ha canviat la vida a millor sens dubte.",
   },
   {
     name: 'Miguel P.',
     date: '2023-03-10',
     lang: 'es',
+    source: 'google',
     text: 'Sus sesiones me han ayudado mucho, es de agradecer su cercanía y profesionalidad!!',
   },
-] as const;
+  {
+    name: 'Natalia C.',
+    year: '2026',
+    lang: 'es',
+    source: 'setmore',
+    portada: true,
+    text: 'Maite es increíble. La conozco desde hace 3 años y no la cambiaría por nada en este mundo. Atenta, natural, empatica, cercana, etc. Te da herramientas para que puedas lidiar con los problemas, ejercicios para que puedas reflexionar sobre la conducta, etc. Muy contenta, siempre la recomiendo a todo el mundo.',
+  },
+  {
+    name: 'Cristina M.',
+    year: '2026',
+    lang: 'es',
+    source: 'setmore',
+    portada: true,
+    text: 'Hoy he entrado en consulta con mucha ansiedad y preocupación y he salido mucho más calmada. Muy bien.',
+  },
+  {
+    name: 'Corinna Z.',
+    year: '2025',
+    lang: 'es',
+    source: 'setmore',
+    portada: true,
+    text: 'Llevo un tiempo con Maite, sin duda es una gran profesional una mujer muy cercana que sabe escuchar y dar esas herramientas que tanto necesitamos. Te hace sentir segura, en un espacio muy cómodo y sobretodo lo hace todo muy fácil y también que te sientas super cómoda 👏😻',
+  },
+  {
+    name: 'Gloria',
+    year: '2026',
+    lang: 'es',
+    source: 'setmore',
+    text: 'Siempre tiene una opción y una salida para los problemas',
+  },
+  {
+    name: 'Carmen C.',
+    year: '2026',
+    lang: 'es',
+    source: 'google',
+    text: 'Totalmente recomendable. Estamos toda la familia muy contenta con su trabajo, su atención y su normalidad para hacernos sentir seguros y orientados. La consulta está muy bien decorada y es muy cómoda, tanto la sala de espera como la consulta, en la que te sientes relajado y cómodo.',
+  },
+  {
+    name: 'María R.',
+    year: '2026',
+    lang: 'es',
+    source: 'setmore',
+    text: 'Muy buena profesional',
+  },
+  {
+    name: 'Isabel',
+    year: '2026',
+    lang: 'es',
+    source: 'setmore',
+    text: 'Un 100 de 100. Súper agradecida con todo lo que haces. Eres una gran profesional y estoy convencida que conseguirás que mi hijo mejore cada día. Muchísimas gracias por todo!!',
+  },
+  {
+    name: 'Sara M.',
+    year: '2026',
+    lang: 'es',
+    source: 'setmore',
+    text: 'Volcada en su trabajo como en casa sesión. Gracias Maite',
+  },
+  {
+    name: 'Francisco Javier',
+    year: '2025',
+    lang: 'es',
+    source: 'google',
+    text: 'Buena experiencia y personalización de terapias, y posibilidad de hacerla online, que los que tenemos turno partido nos ayuda muchísimo.',
+  },
+  {
+    name: 'Rosa R.',
+    year: '2025',
+    lang: 'es',
+    source: 'setmore',
+    text: 'Me he llevado una muy buena impresión, he estado muy agusto, he podido hablar con mucha tranquilidad, me he sentido escuchada, comprendida y para nada juzgada. Gracias Maite.',
+  },
+  {
+    name: 'Dani E.',
+    year: '2025',
+    lang: 'es',
+    source: 'setmore',
+    text: 'Llevo tiempo trabajando con Maite en mi evolución personal y no puedo estar más que agradecido a todo lo que me aporta, las charlas que tenemos y como echo la vista atrás... Veo dónde estaba y veo dónde estoy!',
+  },
+];
+
+export const reviewWhen = (r: Review, lang: Lang) =>
+  r.date
+    ? new Intl.DateTimeFormat(lang === 'ca' ? 'ca-ES' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(r.date))
+    : (r.year ?? '');
+
+export const reviewIso = (r: Review) => r.date ?? r.year ?? '';
+
+export const reviewSource = (r: Review, lang: Lang) =>
+  `${lang === 'ca' ? 'a' : 'en'} ${r.source === 'google' ? 'Google' : 'Setmore'}`;

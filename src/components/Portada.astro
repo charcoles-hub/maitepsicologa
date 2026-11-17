@@ -1,5 +1,5 @@
 ---
-import { contact, href, label, reviews, ui, type Lang, type PageKey } from '../data/site';
+import { contact, href, label, reviews, reviewIso, reviewSource, reviewWhen, ui, type Lang, type PageKey } from '../data/site';
 import { especialidades } from '../data/paginas';
 import Retrato from './Retrato.astro';
 import fotoMaite from '../assets/fotos/maite-escritorio.png';
@@ -48,11 +48,8 @@ const copy = {
       ['No sé muy bien qué me pasa', 'contacto'],
     ] as [string, PageKey][],
     resenasTitulo: 'Lo que dicen quienes ya han venido',
-    resenasNota: 'Reseñas publicadas en Google, citadas tal cual.',
+    resenasNota: 'Reseñas publicadas en Google y en Setmore, citadas tal cual.',
     resenasEnlace: 'Ver todas las reseñas en Google',
-    ejemplo: 'Ejemplo',
-    resenaEjemplo: 'Aquí irá una reseña de Setmore, citada entera, con su nombre y su fecha.',
-    resenaEjemploPie: 'Reseña de Setmore pendiente',
     ayudaTitulo: 'En qué te podemos ayudar',
     pasosDatos: [[['Duración', '55 minutos'], ['Dónde', 'Granollers o videollamada'], ['Lo que cuentas', 'Confidencial']], [['Entre sesiones', 'Ejercicios adaptados'], ['Dudas', 'Por WhatsApp'], ['Objetivos', 'Los revisamos juntos']]],
     pasosTitulo: 'Cómo es empezar',
@@ -107,11 +104,8 @@ const copy = {
       ['No sé ben bé què em passa', 'contacto'],
     ] as [string, PageKey][],
     resenasTitulo: 'El que diuen les persones que ja han vingut',
-    resenasNota: 'Ressenyes publicades a Google, citades tal com són.',
+    resenasNota: 'Ressenyes publicades a Google i a Setmore, citades tal com són.',
     resenasEnlace: 'Veure totes les ressenyes a Google',
-    ejemplo: 'Exemple',
-    resenaEjemplo: 'Aquí hi anirà una ressenya de Setmore, citada sencera, amb el nom i la data.',
-    resenaEjemploPie: 'Ressenya de Setmore pendent',
     ayudaTitulo: 'En què et podem ajudar',
     pasosDatos: [[['Durada', '55 minuts'], ['On', 'Granollers o videotrucada'], ['El que expliques', 'Confidencial']], [['Entre sessions', 'Exercicis adaptats'], ['Dubtes', 'Per WhatsApp'], ['Objectius', 'Els revisem junts']]],
     pasosTitulo: 'Com és començar',
@@ -154,10 +148,7 @@ const copy = {
   },
 }[lang];
 
-const fecha = (iso: string) =>
-  new Intl.DateTimeFormat(lang === 'ca' ? 'ca-ES' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(iso));
-
-const [destacada, ...resto] = reviews;
+const [destacada, ...resto] = reviews.filter((r) => r.portada);
 const googleReviews = 'https://share.google/dZ5EOrE4EKI2az14z';
 ---
 <section class="escena" data-escena data-pool={JSON.stringify(copy.pool)} aria-labelledby="portada-titulo">
@@ -201,24 +192,19 @@ const googleReviews = 'https://share.google/dZ5EOrE4EKI2az14z';
     <div class="resenas__rejilla">
       <figure class="resena resena--grande">
         <blockquote lang={destacada.lang}><p data-enciende>«{destacada.text}»</p></blockquote>
-        <figcaption>{destacada.name}, en Google · <time datetime={destacada.date}>{fecha(destacada.date)}</time></figcaption>
+        <figcaption>{destacada.name}, {reviewSource(destacada, lang)} · <time datetime={reviewIso(destacada)}>{reviewWhen(destacada, lang)}</time></figcaption>
       </figure>
       <div class="resenas__lista">
         {resto.map((r) => (
           <figure class="resena" data-sube>
             <blockquote lang={r.lang}><p>«{r.text}»</p></blockquote>
-            <figcaption>{r.name}, en Google · <time datetime={r.date}>{fecha(r.date)}</time></figcaption>
+            <figcaption>{r.name}, {reviewSource(r, lang)} · <time datetime={reviewIso(r)}>{reviewWhen(r, lang)}</time></figcaption>
           </figure>
         ))}
-        <figure class="resena resena--ejemplo">
-          <blockquote><p>{copy.resenaEjemplo}</p></blockquote>
-          <figcaption><span class="ejemplo">{copy.ejemplo}</span> {copy.resenaEjemploPie}</figcaption>
-        </figure>
       </div>
     </div>
     <p class="resenas__pie">
       {copy.resenasNota}
-      <!-- PENDIENTE: reseñas de Setmore -->
       <a class="boton boton--secundario" href={googleReviews} target="_blank" rel="noopener">{copy.resenasEnlace}</a>
     </p>
   </div>
