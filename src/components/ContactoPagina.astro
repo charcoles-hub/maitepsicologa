@@ -22,9 +22,6 @@ const c = {
     dondeTitulo: 'Dónde estamos',
     horario: 'Horario',
     redes: 'También en Instagram',
-    form: 'Formulario de contacto.',
-    formTexto: 'La web actual tiene uno. Si se quiere mantener, lo añadimos aquí con protección antispam.',
-    ejemplo: 'Por decidir',
   },
   ca: {
     h1: 'En parlem quan vulguis',
@@ -38,9 +35,6 @@ const c = {
     dondeTitulo: 'On som',
     horario: 'Horari',
     redes: 'També a Instagram',
-    form: 'Formulari de contacte.',
-    formTexto: "La web actual en té un. Si es vol mantenir, l’afegim aquí amb protecció antispam.",
-    ejemplo: 'Per decidir',
   },
 }[lang];
 ---
@@ -57,7 +51,6 @@ const c = {
         </li>
       ))}
     </ul>
-    <p class="vias__form"><span class="ejemplo">{c.ejemplo}</span> <strong>{c.form}</strong> {c.formTexto}</p>
   </div>
 </section>
 
@@ -80,8 +73,6 @@ const c = {
   .vias__lista h2 { font-size: 1.5rem; font-weight: 520; letter-spacing: -0.02em; }
   .vias__lista p { color: var(--texto-suave); flex: 1; }
   .vias__lista .boton { white-space: normal; text-align: center; margin-top: var(--e-s); }
-  .vias__form { margin-top: var(--e-xl); color: var(--texto-suave); max-width: 70ch; }
-  .vias__form strong { color: var(--texto); }
 
   .ubicacion__rejilla { display: grid; grid-template-columns: 5fr 7fr; gap: var(--e-xl); align-items: stretch; }
   .ubicacion address { font-style: normal; font-size: 1.3rem; font-weight: 520; }
