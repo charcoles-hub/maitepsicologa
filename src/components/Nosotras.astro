@@ -44,7 +44,6 @@ const c = {
     altMaite: 'Maite Vicente tomando notas, sentada en un sofá.',
     fotoCompanera: 'Retrato de Martina en la consulta.',
     altCompanera: 'Martina Pages, con gafas y americana negra, sentada a su mesa.',
-    martinaDias: 'En la consulta los miércoles por la tarde y los viernes por la mañana',
     enfoquesTitulo: 'Cómo trabajamos',
     espacioTitulo: 'La consulta',
     espacioIntro: 'Carrer de Roger de Flor, 63, 1º 2ª, en Granollers. Un espacio tranquilo para hablar sin prisas.',
@@ -75,7 +74,6 @@ const c = {
     altMaite: 'La Maite Vicente prenent notes, asseguda en un sofà.',
     fotoCompanera: 'Retrat de la Martina a la consulta.',
     altCompanera: 'La Martina Pages, amb ulleres i americana negra, asseguda a la seva taula.',
-    martinaDias: 'A la consulta els dimecres a la tarda i els divendres al matí',
     enfoquesTitulo: 'Com treballem',
     espacioTitulo: 'La consulta',
     espacioIntro: 'Carrer de Roger de Flor, 63, 1r 2a, a Granollers. Un espai tranquil per parlar sense presses.',
@@ -105,7 +103,6 @@ const c = {
     <div>
       <h2 id="perfil-companera" class="perfil__nombre">Martina Pages</h2>
       <p class="perfil__dato">{t.colegiadaMartina}</p>
-      <p class="perfil__dato">{c.martinaDias}</p>
       {c.companera.map((p) => <p class="perfil__bio">{p}</p>)}
     </div>
     <Retrato iniciales="MP" etiqueta={c.foto} pie={c.fotoCompanera} foto={fotoMartina} alt={c.altCompanera} />
