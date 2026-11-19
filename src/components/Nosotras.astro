@@ -186,6 +186,11 @@ const c = {
   .espacio__fotos :global(.retrato:nth-child(4)) { grid-column: span 2; }
   .espacio__fotos :global(.retrato:nth-child(4) .retrato__marco) { aspect-ratio: 13 / 6; }
 
+  @media (min-width: 861px) {
+    .perfil__rejilla { align-items: start; }
+    .perfil__rejilla > :global(.retrato) { position: sticky; top: 112px; }
+  }
+
   @media (max-width: 860px) {
     .perfil__rejilla, .perfil__rejilla--invertida, .enfoques__lista { grid-template-columns: 1fr; }
     .espacio__fotos { grid-template-columns: 1fr 1fr; }
