@@ -32,6 +32,7 @@ export const pages = [
   { key: 'infantil', es: { slug: 'terapia-adolescentes-infantil', label: 'Niños y adolescentes' }, ca: { slug: 'terapia-adolescents-infantil', label: 'Infants i adolescents' } },
   { key: 'pareja', es: { slug: 'terapia-pareja-familia', label: 'Pareja y familia' }, ca: { slug: 'terapia-parella-familia', label: 'Parella i família' } },
   { key: 'online', es: { slug: 'sesiones-online', label: 'Online' }, ca: { slug: 'sessions-online', label: 'Online' } },
+  { key: 'talleres', es: { slug: 'talleres', label: 'Talleres' }, ca: { slug: 'tallers', label: 'Tallers' } },
   { key: 'nosotras', es: { slug: 'sobre-nosotras', label: 'Sobre nosotras' }, ca: { slug: 'sobre-nosaltres', label: 'Sobre nosaltres' } },
   { key: 'tarifas', es: { slug: 'tarifas', label: 'Tarifas' }, ca: { slug: 'tarifes', label: 'Tarifes' } },
   { key: 'contacto', es: { slug: 'contacto', label: 'Contacto' }, ca: { slug: 'contacte', label: 'Contacte' } },
@@ -43,7 +44,7 @@ export const pages = [
 
 export type PageKey = (typeof pages)[number]['key'];
 
-export const navKeys: PageKey[] = ['adultos', 'infantil', 'pareja', 'online', 'nosotras', 'tarifas', 'contacto'];
+export const navKeys: PageKey[] = ['adultos', 'infantil', 'pareja', 'online', 'talleres', 'nosotras', 'tarifas', 'contacto'];
 
 export function href(lang: Lang, key: PageKey) {
   const slug = pages.find((p) => p.key === key)![lang].slug;

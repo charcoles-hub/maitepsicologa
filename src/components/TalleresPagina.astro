@@ -1,0 +1,214 @@
+---
+import { contact, type Lang } from '../data/site';
+import SubHero from './SubHero.astro';
+import Retrato from './Retrato.astro';
+import Cierre from './Cierre.astro';
+import fotoAula from '../assets/fotos/taller-aula.jpg';
+import fotoEstres from '../assets/fotos/taller-estres.jpg';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const c = {
+  es: {
+    h1: 'Talleres de psicología para empresas y colegios',
+    intro: 'Cada equipo, cada aula y cada familia tiene necesidades diferentes. Diseñamos charlas y talleres para empresas, colegios e institutos, adaptados a las personas que participan y a los temas que necesitan trabajar.',
+    propuesta: 'Pedir una propuesta',
+    asunto: 'Taller para empresa o colegio',
+    whatsapp: 'Escribir por WhatsApp',
+    whatsappTexto: 'Hola Maite, querría información sobre un taller para',
+    formaTitulo: 'Cómo son los talleres',
+    forma: 'Ofrecemos una formación cercana y participativa, con contenidos basados en la evidencia científica, ejemplos cotidianos y herramientas prácticas para aplicar después del taller.',
+    altAula: 'Taller en un aula de instituto: una psicóloga presenta una diapositiva a un grupo de alumnas. Las caras de las alumnas están difuminadas.',
+    pieAula: 'Taller en un instituto.',
+    empresasTitulo: 'Formación para empresas: bienestar emocional y gestión de equipos',
+    empresasIntro: 'Las exigencias del trabajo, la comunicación y las relaciones dentro de un equipo influyen en cómo nos sentimos. Nuestros talleres para empresas permiten abordar estas situaciones y desarrollar habilidades para afrontarlas, atendiendo tanto a las personas como al contexto laboral.',
+    temas: 'Podemos trabajar temas como:',
+    empresas: [
+      ['Gestión del estrés laboral', 'Reconocer las señales de sobrecarga, identificar qué la mantiene y explorar cambios posibles.'],
+      ['Ansiedad y preocupación', 'Comprender cómo funcionan y aprender estrategias para manejar la anticipación y los pensamientos repetitivos.'],
+      ['Gestión emocional en el trabajo', 'Reconocer las emociones y responder con más recursos ante situaciones difíciles.'],
+      ['Liderazgo y gestión de personas', 'Escucha activa, comunicación de expectativas, feedback y acompañamiento del equipo.'],
+      ['Comunicación y resolución de conflictos', 'Expresar necesidades, abordar desacuerdos y mantener conversaciones difíciles con respeto.'],
+      ['Límites y desconexión digital', 'Revisar la disponibilidad constante, la dificultad para delegar y el equilibrio entre trabajo y vida personal.'],
+      ['Prevención del desgaste profesional', 'Identificar señales de agotamiento y aspectos de la organización que conviene revisar.'],
+    ],
+    empresasCierre: 'La formación puede dirigirse a trabajadores, responsables de equipo o grupos mixtos, ajustando los contenidos a sus funciones y necesidades.',
+    colesTitulo: 'Talleres para colegios e institutos: educación emocional y convivencia',
+    colesIntro: 'Acompañar el desarrollo emocional también implica aprender a convivir, pedir ayuda y cuidar las relaciones. Preparamos talleres de psicología para centros educativos, adaptados a la edad del alumnado y a la realidad de cada centro.',
+    alumnadoTitulo: 'Para niños, niñas y adolescentes',
+    alumnado: [
+      ['Prevención del bullying y ciberbullying', 'Reconocer el acoso, comprender el papel de quienes lo presencian y aprender a pedir ayuda.'],
+      ['Gestión emocional', 'Identificar lo que sentimos, expresarlo y encontrar formas de manejar emociones intensas.'],
+      ['Frustración y tolerancia al error', 'Afrontar un «no», una dificultad o algo que no sale como esperábamos.'],
+      ['Autoestima y comparación social', 'Trabajar la relación con uno mismo, la imagen corporal y la influencia de las redes sociales.'],
+      ['Comunicación, empatía y conflictos', 'Expresar desacuerdos, poner límites y construir relaciones respetuosas.'],
+      ['Pantallas y bienestar digital', 'Reflexionar sobre los hábitos de uso, la presión social y su relación con el descanso y la convivencia.'],
+      ['Estrés académico y ansiedad ante los exámenes', 'Comprender la presión y desarrollar recursos para afrontarla.'],
+    ],
+    familiasTitulo: 'Para familias y asociaciones de familias (AFA y AMPA)',
+    familiasIntro: 'Ofrecemos charlas para compartir dudas y encontrar herramientas que encajen en la vida familiar:',
+    familias: [
+      ['Límites y normas', 'Acompañar con firmeza y cercanía, sin entrar continuamente en discusiones.'],
+      ['Pantallas en casa', 'Establecer acuerdos y acompañar el uso de móviles, videojuegos y redes sociales.'],
+      ['Adolescencia y comunicación', 'Mantener el vínculo cuando cambian las necesidades y aparecen más desacuerdos.'],
+      ['Rabietas, enfado y frustración', 'Comprender estas situaciones y responder de una forma más útil.'],
+      ['Autonomía y autoestima', 'Acompañar sin resolverlo todo ni exigir más de lo que corresponde por edad.'],
+      ['Prevención del acoso escolar', 'Reconocer señales y saber cómo coordinarse con el centro.'],
+    ],
+    docentesTitulo: 'Para docentes y equipos educativos',
+    docentes: 'También diseñamos formaciones sobre gestión emocional en el aula, convivencia, comunicación con las familias y acompañamiento del alumnado ante dificultades emocionales. Podemos abordar, además, el estrés y el desgaste del propio equipo docente.',
+    medidaTitulo: 'Una propuesta adaptada a vuestro centro o empresa',
+    medida: [
+      'Antes de preparar el taller, recogemos qué os preocupa, a quién se dirige y qué os gustaría trabajar. A partir de ahí, acordamos los objetivos, la duración y las actividades.',
+      'La propuesta puede tomar la forma de una charla, un taller práctico o un ciclo de sesiones. Combinamos explicaciones claras, dinámicas y espacios de reflexión, sin exigir que las personas compartan experiencias personales.',
+    ],
+    altEstres: 'Pantalla de proyección con el título «Taller: Gestión del estrés» en una sala de formación.',
+    pieEstres: 'Taller de gestión del estrés.',
+    cierreTitulo: '¿Buscáis un taller para vuestra empresa o colegio?',
+    cierreTexto: 'Contadnos qué necesitáis y prepararemos una propuesta a medida desde nuestra consulta de psicología en Granollers y alrededores.',
+  },
+  ca: {
+    h1: 'Tallers de psicologia per a empreses i escoles',
+    intro: 'Cada equip, cada aula i cada família té necessitats diferents. Dissenyem xerrades i tallers per a empreses, escoles i instituts, adaptats a les persones que hi participen i als temes que necessiten treballar.',
+    propuesta: 'Demanar una proposta',
+    asunto: 'Taller per a empresa o escola',
+    whatsapp: 'Escriure per WhatsApp',
+    whatsappTexto: 'Hola Maite, voldria informació sobre un taller per a',
+    formaTitulo: 'Com són els tallers',
+    forma: 'Oferim una formació propera i participativa, amb continguts basats en l’evidència científica, exemples quotidians i eines pràctiques per aplicar després del taller.',
+    altAula: 'Taller en una aula d’institut: una psicòloga presenta una diapositiva a un grup d’alumnes. Les cares de les alumnes estan difuminades.',
+    pieAula: 'Taller en un institut.',
+    empresasTitulo: 'Formació per a empreses: benestar emocional i gestió d’equips',
+    empresasIntro: 'Les exigències de la feina, la comunicació i les relacions dins d’un equip influeixen en com ens sentim. Els nostres tallers per a empreses permeten abordar aquestes situacions i desenvolupar habilitats per afrontar-les, atenent tant les persones com el context laboral.',
+    temas: 'Podem treballar temes com:',
+    empresas: [
+      ['Gestió de l’estrès laboral', 'Reconèixer els senyals de sobrecàrrega, identificar què la manté i explorar canvis possibles.'],
+      ['Ansietat i preocupació', 'Comprendre com funcionen i aprendre estratègies per gestionar l’anticipació i els pensaments repetitius.'],
+      ['Gestió emocional a la feina', 'Reconèixer les emocions i respondre amb més recursos davant de situacions difícils.'],
+      ['Lideratge i gestió de persones', 'Escolta activa, comunicació d’expectatives, retorn i acompanyament de l’equip.'],
+      ['Comunicació i resolució de conflictes', 'Expressar necessitats, abordar desacords i mantenir converses difícils amb respecte.'],
+      ['Límits i desconnexió digital', 'Revisar la disponibilitat constant, la dificultat per delegar i l’equilibri entre feina i vida personal.'],
+      ['Prevenció del desgast professional', 'Identificar senyals d’esgotament i aspectes de l’organització que convé revisar.'],
+    ],
+    empresasCierre: 'La formació es pot adreçar a treballadors, responsables d’equip o grups mixtos, i s’ajusten els continguts a les seves funcions i necessitats.',
+    colesTitulo: 'Tallers per a escoles i instituts: educació emocional i convivència',
+    colesIntro: 'Acompanyar el desenvolupament emocional també implica aprendre a conviure, demanar ajuda i cuidar les relacions. Preparem tallers de psicologia per a centres educatius, adaptats a l’edat de l’alumnat i a la realitat de cada centre.',
+    alumnadoTitulo: 'Per a nens, nenes i adolescents',
+    alumnado: [
+      ['Prevenció del bullying i el ciberbullying', 'Reconèixer l’assetjament, comprendre el paper de qui el presencia i aprendre a demanar ajuda.'],
+      ['Gestió emocional', 'Identificar el que sentim, expressar-ho i trobar maneres de gestionar emocions intenses.'],
+      ['Frustració i tolerància a l’error', 'Afrontar un «no», una dificultat o alguna cosa que no surt com esperàvem.'],
+      ['Autoestima i comparació social', 'Treballar la relació amb un mateix, la imatge corporal i la influència de les xarxes socials.'],
+      ['Comunicació, empatia i conflictes', 'Expressar desacords, posar límits i construir relacions respectuoses.'],
+      ['Pantalles i benestar digital', 'Reflexionar sobre els hàbits d’ús, la pressió social i la seva relació amb el descans i la convivència.'],
+      ['Estrès acadèmic i ansietat davant dels exàmens', 'Comprendre la pressió i desenvolupar recursos per afrontar-la.'],
+    ],
+    familiasTitulo: 'Per a famílies i associacions de famílies (AFA i AMPA)',
+    familiasIntro: 'Oferim xerrades per compartir dubtes i trobar eines que encaixin en la vida familiar:',
+    familias: [
+      ['Límits i normes', 'Acompanyar amb fermesa i proximitat, sense entrar contínuament en discussions.'],
+      ['Pantalles a casa', 'Establir acords i acompanyar l’ús de mòbils, videojocs i xarxes socials.'],
+      ['Adolescència i comunicació', 'Mantenir el vincle quan canvien les necessitats i apareixen més desacords.'],
+      ['Rebequeries, enuig i frustració', 'Comprendre aquestes situacions i respondre d’una manera més útil.'],
+      ['Autonomia i autoestima', 'Acompanyar sense resoldre-ho tot ni exigir més del que correspon per edat.'],
+      ['Prevenció de l’assetjament escolar', 'Reconèixer senyals i saber com coordinar-se amb el centre.'],
+    ],
+    docentesTitulo: 'Per a docents i equips educatius',
+    docentes: 'També dissenyem formacions sobre gestió emocional a l’aula, convivència, comunicació amb les famílies i acompanyament de l’alumnat davant de dificultats emocionals. A més, podem abordar l’estrès i el desgast del mateix equip docent.',
+    medidaTitulo: 'Una proposta adaptada al vostre centre o empresa',
+    medida: [
+      'Abans de preparar el taller, recollim què us preocupa, a qui s’adreça i què us agradaria treballar. A partir d’aquí, acordem els objectius, la durada i les activitats.',
+      'La proposta pot prendre la forma d’una xerrada, un taller pràctic o un cicle de sessions. Combinem explicacions clares, dinàmiques i espais de reflexió, sense exigir que les persones comparteixin experiències personals.',
+    ],
+    altEstres: 'Pantalla de projecció amb el títol «Taller: Gestión del estrés» en una sala de formació.',
+    pieEstres: 'Taller de gestió de l’estrès.',
+    cierreTitulo: 'Busqueu un taller per a la vostra empresa o escola?',
+    cierreTexto: 'Expliqueu-nos què necessiteu i us prepararem una proposta a mida des de la nostra consulta de psicologia a Granollers i rodalies.',
+  },
+}[lang];
+
+const correo = `mailto:${contact.email}?subject=${encodeURIComponent(c.asunto)}`;
+const whatsapp = `https://wa.me/34613001609?text=${encodeURIComponent(c.whatsappTexto)}`;
+const principal = { texto: c.propuesta, href: correo };
+const secundario = { texto: c.whatsapp, href: whatsapp };
+---
+<SubHero lang={lang} page="talleres" hora="mediodia" h1={c.h1} intro={c.intro} principal={principal} secundario={secundario} />
+
+<section class="tl-forma" data-hora="tarde" aria-labelledby="tl-forma">
+  <div class="contenedor tl-forma__rejilla">
+    <div>
+      <h2 id="tl-forma" class="titular-seccion">{c.formaTitulo}</h2>
+      <p class="tl-texto">{c.forma}</p>
+    </div>
+    <Retrato iniciales="" etiqueta="" pie={c.pieAula} foto={fotoAula} alt={c.altAula} sizes="(min-width: 860px) 460px, 92vw" />
+  </div>
+</section>
+
+<section class="tl-bloque" data-hora="ocaso" aria-labelledby="tl-empresas">
+  <div class="contenedor">
+    <h2 id="tl-empresas" class="titular-seccion tl-titular">{c.empresasTitulo}</h2>
+    <p class="tl-texto">{c.empresasIntro}</p>
+    <p class="tl-temas">{c.temas}</p>
+    <ul class="tl-lista">
+      {c.empresas.map(([titulo, texto]) => <li data-sube><h3>{titulo}</h3><p>{texto}</p></li>)}
+    </ul>
+    <p class="tl-texto tl-nota">{c.empresasCierre}</p>
+  </div>
+</section>
+
+<section class="tl-bloque" data-hora="manana" aria-labelledby="tl-coles">
+  <div class="contenedor">
+    <h2 id="tl-coles" class="titular-seccion tl-titular">{c.colesTitulo}</h2>
+    <p class="tl-texto">{c.colesIntro}</p>
+
+    <h3 class="tl-sub">{c.alumnadoTitulo}</h3>
+    <ul class="tl-lista">
+      {c.alumnado.map(([titulo, texto]) => <li data-sube><h4>{titulo}</h4><p>{texto}</p></li>)}
+    </ul>
+
+    <h3 class="tl-sub">{c.familiasTitulo}</h3>
+    <p class="tl-texto">{c.familiasIntro}</p>
+    <ul class="tl-lista">
+      {c.familias.map(([titulo, texto]) => <li data-sube><h4>{titulo}</h4><p>{texto}</p></li>)}
+    </ul>
+
+    <h3 class="tl-sub">{c.docentesTitulo}</h3>
+    <p class="tl-texto">{c.docentes}</p>
+  </div>
+</section>
+
+<section class="tl-forma" data-hora="mediodia" aria-labelledby="tl-medida">
+  <div class="contenedor tl-forma__rejilla tl-forma__rejilla--invertida">
+    <Retrato iniciales="" etiqueta="" pie={c.pieEstres} foto={fotoEstres} alt={c.altEstres} sizes="(min-width: 860px) 460px, 92vw" />
+    <div>
+      <h2 id="tl-medida" class="titular-seccion">{c.medidaTitulo}</h2>
+      {c.medida.map((p) => <p class="tl-texto">{p}</p>)}
+    </div>
+  </div>
+</section>
+
+<Cierre lang={lang} titulo={c.cierreTitulo} texto={c.cierreTexto} principal={principal} secundario={secundario} />
+
+<style>
+  .tl-forma__rejilla { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--e-xl) clamp(32px, 6vw, 96px); align-items: center; }
+  .tl-forma__rejilla--invertida { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .tl-texto { font-size: 1.15rem; max-width: 60ch; }
+  .tl-texto + .tl-texto { margin-top: var(--e-m); }
+  .tl-titular { max-width: 22ch; }
+  .tl-temas { margin-top: var(--e-l); font-weight: 600; }
+  .tl-nota { margin-top: var(--e-l); color: var(--texto-suave); }
+  .tl-sub { font-size: clamp(1.4rem, 1.15rem + 0.9vw, 2rem); font-weight: 520; letter-spacing: -0.02em; margin: clamp(48px, 6vw, 80px) 0 var(--e-m); }
+  .tl-lista { list-style: none; padding: 0; margin-top: var(--e-m); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(32px, 6vw, 96px); }
+  .tl-lista li { padding-block: var(--e-l); border-top: 1px solid color-mix(in srgb, var(--texto) 16%, transparent); }
+  .tl-lista h3, .tl-lista h4 { font-size: clamp(1.15rem, 1rem + 0.5vw, 1.45rem); font-weight: 520; letter-spacing: -0.015em; margin-bottom: var(--e-s); }
+  .tl-lista p { color: var(--texto-suave); max-width: 46ch; }
+
+  @media (max-width: 860px) {
+    .tl-forma__rejilla, .tl-forma__rejilla--invertida, .tl-lista { grid-template-columns: 1fr; }
+    .tl-forma :global(.retrato) { max-width: 420px; }
+  }
+</style>

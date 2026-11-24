@@ -8,9 +8,10 @@ interface Props {
   parrafos?: readonly string[];
   nota?: string;
   secundario?: { texto: string; href: string };
+  principal?: { texto: string; href: string };
 }
 
-const { lang, parrafos, nota, secundario } = Astro.props;
+const { lang, parrafos, nota, secundario, principal } = Astro.props;
 const t = ui[lang];
 const titulo = Astro.props.titulo ?? (lang === 'ca' ? 'Quan vulguis, comencem' : 'Cuando quieras, empezamos');
 const texto = Astro.props.texto ?? (lang === 'ca' ? 'Reserva la teva primera sessió o escriu-nos i et respondrem al més aviat possible.' : 'Reserva tu primera sesión o escríbenos y te respondemos lo antes posible.');
@@ -20,7 +21,7 @@ const texto = Astro.props.texto ?? (lang === 'ca' ? 'Reserva la teva primera ses
     <h2 id="cierre-titulo" data-enciende>{titulo}</h2>
     {(parrafos ?? [texto]).map((p) => <p>{p}</p>)}
     <div class="cierre__acciones">
-      <a class="boton" href={contact.setmore} target="_blank" rel="noopener" data-iman>{t.cta}</a>
+      {principal ? <a class="boton" href={principal.href} data-iman>{principal.texto}</a> : <a class="boton" href={contact.setmore} target="_blank" rel="noopener" data-iman>{t.cta}</a>}
       <a class:list={["boton boton--secundario", { "boton--envuelve": secundario }]} href={secundario?.href ?? contact.whatsapp[lang]} target="_blank" rel="noopener">{secundario?.texto ?? t.whatsappFull}</a>
     </div>
     {nota && <p class="cierre__nota">{nota}</p>}
